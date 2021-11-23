@@ -1,0 +1,24 @@
+﻿<Window x:Class="IDEToolBox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IDEToolBox"
+        xmlns:controls="clr-namespace:IDEToolBox.CombineCSVs"
+        mc:Ignorable="d"
+        Title="IDE Test Tools" Height="600" Width="800">
+    <TabControl>
+        <TabItem Name="CombineCSVFilesFromTwoFolders" >
+            <TabItem.Header>
+                <Grid Background="WhiteSmoke">
+                    <TextBlock Text="Combine CSV Files From Two Folders" ></TextBlock>
+                </Grid>
+            </TabItem.Header>
+
+
+            <Grid>
+                <controls:CombineCSVsFrom2Folders />
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
