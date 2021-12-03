@@ -17,7 +17,7 @@ namespace CombineCSVFilesFromTwoFolders
 {
     public partial class frmCombineResult : Form, IDisposable
     {
-        const int Version = 7;
+        const int Version = 8;
         const string Form_Title = "Combine Files From Two Folders";
         string[] Header = new string[] { "", "Well","","", "FAM Cq", "Cy5 Cq", "Cq", "I.C. Cq","", "Result" };
         enum ColumnName {None , Well, Content, Sample, cq1, cq2, cq3, ICCq, SQ, Result }
@@ -31,6 +31,7 @@ namespace CombineCSVFilesFromTwoFolders
         Microsoft.Office.Interop.Excel.Workbook xlWorkbook = null;  //.Open(FileName);
         Microsoft.Office.Interop.Excel._Worksheet xlWorksheet;
 
+        bool m_NoDiffAllFiles = true;
         private void frmCombineResult_Load(object sender, EventArgs e)
         { 
             txtFolder1.Text = "C:\\Users\\yong_qin\\Downloads\\IDE Results_ON";
@@ -94,6 +95,7 @@ namespace CombineCSVFilesFromTwoFolders
             tsProgress.Minimum = 0;
             tsProgress.Maximum = FileCounts;
             tsProgress.Value = 0;
+            m_NoDiffAllFiles = true;
             await Task.Run(() =>
             {
                 //Parallel.ForEach(System.IO.Directory.GetFiles(txtFolder1.Text), sFile =>
@@ -124,6 +126,7 @@ namespace CombineCSVFilesFromTwoFolders
                             //Add the one that has diffenece to new sheet
                             {
                                 FileInfo oFileDiff = new FileInfo(fi.Name, sFile1, sFile2);
+                                m_NoDiffAllFiles &= (oFileInfoSample.NumberOfDifferent == 0);
                                 AddToSheet("Difference", oFileDiff, lstSheet, xlWorkbook, oFileInfoSample.NumberOfDifferent == 0);
                             }
 
@@ -180,7 +183,12 @@ namespace CombineCSVFilesFromTwoFolders
                     {
                         xlWorksheet.Name = oSheet.SampleName;
                     }
-                    
+
+                    if (m_NoDiffAllFiles && xlWorksheet.Name == "Difference")
+                    {
+                        xlWorksheet.Cells[2, 1].Value = "No difference"; 
+                        continue;
+                    }
                     PopulateDataForSheetSummary(xlWorksheet, oSheet, oSheet.lstFile);
                 }
                 xlWorkbook.Sheets["Total"].Move(xlWorkbook.Sheets[1]);
@@ -320,6 +328,7 @@ namespace CombineCSVFilesFromTwoFolders
         }
         private void PopulateDataForSheet(Microsoft.Office.Interop.Excel._Worksheet xlWorksheet, clsSheetInfo oSheetInfo, FileInfo oFileInfo, bool NoDiff = false)
         {
+            if (NoDiff) return;
             int row = oSheetInfo.Row;
             int colGroup1 = oSheetInfo.colGroup1;
             int colGroup2 = oSheetInfo.colGroup2;
@@ -361,16 +370,16 @@ namespace CombineCSVFilesFromTwoFolders
                 }
                 
             }
-            if (NoDiff)
-            {
-                row += 1;
-                xlWorksheet.Cells[row, colGroup1].Value = "No Difference";
-                xlWorksheet.Cells[row, colGroup2].Value = "No Difference";
-                xlWorksheet.Cells[row, colGroup2].EntireRow.Font.Bold = true;
-                row += 2;
-                oSheetInfo.Row = row;
-                return;
-            }
+            //if (NoDiff)
+            //{
+            //    row += 1;
+            //    xlWorksheet.Cells[row, colGroup1].Value = "No Difference";
+            //    xlWorksheet.Cells[row, colGroup2].Value = "No Difference";
+            //    xlWorksheet.Cells[row, colGroup2].EntireRow.Font.Bold = true;
+            //    row += 2;
+            //    oSheetInfo.Row = row;
+            //    return;
+            //}
 
 
             int colDelta = colGroup2 + 7;
