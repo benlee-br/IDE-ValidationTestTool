@@ -17,19 +17,36 @@ namespace CombineCSVFilesFromTwoFolders
 {
     public partial class frmCombineResult : Form, IDisposable
     {
-        const int Version = 8;
+        const int Version = 9;
         const string Form_Title = "Combine Files From Two Folders";
         string[] Header = new string[] { "", "Well","","", "FAM Cq", "Cy5 Cq", "Cq", "I.C. Cq","", "Result" };
         enum ColumnName {None , Well, Content, Sample, cq1, cq2, cq3, ICCq, SQ, Result }
         public frmCombineResult()
         {
             InitializeComponent();
+            LoadSettings();
+        }
+
+        private void LoadSettings()
+        {
+            if (string.IsNullOrEmpty(Properties.Settings.Default.DefaultResultPath))
+                ResultPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            else
+                ResultPath = Properties.Settings.Default.DefaultResultPath;
+
+            if (string.IsNullOrEmpty(Properties.Settings.Default.DefaultCompareFolder))
+                DataPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            else
+                DataPath = Properties.Settings.Default.DefaultCompareFolder;
         }
         object lockme = new object();
         List<clsSheetInfo> lstSheet = null;
         Microsoft.Office.Interop.Excel.Application xlApp = null;
         Microsoft.Office.Interop.Excel.Workbook xlWorkbook = null;  //.Open(FileName);
         Microsoft.Office.Interop.Excel._Worksheet xlWorksheet;
+        private string m_ResultPath;
+        private string m_DataPath;
+        bool m_NoDiffAllFiles = true;
 
         bool m_NoDiffAllFiles = true;
         private void frmCombineResult_Load(object sender, EventArgs e)
@@ -45,14 +62,37 @@ namespace CombineCSVFilesFromTwoFolders
             txtFolder1.Text = @"C:\Work\Data\2021_09_20\IDE Result_After Subset";
             txtFolder2.Text = @"C:\Work\Data\2021_09_20\IDE Result_Before Subset";
 
-
             //Form title
             Text = $"{Form_Title} - Version {Version}";
         }
-
+        public string ResultPath
+        {
+            get { return m_ResultPath; }
+            set
+            {
+                if (m_ResultPath != value)
+                {
+                    m_ResultPath = value;
+                    Properties.Settings.Default.DefaultResultPath= value;
+                }
+            }
+        }
+        public string DataPath
+        {
+            get { return m_DataPath; }
+            set
+            {
+                if (m_DataPath != value)
+                {
+                    m_DataPath = value;
+                    Properties.Settings.Default.DefaultCompareFolder = value;
+                }
+            }
+        }
         private void btnBrowse1_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dgl = new FolderBrowserDialog();
+            dgl.SelectedPath = DataPath;
             if (dgl.ShowDialog() == DialogResult.OK)
             {
                 if(Directory.Exists(Path.Combine(dgl.SelectedPath, "Before")) &&
@@ -186,10 +226,11 @@ namespace CombineCSVFilesFromTwoFolders
 
                     if (m_NoDiffAllFiles && xlWorksheet.Name == "Difference")
                     {
-                        xlWorksheet.Cells[2, 1].Value = "No difference"; 
+                        xlWorksheet.Cells[2, 1].Value = "No difference";
                         continue;
                     }
-                    PopulateDataForSheetSummary(xlWorksheet, oSheet, oSheet.lstFile);
+                    //PopulateDataForSheetSummary(xlWorksheet, oSheet, oSheet.lstFile , xlWorksheet.Name == "Difference");
+                    PopulateDataForSheetSummary(xlWorksheet, oSheet, oSheet.lstFile, xlWorksheet.Name == "Difference");
                 }
                 xlWorkbook.Sheets["Total"].Move(xlWorkbook.Sheets[1]);
                 xlWorkbook.Sheets["Difference"].Move(xlWorkbook.Sheets[1]);
@@ -221,13 +262,13 @@ namespace CombineCSVFilesFromTwoFolders
                         i++;
                     }
                     else
-                        File.Copy(tempFullFileName, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), resultFileName));
+                        File.Copy(tempFullFileName, Path.Combine(ResultPath, resultFileName));
                 } while (!fileExist && i < tryCount);
 
-                if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), resultFileName)))
+                if (File.Exists(Path.Combine(ResultPath, resultFileName)))
                 {
                     isSuccess = true;
-                    tsFileName.Text = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), resultFileName)}) saved.";
+                    tsFileName.Text = $"{Path.Combine(ResultPath, resultFileName)}) saved.";
                 }
                 else
                     errorMessage = "Result file not complete for unknown reason.";
@@ -269,7 +310,7 @@ namespace CombineCSVFilesFromTwoFolders
             Debug.WriteLine("End:" + DateTime.Now.ToString());
             if (isSuccess)
             {
-                string resultFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), resultFileName);
+                string resultFile = Path.Combine(ResultPath, resultFileName);
                 if (MessageBox.Show($"Combine complete, Open result Excel file({resultFile})? ", "Success", MessageBoxButtons.OKCancel) 
                     == DialogResult.OK)
                 {
@@ -278,7 +319,7 @@ namespace CombineCSVFilesFromTwoFolders
             }
         }
 
-        private void AddToSheet(string SheetSampleName, FileInfo oFile, List<clsSheetInfo> lstSheet,Microsoft.Office.Interop.Excel.Workbook xlWorkbook, bool NoDiff = false)
+        private void AddToSheet(string SheetSampleName, FileInfo oFile, List<clsSheetInfo> lstSheet, Microsoft.Office.Interop.Excel.Workbook xlWorkbook, bool NoDiff = false)
         {
             lock (lockme)
             {
@@ -301,7 +342,7 @@ namespace CombineCSVFilesFromTwoFolders
                 oSheet.lstFile.Add(oFile);
                 PopulateDataForSheet(xlWorksheet, oSheet, oFile, NoDiff);
             }
-           
+
 
 
         }
@@ -333,7 +374,7 @@ namespace CombineCSVFilesFromTwoFolders
             int colGroup1 = oSheetInfo.colGroup1;
             int colGroup2 = oSheetInfo.colGroup2;
 
-            xlWorksheet.Cells[row, colGroup1].Value = oFileInfo.FileName; 
+            xlWorksheet.Cells[row, colGroup1].Value = oFileInfo.FileName;
             xlWorksheet.Cells[row, colGroup2].Value = oFileInfo.FileName;
 
             xlWorksheet.Cells[row, colGroup1].EntireRow.Font.Bold = true;
@@ -343,7 +384,7 @@ namespace CombineCSVFilesFromTwoFolders
             //read header from file
             System.IO.StreamReader sr = new System.IO.StreamReader(oFileInfo.FileFullName1);
             string sline = sr.ReadLine();
-            string[] Title  = sline.Split(',');
+            string[] Title = sline.Split(',');
             sr.Close();
 
             row += 1;
@@ -356,7 +397,7 @@ namespace CombineCSVFilesFromTwoFolders
                     xlWorksheet.Cells[row, colGroup1 + colheader].Value = Title[j];
                     colheader++;
                 }
-               
+
             }
 
             //second group header
@@ -368,7 +409,7 @@ namespace CombineCSVFilesFromTwoFolders
                     xlWorksheet.Cells[row, colGroup2 + colheader].Value = Title[j];
                     colheader++;
                 }
-                
+
             }
             //if (NoDiff)
             //{
@@ -400,7 +441,7 @@ namespace CombineCSVFilesFromTwoFolders
 
             oSheetInfo.Row = row;
         }
-        private void PopulateDataForSheetSummary(Microsoft.Office.Interop.Excel._Worksheet xlWorksheet, clsSheetInfo oSheet, List<FileInfo> lstFile)
+        private void PopulateDataForSheetSummary(Microsoft.Office.Interop.Excel._Worksheet xlWorksheet, clsSheetInfo oSheet, List<FileInfo> lstFile, bool isDiffSheet = false)
         {
 
             //Write Total number
@@ -424,9 +465,11 @@ namespace CombineCSVFilesFromTwoFolders
             xlWorksheet.Cells[row, 1].Value = "File Name";
             xlWorksheet.Cells[row, col].Value = "Number of Samples";
             xlWorksheet.Cells[row, col + 1].Value = "Number of Difference";
-
+            int countDiff = 0;
             foreach (FileInfo oFileInfo in lstFile)
             {
+                if (oFileInfo.NumberOfDifferent == 0 && isDiffSheet) continue;
+                countDiff++;
                 row++;
                 xlWorksheet.Cells[row, 1].Value = oFileInfo.FileName;
                 xlWorksheet.Cells[row, col].Value = oFileInfo.NumberOfSample;
@@ -443,7 +486,7 @@ namespace CombineCSVFilesFromTwoFolders
 
             }
             row++;
-            xlWorksheet.Cells[row, 1].Value = lstFile.Count.ToString();
+            xlWorksheet.Cells[row, 1].Value = countDiff;// lstFile.Count.ToString();
             xlWorksheet.Cells[row, col].Value = GetTotalNumberOfSamples(lstFile);
             xlWorksheet.Cells[row, col + 1].Value = GetTotalNumberOfDifference(lstFile);
 
@@ -491,11 +534,40 @@ namespace CombineCSVFilesFromTwoFolders
                                
                             }
                             int colDelta = col + 7;
-                            xlWorksheet.Cells[CurrentRow, colDelta + 1].Formula = "=M" + CurrentRow.ToString() + "-B" + CurrentRow.ToString();
-                            xlWorksheet.Cells[CurrentRow, colDelta + 2].Formula = "=N" + CurrentRow.ToString() + "-C" + CurrentRow.ToString();
-                            xlWorksheet.Cells[CurrentRow, colDelta + 3].Formula = "=O" + CurrentRow.ToString() + "-D" + CurrentRow.ToString();
-                            xlWorksheet.Cells[CurrentRow, colDelta + 4].Formula = "=P" + CurrentRow.ToString() + "-E" + CurrentRow.ToString();
 
+
+                            var cell = xlWorksheet.Cells[CurrentRow, colDelta + 1];
+                            {
+                                cell.Formula = "=M" + CurrentRow.ToString() + "-B" + CurrentRow.ToString();
+
+                                if (!IsCellValueEqual(xlWorksheet.Cells[CurrentRow,2].Value, xlWorksheet.Cells[CurrentRow, 13].Value))
+                                    cell.Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbYellow;
+                            }
+
+                            cell = xlWorksheet.Cells[CurrentRow, colDelta + 2];
+                            {
+                                cell.Formula = "=N" + CurrentRow.ToString() + "-C" + CurrentRow.ToString();
+                                if (!IsCellValueEqual(xlWorksheet.Cells[CurrentRow, 3].Value, xlWorksheet.Cells[CurrentRow, 14].Value))
+                                    cell.Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbYellow;
+                            }
+                            cell = xlWorksheet.Cells[CurrentRow, colDelta + 3];
+                            {
+                                cell.Formula = "=O" + CurrentRow.ToString() + "-D" + CurrentRow.ToString();
+                                if (!IsCellValueEqual(xlWorksheet.Cells[CurrentRow, 4].Value, xlWorksheet.Cells[CurrentRow, 15].Value))
+                                    cell.Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbYellow;
+                            }
+
+                            cell = xlWorksheet.Cells[CurrentRow, colDelta + 4];
+                            {
+                                cell.Formula = "=P" + CurrentRow.ToString() + "-E" + CurrentRow.ToString();
+                                if (!IsCellValueEqual(xlWorksheet.Cells[CurrentRow, 5].Value, xlWorksheet.Cells[CurrentRow, 16].Value))
+                                    cell.Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbYellow;
+                            }
+
+                            //xlWorksheet.Cells[CurrentRow, colDelta + 1].Formula = "=M" + CurrentRow.ToString() + "-B" + CurrentRow.ToString();
+                            //xlWorksheet.Cells[CurrentRow, colDelta + 2].Formula = "=N" + CurrentRow.ToString() + "-C" + CurrentRow.ToString();
+                            //xlWorksheet.Cells[CurrentRow, colDelta + 3].Formula = "=O" + CurrentRow.ToString() + "-D" + CurrentRow.ToString();
+                            //xlWorksheet.Cells[CurrentRow, colDelta + 4].Formula = "=P" + CurrentRow.ToString() + "-E" + CurrentRow.ToString();
                         }
 
                         j += 1;
@@ -516,6 +588,21 @@ namespace CombineCSVFilesFromTwoFolders
             return j;
         }
 
+        private bool IsCellValueEqual(object cellValueA, object cellValueB)
+        {
+            if( Math.Abs(ResetNaNValue(cellValueA) - ResetNaNValue(cellValueB)) > double.Epsilon) 
+                    return false;
+            return true;
+        }
+
+        private double ResetNaNValue(object cellValue)
+        {
+            double result = 0;
+            if (cellValue is Double)
+                result = (double) cellValue ;
+
+            return result;
+        }
         private bool IsDataFileValid(string sFile)
         {
             string sline;
@@ -524,7 +611,6 @@ namespace CombineCSVFilesFromTwoFolders
 
             System.IO.StreamReader sr = new System.IO.StreamReader(sFile);
             sline = sr.ReadLine();
-
 
             sLineData = sline.Split(',');
             if (sLineData.Length >= 10)
@@ -553,6 +639,34 @@ namespace CombineCSVFilesFromTwoFolders
             }
             return iTotal;
         }
+
+        private void defaultResultFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dgl = new FolderBrowserDialog();
+            dgl.SelectedPath = ResultPath;
+            if (dgl.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(dgl.SelectedPath) && Directory.Exists(dgl.SelectedPath))
+            {
+                ResultPath = dgl.SelectedPath;
+            }
+        }
+        private void dDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dgl = new FolderBrowserDialog();
+            dgl.SelectedPath = DataPath;
+            if (dgl.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(dgl.SelectedPath) && Directory.Exists(dgl.SelectedPath))
+            {
+                DataPath = dgl.SelectedPath;
+            }
+        }
+
+
+        private void frmCombineResult_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var path = Properties.Settings.Default.DefaultResultPath;
+            Properties.Settings.Default.Save();
+        }
+
+
     }
     public static class ProgressBarColor
     {

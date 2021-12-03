@@ -42,7 +42,12 @@ namespace CombineCSVFilesFromTwoFolders
             this.tsProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.tsFileName = new System.Windows.Forms.ToolStripStatusLabel();
             this.label3 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultResultFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -162,6 +167,41 @@ namespace CombineCSVFilesFromTwoFolders
             this.label3.TabIndex = 10;
             this.label3.Text = "File Contains Error";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1230, 33);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.defaultResultFolderToolStripMenuItem,
+            this.dDataToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // defaultResultFolderToolStripMenuItem
+            // 
+            this.defaultResultFolderToolStripMenuItem.Name = "defaultResultFolderToolStripMenuItem";
+            this.defaultResultFolderToolStripMenuItem.Size = new System.Drawing.Size(284, 34);
+            this.defaultResultFolderToolStripMenuItem.Text = "Result Output Folder";
+            this.defaultResultFolderToolStripMenuItem.Click += new System.EventHandler(this.defaultResultFolderToolStripMenuItem_Click);
+            // 
+            // dDataToolStripMenuItem
+            // 
+            this.dDataToolStripMenuItem.Name = "dDataToolStripMenuItem";
+            this.dDataToolStripMenuItem.Size = new System.Drawing.Size(284, 34);
+            this.dDataToolStripMenuItem.Text = "Compare Data Folder";
+            this.dDataToolStripMenuItem.Click += new System.EventHandler(this.dDataToolStripMenuItem_Click);
+            // 
             // frmCombineResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -169,6 +209,7 @@ namespace CombineCSVFilesFromTwoFolders
             this.ClientSize = new System.Drawing.Size(1230, 662);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.txtErrorFileFound);
             this.Controls.Add(this.btnCombine);
             this.Controls.Add(this.btnBrowse2);
@@ -177,12 +218,16 @@ namespace CombineCSVFilesFromTwoFolders
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtFolder1);
             this.Controls.Add(this.label1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCombineResult";
             this.Text = "Combine Files From Two Folders - Version 6";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCombineResult_FormClosing);
             this.Load += new System.EventHandler(this.frmCombineResult_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,6 +248,10 @@ namespace CombineCSVFilesFromTwoFolders
         private System.Windows.Forms.ToolStripProgressBar tsProgress;
         private System.Windows.Forms.ToolStripStatusLabel tsFileName;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem defaultResultFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dDataToolStripMenuItem;
     }
 }
 
