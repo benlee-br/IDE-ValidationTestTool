@@ -48,7 +48,6 @@ namespace CombineCSVFilesFromTwoFolders
         private string m_DataPath;
         bool m_NoDiffAllFiles = true;
 
-        bool m_NoDiffAllFiles = true;
         private void frmCombineResult_Load(object sender, EventArgs e)
         { 
             txtFolder1.Text = "C:\\Users\\yong_qin\\Downloads\\IDE Results_ON";
