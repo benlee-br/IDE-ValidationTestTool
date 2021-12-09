@@ -10,7 +10,7 @@
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height ="60" />
-            <RowDefinition Height ="60" />
+            <RowDefinition Height ="40" />
             <RowDefinition Height ="50" />
             <RowDefinition Height ="*" />
         </Grid.RowDefinitions>
@@ -29,28 +29,32 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7*" />
-                <ColumnDefinition Width="33*" />
                 <ColumnDefinition Width="120" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Label HorizontalAlignment="Right" Margin="0,10,5,10" Width="84">Output Folder:</Label>
-            <Label Name="OutFolder" HorizontalAlignment="Left"  Grid.Column="1" Margin="5,10,0,10" Width="Auto" Content="{Binding ResultOutputPath, FallbackValue=Output}" />
+            <Label HorizontalAlignment="Right" Margin="4" Width="90">Output Folder:</Label>
+            <Label Name="OutFolder" HorizontalAlignment="Left"  Grid.Column="1" Margin="4" Width="Auto" Content="{Binding ResultOutputPath, FallbackValue=Output}" />
         </Grid>
         <Grid Grid.Row="2" >
             <StackPanel Orientation="Horizontal">
                 <Label Height="40" Margin="5,5">Double Sigmoid Threshold</Label>
                 <TextBox Width="45" Height="32" Margin="5,5" Text="{Binding DoubleSigmoidCtCutOff, FallbackValue=4005}" />
-                <Label Height="40" Margin="5,5">APF Color</Label>
-                <TextBox Width="80" Height="32" Margin="5,5" Text="{Binding ColorString}" />
+                <Label Height="40" Margin="5,5" Visibility="Collapsed">APF Color</Label>
+                <TextBox Width="80" Height="32" Visibility="Collapsed" Margin="5,5" Text="{Binding ColorString}" />
                 <Grid VerticalAlignment="Center" Margin="5">
                     <CheckBox Name="ApplyDoubleSigmoid" Content="Apply Double Sigmoid" IsChecked="{Binding ApplyDoubleSigmoidRule}"></CheckBox>
                 </Grid>
-                <Grid VerticalAlignment="Center" Margin="5">
+                <Grid VerticalAlignment="Center" Margin="5" Visibility="Collapsed">
                     <CheckBox Name="ApplySlopeRule" Content="Apply Slope Rule" IsChecked="{Binding ApplySlopeRule}"></CheckBox>
                 </Grid>
             </StackPanel>
             <Button Width="100" Height="32" Content="Inject Hack" HorizontalAlignment="Right" Margin="0,0,20,0"
                     Command="{Binding InjectParametersCommand}"></Button>
+        </Grid>
+        <Grid Grid.Row="3" Margin="5">
+            <ListBox ItemsSource="{Binding Logs}">
+                
+            </ListBox>
         </Grid>
     </Grid>
 </UserControl>
