@@ -54,6 +54,13 @@ namespace BioRad.Common
 		/// <returns>true on success, false on failure.</returns>
 		bool ExtractAllFromZipFile(string zipFilePath, string outputFolderPath);
 		/// <summary>
+		/// Exrtract all files from a zip file
+		/// </summary>
+		/// <param name="zipFilePath">zip file</param>
+		/// <param name="outputFolderPath">target folder, which need not exist.</param>
+		/// <returns>true on success, false on failure.</returns>
+		(bool, string[]) ExtractFileListFromZipFile(string zipFilePath, string outputFolderPath);
+		/// <summary>
 		/// Decompress a memory Stream. Note that while this uses the
 		/// winzip compression algorithm, there is no reference to the winzip file format.
 		/// This just takes bytes to bytes. If you write this to a file it will not be in winzip
@@ -181,6 +188,16 @@ namespace BioRad.Common
 		public bool ExtractAllFromZipFile(string zipFilePath, string outputFolderPath)
 		{
 			return deCompressor.ExtractAllFromZipFile(zipFilePath, outputFolderPath);
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="zipFilePath"></param>
+		/// <param name="outputFolderPath"></param>
+		/// <returns></returns>
+		public (bool, string[]) ExtractFileListFromZipFile(string zipFilePath, string outputFolderPath)
+        {
+			return deCompressor.ExtractFileListFromZipFile(zipFilePath, outputFolderPath);
 		}
 		/// <summary>
 		/// We will assume that there is only a single file in the zip file, 

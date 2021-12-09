@@ -79,11 +79,64 @@ namespace BioRad.Common
 		/// <param name="zipFilePath"></param>
 		/// <param name="outputFolderPath"></param>
 		/// <returns></returns>
-        public bool ExtractAllFromZipFile(string zipFilePath, string outputFolderPath)
+        public (bool, string[]) ExtractFileListFromZipFile(string zipFilePath, string outputFolderPath)
 		{
 			bool rc = false;
             ZipArchive archive = null;
             bool beginUpdate = false;
+			string[] unarchivedList = new string[0];
+			try
+			{
+				DiskFile zipFile = new DiskFile(zipFilePath);
+
+				if (!zipFile.Exists)
+				{
+					m_ErrorMessage = "The specified zip file does not exist.";
+					return (rc, unarchivedList);
+				}
+                archive = new ZipArchive(zipFile);
+                archive.DefaultDecryptionPassword = m_EncryptPWD;
+
+                archive.BeginUpdate();
+                beginUpdate = true;
+
+                AbstractFolder destinationFolder = new DiskFolder(outputFolderPath);
+
+				unarchivedList = new string[archive.GetItems(true).Length];
+				int count = 0;
+
+				foreach (FileSystemItem item in archive.GetItems(true))
+                {
+                    item.CopyTo(destinationFolder, true);
+					unarchivedList[count] = item.FullName;
+					count++;
+				}
+			}
+			catch (Exception ex)
+			{
+				rc = false;
+				m_ErrorMessage = ex.Message;
+				return (rc, unarchivedList);
+			}
+            finally
+            {
+                if (archive != null && beginUpdate)
+                    archive.EndUpdate();
+            }
+			rc = true;
+			return (rc, unarchivedList);
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="zipFilePath"></param>
+		/// <param name="outputFolderPath"></param>
+		/// <returns></returns>
+		public bool ExtractAllFromZipFile(string zipFilePath, string outputFolderPath)
+		{
+			bool rc = false;
+			ZipArchive archive = null;
+			bool beginUpdate = false;
 
 			try
 			{
@@ -94,17 +147,17 @@ namespace BioRad.Common
 					m_ErrorMessage = "The specified zip file does not exist.";
 					return rc;
 				}
-                archive = new ZipArchive(zipFile);
-                archive.DefaultDecryptionPassword = m_EncryptPWD;
+				archive = new ZipArchive(zipFile);
+				archive.DefaultDecryptionPassword = m_EncryptPWD;
 
-                archive.BeginUpdate();
-                beginUpdate = true;
+				archive.BeginUpdate();
+				beginUpdate = true;
 
-                AbstractFolder destinationFolder = new DiskFolder(outputFolderPath);
-                foreach (FileSystemItem item in archive.GetItems(true))
-                {
-                    item.CopyTo(destinationFolder, true);
-                }
+				AbstractFolder destinationFolder = new DiskFolder(outputFolderPath);
+				foreach (FileSystemItem item in archive.GetItems(true))
+				{
+					item.CopyTo(destinationFolder, true);
+				}
 			}
 			catch (Exception ex)
 			{
@@ -112,11 +165,11 @@ namespace BioRad.Common
 				m_ErrorMessage = ex.Message;
 				return rc;
 			}
-            finally
-            {
-                if (archive != null && beginUpdate)
-                    archive.EndUpdate();
-            }
+			finally
+			{
+				if (archive != null && beginUpdate)
+					archive.EndUpdate();
+			}
 			rc = true;
 			return rc;
 		}

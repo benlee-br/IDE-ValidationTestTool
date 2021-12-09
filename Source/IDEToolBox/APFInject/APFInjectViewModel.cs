@@ -127,193 +127,6 @@ namespace IDEToolBox.APFInject
             get { return new DelegateCommand(InjectParameters); }
         }
 
-        private bool CheckFileCompressed(string fileName)
-        {
-            bool isCompressed = false;
-            using (var file = new StreamReader(fileName))
-            {
-                string content = file.ReadLine();
-
-                if (!string.IsNullOrEmpty(content) && content.Length > 10 && content[0] == 'P' && content[1] == 'K')
-                    isCompressed = true;
-            }
-            return isCompressed;
-        }
-        private void InjectParameters()
-        {
-
-            string currentWorkingFile = string.Empty;
-            try
-            {
-                if (!Directory.Exists(ResultOutputPath))
-                {
-                    Directory.CreateDirectory(ResultOutputPath);
-                }
-                string targetDir = ResultOutputPath;
-                //bool overwrite = true;
-                bool rc = true;
-                int compressedCount = 0;
-                int injectedCount = 0;
-
-                foreach (var sourceFile in Directory.GetFiles(SourcePath))
-                {
-                    currentWorkingFile = sourceFile;
-                    string decompressedFileName = Path.Combine(ResultOutputPath, Path.GetFileName(sourceFile));
-                    if (CheckFileCompressed(sourceFile))
-                    {
-                        if (FileUtilities.ExtractAllFromZipFile(sourceFile, ResultOutputPath))
-                        {
-                            Logs.Add($"({Path.GetFileName(sourceFile)}) decompressed.");
-                            compressedCount++;
-                        }
-                            
-                    }
-                    else
-                    {
-                        Logs.Add($"({Path.GetFileName(sourceFile)}) is not decompressed.");
-                        System.IO.File.Copy(sourceFile, decompressedFileName);
-                    }
-                    if (File.Exists(decompressedFileName))
-                    {
-                        //string newfilename = Path.Combine(ResultOutputPath, $"{Path.GetFileNameWithoutExtension(sourceFile)}_modified.pcrd");
-                        //System.IO.File.Move(decompressedFileName, newfilename);
-                        InjectElements(decompressedFileName);
-                        injectedCount++;
-                    }
-                }
-                Logs.Add($"Total: {compressedCount} files decompressed. {injectedCount} files APF hacked");
-            }
-            //catch (UnauthorizedAccessException ex)
-            //{
-            //    if ((result & Result.ReadOnlyYesAll) == Result.ReadOnlyYesAll)
-            //    {
-            //        ResetReadonlyAttribute(sourceFile, ex);
-            //        return DecryptFile(sourceFile, SetROResult(result, dr), overwrite);
-            //    }
-            //    else if ((result & Result.ReadOnlyYes) == Result.ReadOnlyYes || (result & Result.ReadOnlyNo) == Result.ReadOnlyNo)
-            //    {
-            //        using (ReadonlyDialog rd = new ReadonlyDialog(sourceFile, false))
-            //        {
-            //            switch (dr = rd.ShowDialog(this))
-            //            {
-            //                case DialogResult.Yes:
-            //                case DialogResult.Retry:
-            //                    ResetReadonlyAttribute(sourceFile, ex);
-            //                    return DecryptFile(sourceFile, SetROResult(result, dr), overwrite);
-
-            //                //case DialogResult.Ignore:
-            //                case DialogResult.Cancel:
-            //                    return Result.Cancel;
-            //            }
-            //        }
-
-            //        return SetROResult(result, dr);
-            //    }
-            //}
-            catch (Exception ex)
-            {
-                Logs.Add($"InjectParameters->Exception:{currentWorkingFile}-{ex.Message}");
-            }
-
-            //return result;
-
-        }
-
-        private string BreakElements(string content, string searchElement, bool applyDoubleSigmoid, string doubleSigmoidCtRFU)
-        {
-            if (content.IndexOf(searchElement) == -1)
-                return content;
-
-            int first = content.IndexOf(searchElement);
-            int last = content.LastIndexOf(searchElement);
-            int sencond = content.IndexOf(searchElement, first + searchElement.Length);
-            if (last == first && sencond == -1) // single APF
-            {
-               return InjectElement(content, applyDoubleSigmoid, doubleSigmoidCtRFU);  
-            }
-            string content1 = content.Substring(0, sencond);
-            
-            string content2 = content.Substring(sencond, content.Length - sencond);
-
-            content = InjectElement(content1, applyDoubleSigmoid, doubleSigmoidCtRFU) 
-                + BreakElements(content2, searchElement, applyDoubleSigmoid, doubleSigmoidCtRFU);
-
-            return content;
-        }
-
-
-        private string InjectElement(string content, bool applyDoubleSigmoid, string doubleSigmoidCtRFU)
-        {
-            string GetBooleanString(bool flag) { return flag ? "True" : "False"; }
-
-            string version3Element = "<SerVersion>3</SerVersion><AssayName>";
-            string version4Element = "<SerVersion>4</SerVersion><AssayName>";
-
-            string applyNewBaseLiningKey = "</ApplyNewBaselining>";
-            string doubleSigmoidKey = "<ApplyDoubleSigmoidRule>";
-            string applySigmoidAppend = $"<ApplyDoubleSigmoidRule>{GetBooleanString(applyDoubleSigmoid)}</ApplyDoubleSigmoidRule>";
-            string reverseApplySigmoidAppend = $"<ApplyDoubleSigmoidRule>{GetBooleanString(!applyDoubleSigmoid)}</ApplyDoubleSigmoidRule>";
-
-            string sigmoidCutOffdKey = "<DoubleSigmoidCtCutOff>";
-
-            string applySigmoidCutOffAppend = $"<DoubleSigmoidCtCutOff>{doubleSigmoidCtRFU}</DoubleSigmoidCtCutOff>";
-            string applyNewSigmoidAppend = $"<ApplyDoubleSigmoidRule>{GetBooleanString(applyDoubleSigmoid)}</ApplyDoubleSigmoidRule><DoubleSigmoidCtCutOff>{doubleSigmoidCtRFU}</DoubleSigmoidCtCutOff>";
-
-            if (content.Contains(version3Element)) // upgrade to v4
-                content = content.Replace(version3Element, version4Element);
-
-            int first = content.IndexOf(applyNewBaseLiningKey) + applyNewBaseLiningKey.Length;
-            if (!content.Contains(doubleSigmoidKey))
-            {
-                content = content.Insert(first, applyNewSigmoidAppend); // haven't been touched
-            }
-            else
-            {
-                content = content.Replace(reverseApplySigmoidAppend, applySigmoidAppend);
-                if (!content.Contains(sigmoidCutOffdKey))
-                {
-                    content = content.Insert(first, applySigmoidCutOffAppend);
-                }
-            }
-
-            return content;
-        }
-
-        private void InjectElements(string fileName)
-        {
-            try
-            {
-                using (var file = new StreamReader(fileName))
-                {
-                    string content = file.ReadToEnd();
-                    {
-                        string searchElement = "<SerVersion>3</SerVersion><AssayName>";
-                        if (content.IndexOf(searchElement) != -1)
-                        {
-                            content = BreakElements(content, searchElement, ApplyDoubleSigmoidRule, DoubleSigmoidCtCutOff);
-                            string newfilename = Path.Combine(ResultOutputPath, $"{Path.GetFileNameWithoutExtension(fileName)}_modified.pcrd");
-                            using (System.IO.TextWriter writeFile = new StreamWriter(newfilename))
-                            {
-                                writeFile.Write(content);
-                                writeFile.Close();
-                            }
-                            Logs.Add($"({Path.GetFileName(fileName)}) updated.");
-                        }
-                        else
-                        {
-                            Logs.Add($"({Path.GetFileName(fileName)}) Ignored, becuased it is already updated to Version 4.");
-                        }
-
-                    }
-                    file.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                Logs.Add($"Injectelements-> exception:{fileName}-{ex.Message}");
-            }
-        }
-
         //private RelayCommand _addPhoneCommand;
         //public RelayCommand AddPhoneCommand
         //{
@@ -351,10 +164,190 @@ namespace IDEToolBox.APFInject
         {
             throw new NotImplementedException();
         }
+        string currentWorkingFile = string.Empty;
+        private void InjectParameters()
+        {
+
+            currentWorkingFile = string.Empty;
+            try
+            {
+                if (!Directory.Exists(ResultOutputPath))
+                {
+                    Directory.CreateDirectory(ResultOutputPath);
+                }
+                string targetDir = ResultOutputPath;
+                //bool overwrite = true;
+                int compressedCount = 0;
+                int injectedCount = 0;
+
+                foreach (var sourceFile in Directory.GetFiles(SourcePath))
+                {
+                    currentWorkingFile = sourceFile;
+                    string decompressedFileName = Path.Combine(ResultOutputPath, Path.GetFileName(sourceFile));
+                    if (FileUtilities.IsCompressedFile(sourceFile))
+                    {
+                        (bool, string[]) returnZip = FileUtilities.ExtractFileListFromZipFile(sourceFile, ResultOutputPath);
+                        if (returnZip.Item1)
+                        {
+                            if (!string.IsNullOrEmpty(returnZip.Item2[0])) // 
+                            {
+                                char[] charsToTrim = { '\\' };
+                                string dataFileName = returnZip.Item2[0].Trim(charsToTrim);
+                                if (dataFileName == "datafile.pcrd" && File.Exists(Path.Combine(ResultOutputPath, dataFileName)))
+                                {
+                                    File.Move(Path.Combine(ResultOutputPath, dataFileName), decompressedFileName);
+
+                                    Logs.Add($"({Path.GetFileName(sourceFile)}) renamed from output (datafile.pcrd).");
+                                }
+                            }
+                            Logs.Add($"({Path.GetFileName(sourceFile)}) decompressed.");
+                            compressedCount++;
+                        }
+                    }
+                    else
+                    {
+                        Logs.Add($"({Path.GetFileName(sourceFile)}) is not decompressed.");
+                        System.IO.File.Copy(sourceFile, decompressedFileName);
+                    }
+                    if (File.Exists(decompressedFileName))
+                    {
+                        //string newfilename = Path.Combine(ResultOutputPath, $"{Path.GetFileNameWithoutExtension(sourceFile)}_modified.pcrd");
+                        //System.IO.File.Move(decompressedFileName, newfilename);
+                        InjectElements(decompressedFileName);
+                        injectedCount++;
+                    }
+                }
+                Logs.Add($"Total: {compressedCount} files decompressed. {injectedCount} files APF modified");
+            }
+            //catch (UnauthorizedAccessException ex)
+            //{
+            //    if ((result & Result.ReadOnlyYesAll) == Result.ReadOnlyYesAll)
+            //    {
+            //        ResetReadonlyAttribute(sourceFile, ex);
+            //        return DecryptFile(sourceFile, SetROResult(result, dr), overwrite);
+            //    }
+            //    else if ((result & Result.ReadOnlyYes) == Result.ReadOnlyYes || (result & Result.ReadOnlyNo) == Result.ReadOnlyNo)
+            //    {
+            //        using (ReadonlyDialog rd = new ReadonlyDialog(sourceFile, false))
+            //        {
+            //            switch (dr = rd.ShowDialog(this))
+            //            {
+            //                case DialogResult.Yes:
+            //                case DialogResult.Retry:
+            //                    ResetReadonlyAttribute(sourceFile, ex);
+            //                    return DecryptFile(sourceFile, SetROResult(result, dr), overwrite);
+
+            //                //case DialogResult.Ignore:
+            //                case DialogResult.Cancel:
+            //                    return Result.Cancel;
+            //            }
+            //        }
+
+            //        return SetROResult(result, dr);
+            //    }
+            //}
+            catch (Exception ex)
+            {
+                Logs.Add($"InjectParameters->Exception:{currentWorkingFile}-{ex.Message}");
+            }
+
+            //return result;
+        }
+        private string BreakElements(string content, string searchElement, bool applyDoubleSigmoid, string doubleSigmoidCtRFU)
+        {
+            if (content.IndexOf(searchElement) == -1)
+                return content;
+
+            int first = content.IndexOf(searchElement);
+            int last = content.LastIndexOf(searchElement);
+            int sencond = content.IndexOf(searchElement, first + searchElement.Length);
+            if (last == first && sencond == -1) // single APF
+            {
+                return InjectElement(content, applyDoubleSigmoid, doubleSigmoidCtRFU);
+            }
+            string content1 = content.Substring(0, sencond);
+
+            string content2 = content.Substring(sencond, content.Length - sencond);
+
+            content = InjectElement(content1, applyDoubleSigmoid, doubleSigmoidCtRFU)
+                + BreakElements(content2, searchElement, applyDoubleSigmoid, doubleSigmoidCtRFU);
+
+            return content;
+        }
+        private string InjectElement(string content, bool applyDoubleSigmoid, string doubleSigmoidCtRFU)
+        {
+            string GetBooleanString(bool flag) { return flag ? "True" : "False"; }
+
+            string version3Element = "<SerVersion>3</SerVersion><AssayName>";
+            string version4Element = "<SerVersion>4</SerVersion><AssayName>";
+
+            string applyNewBaseLiningKey = "</ApplyNewBaselining>";
+            string doubleSigmoidKey = "<ApplyDoubleSigmoidRule>";
+            string applySigmoidAppend = $"<ApplyDoubleSigmoidRule>{GetBooleanString(applyDoubleSigmoid)}</ApplyDoubleSigmoidRule>";
+            string reverseApplySigmoidAppend = $"<ApplyDoubleSigmoidRule>{GetBooleanString(!applyDoubleSigmoid)}</ApplyDoubleSigmoidRule>";
+
+            string sigmoidCutOffdKey = "<DoubleSigmoidCtCutOff>";
+
+            string applySigmoidCutOffAppend = $"<DoubleSigmoidCtCutOff>{doubleSigmoidCtRFU}</DoubleSigmoidCtCutOff>";
+            string applyNewSigmoidAppend = $"<ApplyDoubleSigmoidRule>{GetBooleanString(applyDoubleSigmoid)}</ApplyDoubleSigmoidRule><DoubleSigmoidCtCutOff>{doubleSigmoidCtRFU}</DoubleSigmoidCtCutOff>";
+
+            if (content.Contains(version3Element)) // upgrade to v4
+            {
+                content = content.Replace(version3Element, version4Element);
+                Logs.Add($"({Path.GetFileName(currentWorkingFile)}) version 3 updated to 4.");
+            }
+
+            int first = content.IndexOf(applyNewBaseLiningKey) + applyNewBaseLiningKey.Length;
+            if (!content.Contains(doubleSigmoidKey))
+            {
+                content = content.Insert(first, applyNewSigmoidAppend); // haven't been touched
+            }
+            else
+            {
+                content = content.Replace(reverseApplySigmoidAppend, applySigmoidAppend);
+                if (!content.Contains(sigmoidCutOffdKey))
+                {
+                    content = content.Insert(first, applySigmoidCutOffAppend);
+                }
+            }
+
+            return content;
+        }
+        private void InjectElements(string fileName)
+        {
+            try
+            {
+                using (var file = new StreamReader(fileName))
+                {
+                    string content = file.ReadToEnd();
+                    {
+                        string searchElement = "<SerVersion>3</SerVersion><AssayName>";
+                        if (content.IndexOf(searchElement) != -1)
+                        {
+                            content = BreakElements(content, searchElement, ApplyDoubleSigmoidRule, DoubleSigmoidCtCutOff);
+                            string newfilename = Path.Combine(ResultOutputPath, $"{Path.GetFileNameWithoutExtension(fileName)}_modified.pcrd");
+                            using (System.IO.TextWriter writeFile = new StreamWriter(newfilename))
+                            {
+                                writeFile.Write(content);
+                                writeFile.Close();
+                            }
+                            Logs.Add($"({Path.GetFileName(fileName)}) updated.");
+                        }
+                        else
+                        {
+                            Logs.Add($"({Path.GetFileName(fileName)}) Ignored, becuased it is already updated to Version 4.");
+                        }
+
+                    }
+                    file.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logs.Add($"Injectelements-> exception:{fileName}-{ex.Message}");
+            }
+        }
+
         #endregion
     }
-    /// <summary>
-    /// 
-    /// </summary>
-
 }

@@ -143,6 +143,11 @@ namespace BioRad.Common
 			return new DeCompress();
 #endif
 		}
+		internal (bool, string[]) ExtractFileListFromZipFile(string zipFilePath, string outputFolderPath)
+		{
+			throw new NotImplementedException();
+		}
+
 		/// <summary>
 		/// Exrtract all files from a zip file
 		/// </summary>
@@ -227,18 +232,18 @@ namespace BioRad.Common
 			return bRet;
 		}
 
-		/// <summary>
-		/// Callback function for buffered decompression.
-		/// </summary>
-		/// <param name="lAction"></param>
-		/// <param name="lpMemBuf"></param>
-		/// <param name="pdwSize"></param>
-		/// <param name="dwTotalReadL"></param>
-		/// <param name="dwTotalReadH"></param>
-		/// <param name="dwTotalWrittenL"></param>
-		/// <param name="dwTotalWrittenH"></param>
-		/// <param name="plRet"></param>
-		private void UnZipMemToMemCallback_event(CDUnZipSNET.MEMTOMEMACTION lAction, ref byte[] lpMemBuf, ref uint pdwSize, uint dwTotalReadL, uint dwTotalReadH, uint dwTotalWrittenL, uint dwTotalWrittenH, ref CDUnZipSNET.MEMTOMEMRESPONSE plRet)
+        /// <summary>
+        /// Callback function for buffered decompression.
+        /// </summary>
+        /// <param name="lAction"></param>
+        /// <param name="lpMemBuf"></param>
+        /// <param name="pdwSize"></param>
+        /// <param name="dwTotalReadL"></param>
+        /// <param name="dwTotalReadH"></param>
+        /// <param name="dwTotalWrittenL"></param>
+        /// <param name="dwTotalWrittenH"></param>
+        /// <param name="plRet"></param>
+        private void UnZipMemToMemCallback_event(CDUnZipSNET.MEMTOMEMACTION lAction, ref byte[] lpMemBuf, ref uint pdwSize, uint dwTotalReadL, uint dwTotalReadH, uint dwTotalWrittenL, uint dwTotalWrittenH, ref CDUnZipSNET.MEMTOMEMRESPONSE plRet)
 		{
 			int bytesToRead;
 			switch(lAction)

@@ -163,15 +163,52 @@ namespace BioRad.Common
 
 		#region Methods
 		static int c_MaxFileNameLength = 260;
-        //static int c_MaxFilePathLength = 248;
+		//static int c_MaxFilePathLength = 248;
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="zipFilePath"></param>
+		/// <param name="outputFolderPath"></param>
+		/// <returns></returns>
+		public static (bool,string[]) ExtractFileListFromZipFile(string zipFilePath, string outputFolderPath)
+		{
+			if (string.IsNullOrEmpty(zipFilePath))
+				throw new ArgumentNullException("zipFilePath");
+			if (string.IsNullOrEmpty(outputFolderPath))
+				throw new ArgumentNullException("outputFolderPath");
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="zipFilePath"></param>
-        /// <param name="outputFolderPath"></param>
-        /// <returns></returns>
-        public static bool ExtractAllFromZipFile(string zipFilePath, string outputFolderPath)
+			if (!File.Exists(zipFilePath))
+				throw new ArgumentException("File not found.");
+			if (!Directory.Exists(outputFolderPath))
+				throw new ArgumentException("Folder not found.");
+
+			IZipEngine compress = null;
+			(bool,string[]) ok ;
+			try
+			{
+				string encryptPWD = null;
+				//if (ApplicationStateData.GetInstance.IsRegulatory)// (US458 SE Epic) US490 - TA876
+				//{
+				//    //todo
+				//    //encryptPWD = CurrentUser.Instance.User.Password;
+				//}
+				compress = new XceedZip(encryptPWD);
+				ok = compress.ExtractFileListFromZipFile(zipFilePath, outputFolderPath);
+			}
+			finally
+			{
+				if (compress != null)
+					compress = null;
+			}
+			return ok;
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="zipFilePath"></param>
+		/// <param name="outputFolderPath"></param>
+		/// <returns></returns>
+		public static bool ExtractAllFromZipFile(string zipFilePath, string outputFolderPath)
         {
             if (string.IsNullOrEmpty(zipFilePath))
                 throw new ArgumentNullException("zipFilePath");
