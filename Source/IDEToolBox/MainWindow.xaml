@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:IDEToolBox"
         xmlns:controls="clr-namespace:IDEToolBox.CombineCSVs"
         mc:Ignorable="d"
-        Title="IDE Test Tools" Height="600" Width="800">
+        Title="IDE Test Tools" Height="600" Width="900" MinWidth="900"   Closing="Window_Closing">
     <TabControl>
-        <TabItem Name="CombineCSVFilesFromTwoFolders" >
+        <!--<TabItem Name="CombineCSVFilesFromTwoFolders" Visibility="Hidden" >
             <TabItem.Header>
                 <Grid Background="WhiteSmoke">
                     <TextBlock Text="Combine CSV Files From Two Folders" ></TextBlock>
@@ -18,6 +18,18 @@
 
             <Grid>
                 <controls:CombineCSVsFrom2Folders />
+            </Grid>
+        </TabItem>-->
+        <TabItem Name="DoubleSigmoidInsert" >
+            <TabItem.Header>
+                <Grid Background="WhiteSmoke">
+                    <TextBlock Text="Double Sigmoid APF Inject" ></TextBlock>
+                </Grid>
+            </TabItem.Header>
+
+
+            <Grid>
+                <local:APFHackControl />
             </Grid>
         </TabItem>
     </TabControl>

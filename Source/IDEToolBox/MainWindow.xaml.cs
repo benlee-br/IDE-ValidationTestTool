@@ -24,5 +24,11 @@ namespace IDEToolBox
         {
             InitializeComponent();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var path = Properties.Settings.Default.DefaultResultPath;
+            Properties.Settings.Default.Save();
+        }
     }
 }

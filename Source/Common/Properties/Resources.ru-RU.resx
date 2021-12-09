@@ -1,0 +1,1068 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MCPeakOverride" xml:space="preserve">
+    <value>Перекрытие пиков кривой плавления</value>
+  </data>
+  <data name="ADVThreshold" xml:space="preserve">
+    <value>Пороговый уровень по вертикали для аллельной дискриминации</value>
+  </data>
+  <data name="ReportHeaderAuditInformation1" xml:space="preserve">
+    <value>Сведения аудита:</value>
+  </data>
+  <data name="PlateWellsEdit" xml:space="preserve">
+    <value>Настройка лунок плашки</value>
+  </data>
+  <data name="ADRepeatNumber" xml:space="preserve">
+    <value>Количество повторений аллельной дискриминации</value>
+  </data>
+  <data name="Table_ColumnDescriptionsWrongLength1" xml:space="preserve">
+    <value>Описания столбцов не соответствуют их заголовкам.</value>
+  </data>
+  <data name="ReportHeaderNumberOfChanges" xml:space="preserve">
+    <value>Количество изменений</value>
+  </data>
+  <data name="RMETypeActive" xml:space="preserve">
+    <value>Тип активного RME</value>
+  </data>
+  <data name="ConfigElementNotADevice" xml:space="preserve">
+    <value>DeviceManagerService предоставлен элемент конфигурации, не принадлежащий к типу Device. Для этой службы необходимо, чтобы элементы конфигурации имели тип Device.</value>
+  </data>
+  <data name="EncryptCompressError_2" xml:space="preserve">
+    <value>Ошибка в кодировании и сжатии файла – '{0}'. Ошибка. '{1}'.</value>
+  </data>
+  <data name="ReportHeaderMachineName1" xml:space="preserve">
+    <value>Имя аппарата</value>
+  </data>
+  <data name="FactorySettingChangeNotAllowed" xml:space="preserve">
+    <value>Заводские настройки не могут быть изменены.</value>
+  </data>
+  <data name="Alldatasetfilefilters" xml:space="preserve">
+    <value>Все файлы данных PCR </value>
+  </data>
+  <data name="GEAnalysisMode" xml:space="preserve">
+    <value>Режим анализа экспрессии гена</value>
+  </data>
+  <data name="ReportHeaderModifiedByUser1" xml:space="preserve">
+    <value>Изменен пользователем</value>
+  </data>
+  <data name="Table_SortingNotAllowed" xml:space="preserve">
+    <value>Невозможно отсортировать данные этой таблицы.</value>
+  </data>
+  <data name="Milliliter_1" xml:space="preserve">
+    <value>{0} мл</value>
+  </data>
+  <data name="MCDigitalFilter" xml:space="preserve">
+    <value>Цифровой фильтр кривой плавления</value>
+  </data>
+  <data name="ServiceInstantiationFailure_2" xml:space="preserve">
+    <value>Невозможно создать экземпляр службы '{0}' в сборке '{1}'.</value>
+  </data>
+  <data name="ADCall" xml:space="preserve">
+    <value>Данные вызова аллельной дискриминации</value>
+  </data>
+  <data name="ReportHeaderLastModifiedDate1" xml:space="preserve">
+    <value>Дата последнего изменения</value>
+  </data>
+  <data name="ServiceLoadFailure_2" xml:space="preserve">
+    <value>Не удалось загрузить службу {0} с {1}.</value>
+  </data>
+  <data name="SetPropertiesWithParametersFailed_3" xml:space="preserve">
+    <value>Невозможно задать свойство {0} {1} на {2}.</value>
+  </data>
+  <data name="NoDetailsString" xml:space="preserve">
+    <value>Отсутствуют изменения в элементах, подлежащих аудиту.</value>
+  </data>
+  <data name="ReportHeaderLastModifiedDate" xml:space="preserve">
+    <value>Дата последнего изменения</value>
+  </data>
+  <data name="ExceptionUnexpected" xml:space="preserve">
+    <value>Произошла непредвиденная ошибка.</value>
+  </data>
+  <data name="GECondition" xml:space="preserve">
+    <value>Условие для пробы</value>
+  </data>
+  <data name="PCRDataWindow" xml:space="preserve">
+    <value>Окно данных PCR</value>
+  </data>
+  <data name="AllLogsFilesFilter" xml:space="preserve">
+    <value>Все файлы журнала (*.xml)|*.xml</value>
+  </data>
+  <data name="ProductNameOnComputerName" xml:space="preserve">
+    <value>{0} на {1}</value>
+  </data>
+  <data name="ExceptionIgnored_1" xml:space="preserve">
+    <value>Исключение проигнорировано: {0}</value>
+  </data>
+  <data name="EPTolValue" xml:space="preserve">
+    <value>Устойчивость в конечной точке</value>
+  </data>
+  <data name="AllFilesToOpenFilter" xml:space="preserve">
+    <value>.pcrd;.opd;.tad;.odm;.prcl;.pltd</value>
+  </data>
+  <data name="PCRAutoThreshold" xml:space="preserve">
+    <value>Режим порогового уровня PCR</value>
+  </data>
+  <data name="MCActiveStepNum" xml:space="preserve">
+    <value>Активная стадия кривой плавления</value>
+  </data>
+  <data name="ReportHeaderComment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="Md5Bad" xml:space="preserve">
+    <value>НЕИСПРАВЕН</value>
+  </data>
+  <data name="InvalidRuleType_1" xml:space="preserve">
+    <value>Запрошенное бизнес-правило {0} не может быть задано для указанного типа.</value>
+  </data>
+  <data name="GEGraphExp" xml:space="preserve">
+    <value>Графическое выражение</value>
+  </data>
+  <data name="SettingsFileVersionNotFound_1" xml:space="preserve">
+    <value>Ошибка в получении версии из {0}.</value>
+  </data>
+  <data name="ChangeDetailShortString_2" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+  <data name="ChangeDetailShortString_3" xml:space="preserve">
+    <value>{0} изменено с "{1}" на "{2}".</value>
+  </data>
+  <data name="PlateWellGroupChange" xml:space="preserve">
+    <value>Группа лунок плашки</value>
+  </data>
+  <data name="Table_RowIndexOutOfRange" xml:space="preserve">
+    <value>Недействительный индекс строки таблицы данных.</value>
+  </data>
+  <data name="RunFileFilters" xml:space="preserve">
+    <value>Файл настроек прогона </value>
+  </data>
+  <data name="WFTypeActive" xml:space="preserve">
+    <value>Тип фактора активных лунок</value>
+  </data>
+  <data name="MCDigitalFilterGlobalEnabled" xml:space="preserve">
+    <value>Включен общий цифровой фильтр кривой плавления</value>
+  </data>
+  <data name="ReportHeaderCreationDate" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="XmlNodeNotFound_1" xml:space="preserve">
+    <value>Узел {0} не найден.</value>
+  </data>
+  <data name="XmlSerializationUnknownSerializedVersion" xml:space="preserve">
+    <value>Неизвестная версия сериализации: {0}</value>
+  </data>
+  <data name="ADAutomaticCall" xml:space="preserve">
+    <value>Параметр вызова аллельной дискриминации</value>
+  </data>
+  <data name="GEReplicateIsRef" xml:space="preserve">
+    <value>Имя гена – ссылка</value>
+  </data>
+  <data name="Table_ColumnHeadingsWrongLength" xml:space="preserve">
+    <value>Заголовки столбцов не соответствуют данным.</value>
+  </data>
+  <data name="InvalidSecurityDataItemRead" xml:space="preserve">
+    <value>Невозможно считать элемент {0} в данных безопасности.</value>
+  </data>
+  <data name="PlateDescription" xml:space="preserve">
+    <value>Заметки по плашке</value>
+  </data>
+  <data name="PCRActiveStageNum" xml:space="preserve">
+    <value>Количественный анализ активного цикла</value>
+  </data>
+  <data name="Table_ColumnHeadingsWrongLength1" xml:space="preserve">
+    <value>Заголовки столбцов не соответствуют данным.</value>
+  </data>
+  <data name="NoSetting_1" xml:space="preserve">
+    <value>Служба параметров не содержит запрашиваемого параметра приложения {0}.</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Файл скрыт. Сохраните файл с другим именем.</value>
+  </data>
+  <data name="Email_RunCompleteSubject" xml:space="preserve">
+    <value>Протокол завершен на приборе или блоке {0}.</value>
+  </data>
+  <data name="ReportHeaderModifiedByUser" xml:space="preserve">
+    <value>Изменен пользователем</value>
+  </data>
+  <data name="Table_ColumnIndexOutOfRange" xml:space="preserve">
+    <value>Недействительный индекс столбца таблицы данных.</value>
+  </data>
+  <data name="MGEDataFiles" xml:space="preserve">
+    <value>Файлы данных</value>
+  </data>
+  <data name="SourceHeading" xml:space="preserve">
+    <value>Источник:</value>
+  </data>
+  <data name="ChangeDetailString" xml:space="preserve">
+    <value>{0} изменено с "{1}" на "{2}", описание "{3}".</value>
+  </data>
+  <data name="runsetfilefilters" xml:space="preserve">
+    <value>*.rset;*.run</value>
+  </data>
+  <data name="FileNotFoundInAppOrRelativePath_1" xml:space="preserve">
+    <value>Невозможно найти путь к '{0}' в абсолютном или относительном пути приложения.</value>
+  </data>
+  <data name="ReportHeaderUserNameAndID1" xml:space="preserve">
+    <value>Имя пользователя и идентификатор</value>
+  </data>
+  <data name="DevicesNotConfigured" xml:space="preserve">
+    <value>Не сконфигурировано ни одного устройства. Конфигурационный файл пуст.</value>
+  </data>
+  <data name="ApplicationStateDataSettingsMismatchCount" xml:space="preserve">
+    <value>Несоответствие количества параметров приложения.</value>
+  </data>
+  <data name="DefaultConfigurationOnly_2" xml:space="preserve">
+    <value>Только конфигурация по умолчанию {1} разрешена для службы "{0}".</value>
+  </data>
+  <data name="ConfigurationFailed" xml:space="preserve">
+    <value>Не удалось провести удаленное конфигурирование.</value>
+  </data>
+  <data name="SignatureString" xml:space="preserve">
+    <value>Подписано "{0}" по причине "{1}".</value>
+  </data>
+  <data name="RequestUnknownObject_1" xml:space="preserve">
+    <value>Запрос неизвестного удаленного объекта: {0}.</value>
+  </data>
+  <data name="EPTolMethod" xml:space="preserve">
+    <value>Метод расчета устойчивости в конечной точке</value>
+  </data>
+  <data name="ServiceInstantiationFailureNullClass_2" xml:space="preserve">
+    <value>Невозможно создать экземпляр службы '{0}' в сборке '{1}' (нулевой класс).</value>
+  </data>
+  <data name="PlateFluorsChange" xml:space="preserve">
+    <value>Флуорофоры плашки</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Файл является системным. Сохраните файл под другим именем.</value>
+  </data>
+  <data name="Reports_EmptyTag1" xml:space="preserve">
+    <value>Невозможно проанализировать пустой тег отчета.</value>
+  </data>
+  <data name="Table_ColumnIndexOutOfRange1" xml:space="preserve">
+    <value>Недействительный индекс столбца таблицы данных.</value>
+  </data>
+  <data name="ReportHeaderOSBuildAndServicePack1" xml:space="preserve">
+    <value>Номер сборки операционной системы и пакета обновления</value>
+  </data>
+  <data name="GESampleData" xml:space="preserve">
+    <value>Данные пробы</value>
+  </data>
+  <data name="RunTimeProtocol" xml:space="preserve">
+    <value>Временной протокол прогона</value>
+  </data>
+  <data name="DisplayWells" xml:space="preserve">
+    <value>Отобразить лунки</value>
+  </data>
+  <data name="EnumeratorServiceFailed2Start" xml:space="preserve">
+    <value>Не удалось запустить службу Enumerator.</value>
+  </data>
+  <data name="PlateFluorUnits" xml:space="preserve">
+    <value>Единица флуорофора</value>
+  </data>
+  <data name="BFActiveInfo" xml:space="preserve">
+    <value>Сведения активного фонового считывания</value>
+  </data>
+  <data name="MCMinPeakWidth" xml:space="preserve">
+    <value>Минимальная ширина значимого пика</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Неизвестен</value>
+  </data>
+  <data name="EPNumRepeats" xml:space="preserve">
+    <value>Количество повторений до среднего в конечной точке</value>
+  </data>
+  <data name="PCRDigitalFilterGlobalEnabled" xml:space="preserve">
+    <value>Включен общий цифровой фильтр PCR</value>
+  </data>
+  <data name="SignedSaveHeaderString_9" xml:space="preserve">
+    <value>Версия файла {0}, подписанная и сохраненная {1} (полное имя {2}) в {3} на {4} в {5} версии {6} с комментарием к подписи "{7}" и с комментарием к сохранению "{8}".</value>
+  </data>
+  <data name="gxdfilefilters" xml:space="preserve">
+    <value>Файл исследования гена </value>
+  </data>
+  <data name="SetOnceProperty_1" xml:space="preserve">
+    <value>Неудачная попытка задать свойство {0}. Свойство можно задать только один раз.</value>
+  </data>
+  <data name="ValidationFailed_1" xml:space="preserve">
+    <value>Не удалось подтвердить {0}</value>
+  </data>
+  <data name="Table_ColumnDescriptionsWrongLength" xml:space="preserve">
+    <value>Описания столбцов не соответствуют их заголовкам.</value>
+  </data>
+  <data name="FactoryNotRegisteredAtRuntime_1" xml:space="preserve">
+    <value>Требуемая заводская настройка на идентификаторе '{0}' не была зарегистрирована в ходе прогона.</value>
+  </data>
+  <data name="Table_Empty1" xml:space="preserve">
+    <value>Таблица не должна быть пустой.</value>
+  </data>
+  <data name="Email_DoNotReceiveMessage" xml:space="preserve">
+    <value>Если вы не хотите получить это сообщение по электронной почте, измените настройки пользователя в приложении {0}.</value>
+  </data>
+  <data name="ActiveExpNum" xml:space="preserve">
+    <value>Номер активного эксперимента</value>
+  </data>
+  <data name="ReportHeaderYes1" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="ReportHeaderDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="ReportHeaderGUID" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="NoPrinter" xml:space="preserve">
+    <value>Печать невозможна, т.к. не установлен принтер. Сначала установите принтер. Операция отменена.</value>
+  </data>
+  <data name="ChangeDetailsWithMissingInfo_1" xml:space="preserve">
+    <value>{0} (*)</value>
+  </data>
+  <data name="DyeCalibrationData" xml:space="preserve">
+    <value>Данные калибровки красителя</value>
+  </data>
+  <data name="WFChange" xml:space="preserve">
+    <value>Изменение факторов лунок</value>
+  </data>
+  <data name="InvalidSettingType_1" xml:space="preserve">
+    <value>Запрошенный параметр приложения {0} не может быть задан для указанного типа.</value>
+  </data>
+  <data name="InvalidSettingType_2" xml:space="preserve">
+    <value>Запрошенный параметр приложения {0} не может быть задан для указанного типа {1}.</value>
+  </data>
+  <data name="PCRBaselineValue" xml:space="preserve">
+    <value>Циклы базовой линии PCR</value>
+  </data>
+  <data name="ExceptionHeading" xml:space="preserve">
+    <value>Исключение: </value>
+  </data>
+  <data name="RMEActiveInfo" xml:space="preserve">
+    <value>Сведения об активном RME</value>
+  </data>
+  <data name="Md5Expected_1" xml:space="preserve">
+    <value>Ожидаемый: {0}</value>
+  </data>
+  <data name="ReportHeaderSignatureComment1" xml:space="preserve">
+    <value>Комментарий к подписи</value>
+  </data>
+  <data name="GEReplicateAutoEff" xml:space="preserve">
+    <value>Реплика гена – автоэффективность</value>
+  </data>
+  <data name="AnalysisParameter" xml:space="preserve">
+    <value>Параметры анализа</value>
+  </data>
+  <data name="ReportHeaderCreatedInSecurityEdition" xml:space="preserve">
+    <value>Создан в Security Edition</value>
+  </data>
+  <data name="MCThresholdForPeakAutoFind" xml:space="preserve">
+    <value>Значение порогового уровня для анализа положительного пика плавления</value>
+  </data>
+  <data name="MCMaxPeakWidth" xml:space="preserve">
+    <value>Максимальная ширина значимого пика</value>
+  </data>
+  <data name="ReportHeaderSignature1" xml:space="preserve">
+    <value>Подпись</value>
+  </data>
+  <data name="ReportHeaderNo" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="ReportHeaderComputerName" xml:space="preserve">
+    <value>Имя компьютера</value>
+  </data>
+  <data name="rdmlfilefilters" xml:space="preserve">
+    <value>Файл RDML</value>
+  </data>
+  <data name="CtAlgorithm" xml:space="preserve">
+    <value>Алгоритм обнаружения Cq</value>
+  </data>
+  <data name="PlateAssayName" xml:space="preserve">
+    <value> Имя пробы/праймера</value>
+  </data>
+  <data name="GEReplicate" xml:space="preserve">
+    <value>Реплика гена</value>
+  </data>
+  <data name="PCRDisplayMode" xml:space="preserve">
+    <value>Режим отображения PCR</value>
+  </data>
+  <data name="YourAccountName" xml:space="preserve">
+    <value>ваше имя учетной записи</value>
+  </data>
+  <data name="MCIncludeNegativePeaks" xml:space="preserve">
+    <value>Включить значимые отрицательные пики</value>
+  </data>
+  <data name="ServicesConfigFileNotFound_2" xml:space="preserve">
+    <value>Невозможно найти конфигурационной файл служб по абсолютному или относительному пути. Абсолютный путь </value>
+  </data>
+  <data name="ReportHeaderVersion" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="ReportHeaderLastCreationGUID" xml:space="preserve">
+    <value>Последний GUID создания</value>
+  </data>
+  <data name="ReportHeaderCreationDate1" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="ReportHeaderOSBuildAndServicePack" xml:space="preserve">
+    <value>Номер сборки операционной системы и пакета обновления</value>
+  </data>
+  <data name="GEScaling" xml:space="preserve">
+    <value>Параметр масштабирования</value>
+  </data>
+  <data name="Table_Null" xml:space="preserve">
+    <value>Таблица не должна быть нулевой.</value>
+  </data>
+  <data name="EnumeratorServiceCanStop" xml:space="preserve">
+    <value>Невозможно остановить службу Enumerator.</value>
+  </data>
+  <data name="XmlSerializationStateDictionaryNotCurrentVersion" xml:space="preserve">
+    <value>Словарь состояний не соответствует текущей версии.</value>
+  </data>
+  <data name="SeverityLabel" xml:space="preserve">
+    <value>Серьезность</value>
+  </data>
+  <data name="protocolfilefilters" xml:space="preserve">
+    <value>Файл протокола </value>
+  </data>
+  <data name="InvalidTimeStampWarning" xml:space="preserve">
+    <value>Предупреждение. Временные отметки контрольного журнала расположены не по порядку, соответственно, они могут быть неверными.</value>
+  </data>
+  <data name="ClassNotAConfigurationProvider_2" xml:space="preserve">
+    <value>Класс '{0}' в сборке '{1}' не является реализацией IConfigurationProvider.</value>
+  </data>
+  <data name="PCRBaseLine" xml:space="preserve">
+    <value>Метод анализа данных PCR</value>
+  </data>
+  <data name="ServiceLoadFailure" xml:space="preserve">
+    <value>Невозможно загрузить службы.</value>
+  </data>
+  <data name="platesetupfilefilters" xml:space="preserve">
+    <value>Файл плашки </value>
+  </data>
+  <data name="GEConditionFullName" xml:space="preserve">
+    <value>Условие для пробы – полное имя</value>
+  </data>
+  <data name="ReportHeaderDate1" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="ReportHeaderGUID1" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="Email_RunCompleteMessage_1" xml:space="preserve">
+    <value>Прогон {0} на приборе или блоке "{1}" завершен {2} с состоянием {3}. </value>
+  </data>
+  <data name="opd_datasetfilefilters" xml:space="preserve">
+    <value>Файл OPD</value>
+  </data>
+  <data name="ReportHeaderCreatedByUser1" xml:space="preserve">
+    <value>Создан пользователем</value>
+  </data>
+  <data name="Microliter_1" xml:space="preserve">
+    <value>{0} мкл</value>
+  </data>
+  <data name="GETarget" xml:space="preserve">
+    <value>Мишень </value>
+  </data>
+  <data name="ADDisplayMode" xml:space="preserve">
+    <value>Режим отображения аллельной дискриминации</value>
+  </data>
+  <data name="InvalidSecurityDataFoundInvalidVersion" xml:space="preserve">
+    <value>В калибровочном файле закодированы недействительные данные безопасности. Предполагается версия: {0}. Найдена версия: {1}.</value>
+  </data>
+  <data name="Reports_InvalidTag_1" xml:space="preserve">
+    <value>Невозможно проанализировать тег отчета:  {0}.</value>
+  </data>
+  <data name="Reports_NullTag" xml:space="preserve">
+    <value>Невозможно проанализировать нулевой тег отчета.</value>
+  </data>
+  <data name="FullyQualifiedName" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="GEDataSet" xml:space="preserve">
+    <value>Набор данных</value>
+  </data>
+  <data name="RunID" xml:space="preserve">
+    <value>Идентификатор прогона</value>
+  </data>
+  <data name="ADFluorIdXAxis" xml:space="preserve">
+    <value>Аллельная дискриминация – флуорофор для оси X</value>
+  </data>
+  <data name="ADFluorIdYAxis" xml:space="preserve">
+    <value>Аллельная дискриминация – флуорофор для оси Y</value>
+  </data>
+  <data name="ReportHeaderSignature" xml:space="preserve">
+    <value>Подпись</value>
+  </data>
+  <data name="MCIncludePositivePeaks" xml:space="preserve">
+    <value>Включить значимые положительные пики</value>
+  </data>
+  <data name="EventTimeLabel" xml:space="preserve">
+    <value>Время события</value>
+  </data>
+  <data name="ClassNotAService_2" xml:space="preserve">
+    <value>Класс '{0}' в сборке '{1}' не является реализацией IService.</value>
+  </data>
+  <data name="EPActiveFluor" xml:space="preserve">
+    <value>Активный флуорофор в конечной точке</value>
+  </data>
+  <data name="NestedExceptionHeading" xml:space="preserve">
+    <value>Вложенное исключение</value>
+  </data>
+  <data name="FileNotFound_2" xml:space="preserve">
+    <value> Файл не найден. '{0}' - '{1}'</value>
+  </data>
+  <data name="SetAccessorSetOnceError" xml:space="preserve">
+    <value>Значение можно задать только один раз. Отклонено.</value>
+  </data>
+  <data name="genestudyfilefilters" xml:space="preserve">
+    <value>Файл исследования гена </value>
+  </data>
+  <data name="NoRule_1" xml:space="preserve">
+    <value>Служба бизнес-правил не содержит запрашиваемого правила {0}.</value>
+  </data>
+  <data name="MessageLabel" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="NoSignatureString" xml:space="preserve">
+    <value>Это сохранение не было подписано.</value>
+  </data>
+  <data name="BFTypeActive" xml:space="preserve">
+    <value>Активное фоновое считывание</value>
+  </data>
+  <data name="InvalidSecurityDataFoundm_versionNotNumeric" xml:space="preserve">
+    <value>Найдены недействительные данные безопасности. m_version не является числом</value>
+  </data>
+  <data name="allgxdfilefilters" xml:space="preserve">
+    <value>Все файлы исследования гена </value>
+  </data>
+  <data name="Simulated" xml:space="preserve">
+    <value>смоделирован</value>
+  </data>
+  <data name="GEReplicateEff" xml:space="preserve">
+    <value>Реплика гена – эффективность</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Файл доступен только для чтения. Сохраните файл под другим именем.</value>
+  </data>
+  <data name="ReportHeaderUserNameAndID" xml:space="preserve">
+    <value>Имя пользователя и идентификатор</value>
+  </data>
+  <data name="ReportHeaderCreatedByApp1" xml:space="preserve">
+    <value>Создан приложением</value>
+  </data>
+  <data name="ReportHeaderCreatedByUser" xml:space="preserve">
+    <value>Создан пользователем</value>
+  </data>
+  <data name="ApplicationStateDataSettingsMismatch" xml:space="preserve">
+    <value>Несоответствие параметров приложения {0}.</value>
+  </data>
+  <data name="GeCorrStdDev" xml:space="preserve">
+    <value>Применено скорректированное стандартное отклонение</value>
+  </data>
+  <data name="ListPreDelimiter_1" xml:space="preserve">
+    <value>, {0}</value>
+  </data>
+  <data name="RunTime" xml:space="preserve">
+    <value>Сведения о времени прогона</value>
+  </data>
+  <data name="calibrationfilefilters" xml:space="preserve">
+    <value>Калибровочный файл </value>
+  </data>
+  <data name="UnknownComputer" xml:space="preserve">
+    <value>неизвестный компьютер</value>
+  </data>
+  <data name="ConfigLoadFailure_1" xml:space="preserve">
+    <value>Не удалось загрузить элементы конфигурации из {0}.</value>
+  </data>
+  <data name="DiagsSeverityWarning" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
+  <data name="NotImplementedMessage" xml:space="preserve">
+    <value>Попытка использования кода, который не был реализован. {1}</value>
+  </data>
+  <data name="MCActiveStageNum" xml:space="preserve">
+    <value>Активный цикл кривой плавления</value>
+  </data>
+  <data name="Table_NotRectangular" xml:space="preserve">
+    <value>Таблица должна быть прямоугольной (т.е. все строки должны быть одинаковой длины).</value>
+  </data>
+  <data name="ExceptionNotified_2" xml:space="preserve">
+    <value>{0}\r\n{1}</value>
+  </data>
+  <data name="ExceptionNotified_1" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="XmlAttributeNotFound_2" xml:space="preserve">
+    <value>Узел {0} не содержит атрибут {1}.</value>
+  </data>
+  <data name="FactoryNotRegistered_1" xml:space="preserve">
+    <value>Требуемая заводская настройка на идентификаторе '{0}' не была зарегистрирована.</value>
+  </data>
+  <data name="PCRBaseLineMethod" xml:space="preserve">
+    <value>Метод базовой линии PCR</value>
+  </data>
+  <data name="tad_datasetfilefilters" xml:space="preserve">
+    <value>Файл TAD </value>
+  </data>
+  <data name="FileCreated" xml:space="preserve">
+    <value>Создан файл данных</value>
+  </data>
+  <data name="Email_DoNotReplyFooter" xml:space="preserve">
+    <value>Примечание. Это сообщение по электронной почте было автоматически отправлено системой уведомлений. Не отвечайте на него.</value>
+  </data>
+  <data name="ReportHeaderCreatedByApp" xml:space="preserve">
+    <value>Создан приложением</value>
+  </data>
+  <data name="InvalidArgumentException_3" xml:space="preserve">
+    <value>Недействительный аргумент "{0}". Значение: {1} Ожидаемое значение: {2}</value>
+  </data>
+  <data name="PlateSetupImport" xml:space="preserve">
+    <value>Импорт настроек плашки</value>
+  </data>
+  <data name="ReportHeaderAuditInformation" xml:space="preserve">
+    <value>Сведения аудита:</value>
+  </data>
+  <data name="ReportHeaderCreatedInSecurityEdition1" xml:space="preserve">
+    <value>Создан в Security Edition</value>
+  </data>
+  <data name="LIMSFileFilter" xml:space="preserve">
+    <value>Файл LIMS</value>
+  </data>
+  <data name="Reports_EmptyTag" xml:space="preserve">
+    <value>Невозможно проанализировать пустой тег отчета.</value>
+  </data>
+  <data name="SaveHeaderString_8" xml:space="preserve">
+    <value>Версия файла {0}, сохраненная пользователем {1} (полное имя {2}) в {3} на {4} в {5} версии {6} с комментарием к сохранению "{7}".</value>
+  </data>
+  <data name="ReportHeaderComment1" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="Table_Empty" xml:space="preserve">
+    <value>Таблица не должна быть пустой.</value>
+  </data>
+  <data name="Table_Null1" xml:space="preserve">
+    <value>Таблица не должна быть нулевой.</value>
+  </data>
+  <data name="PlateType" xml:space="preserve">
+    <value>Тип плашки</value>
+  </data>
+  <data name="GEGlobalControl" xml:space="preserve">
+    <value>Общее условие контроля</value>
+  </data>
+  <data name="AuditTrailControl" xml:space="preserve">
+    <value>Контрольный журнал</value>
+  </data>
+  <data name="FactorySettingChangeNotAllowed_1" xml:space="preserve">
+    <value>Заводские настройки не могут быть изменены. Не удалось перезаписать заводские настройки для {0}.</value>
+  </data>
+  <data name="PCRDigitalFilter" xml:space="preserve">
+    <value>Цифровой фильтр PCR</value>
+  </data>
+  <data name="Reports_InvalidTag_11" xml:space="preserve">
+    <value>Невозможно проанализировать тег отчета:  {0}.</value>
+  </data>
+  <data name="FailedToGainAccessToFile" xml:space="preserve">
+    <value>Не удалось получить доступ к файлу {0}</value>
+  </data>
+  <data name="Table_NotRectangular1" xml:space="preserve">
+    <value>Таблица должна быть прямоугольной (т.е. все строки должны быть одинаковой длины).</value>
+  </data>
+  <data name="RMEFileName" xml:space="preserve">
+    <value>Имя файла RME</value>
+  </data>
+  <data name="GEConditionIsRef" xml:space="preserve">
+    <value>Условие для пробы – контроль</value>
+  </data>
+  <data name="ReportHeaderNumberOfChanges1" xml:space="preserve">
+    <value>Количество изменений</value>
+  </data>
+  <data name="ReportHeaderApplication1" xml:space="preserve">
+    <value>Приложение</value>
+  </data>
+  <data name="PCRActiveWellGroup" xml:space="preserve">
+    <value>Активная группа лунок PCR</value>
+  </data>
+  <data name="EPSortDataByCall" xml:space="preserve">
+    <value>Сортировать данные по вызову в конечной точке</value>
+  </data>
+  <data name="ActiveWells" xml:space="preserve">
+    <value>Активные лунки</value>
+  </data>
+  <data name="EPWells" xml:space="preserve">
+    <value>Контрольное определение в конечной точке</value>
+  </data>
+  <data name="Md5Good" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="PCRActiveFluors" xml:space="preserve">
+    <value>Количественный анализ активной флуоресценции</value>
+  </data>
+  <data name="DiagsSeverityStatus" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="DeviceWithTypeNotFound" xml:space="preserve">
+    <value>Не найдено ни одного устройства в конфигурации, соответствующего запрашиваемому типу.</value>
+  </data>
+  <data name="DiagsSeverityException" xml:space="preserve">
+    <value>Исключение</value>
+  </data>
+  <data name="Reports_NullTag1" xml:space="preserve">
+    <value>Невозможно проанализировать нулевой тег отчета.</value>
+  </data>
+  <data name="Email_ResultsMessage" xml:space="preserve">
+    <value>Результаты в приложении.</value>
+  </data>
+  <data name="ParseFailure_2" xml:space="preserve">
+    <value>Невозможно проанализировать тип {0} из {1}.</value>
+  </data>
+  <data name="PCRThresholdValue" xml:space="preserve">
+    <value>Пороговый уровень PCR</value>
+  </data>
+  <data name="GEDataSetEff" xml:space="preserve">
+    <value>Набор данных – эффективность</value>
+  </data>
+  <data name="GEGraphError" xml:space="preserve">
+    <value>Настройка ошибки для графика</value>
+  </data>
+  <data name="RunDefinitionChanged" xml:space="preserve">
+    <value>Определение прогона изменено</value>
+  </data>
+  <data name="TagLabel" xml:space="preserve">
+    <value>Тег</value>
+  </data>
+  <data name="ReportHeaderApplication" xml:space="preserve">
+    <value>Приложение</value>
+  </data>
+  <data name="EndPointProtocolStepTemperatureChanged" xml:space="preserve">
+    <value>Температура в конечной точке</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Table_SortingNotAllowed1" xml:space="preserve">
+    <value>Невозможно отсортировать данные этой таблицы.</value>
+  </data>
+  <data name="InterpolatedPlateReads" xml:space="preserve">
+    <value>Интерполированные чтения плашки</value>
+  </data>
+  <data name="ReportHeaderSignatureComment" xml:space="preserve">
+    <value>Комментарий к подписи</value>
+  </data>
+  <data name="PCRAutoBaseline" xml:space="preserve">
+    <value>Режим базовой линии PCR</value>
+  </data>
+  <data name="DiagsSeverityUnassigned" xml:space="preserve">
+    <value>Не задано</value>
+  </data>
+  <data name="Table_RowIndexOutOfRange1" xml:space="preserve">
+    <value>Недействительный индекс строки таблицы данных.</value>
+  </data>
+  <data name="TraceLabel" xml:space="preserve">
+    <value>Кривая графика</value>
+  </data>
+  <data name="ReportHeaderMachineName" xml:space="preserve">
+    <value>Имя аппарата</value>
+  </data>
+  <data name="MCActiveFluor" xml:space="preserve">
+    <value>Активный флуорофор кривой плавления</value>
+  </data>
+  <data name="UnknownApplication" xml:space="preserve">
+    <value>Невозможно определить приложение Bio-Rad</value>
+  </data>
+  <data name="UserSettingChangeNotAllowed_1" xml:space="preserve">
+    <value>Настройки пользователя не поддерживаются. Не удалось перезаписать настройки пользователя для {0}.</value>
+  </data>
+  <data name="ReportHeaderYes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="ReportHeaderNo1" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="ReportHeaderComputerName1" xml:space="preserve">
+    <value>Имя компьютера</value>
+  </data>
+  <data name="GEActiveFluor" xml:space="preserve">
+    <value>Активный флуорофор экспрессии гена</value>
+  </data>
+  <data name="ProtocolLidTemperatureChanged" xml:space="preserve">
+    <value>Протокол температуры крышки</value>
+  </data>
+  <data name="ProtocolVolumeChanged" xml:space="preserve">
+    <value>Объем протокола</value>
+  </data>
+  <data name="GEReplicateFullName" xml:space="preserve">
+    <value>Реплика гена – полное имя</value>
+  </data>
+  <data name="datasetfilefilters" xml:space="preserve">
+    <value>Файл данных PCR </value>
+  </data>
+  <data name="RunComplete" xml:space="preserve">
+    <value>Прогон завершен</value>
+  </data>
+  <data name="AppVersion_2" xml:space="preserve">
+    <value>{0}. ({1}).</value>
+  </data>
+  <data name="WFActiveInfo" xml:space="preserve">
+    <value>Сведения о факторах активных лунок</value>
+  </data>
+  <data name="WFFileName" xml:space="preserve">
+    <value>Имя файла фактора активных лунок</value>
+  </data>
+  <data name="InvalidParameterType_2" xml:space="preserve">
+    <value>Недействительный тип параметра: {0} – {1}.</value>
+  </data>
+  <data name="InvalidParameterType_4" xml:space="preserve">
+    <value>Недействительный тип параметра: {0} – {1}; {2} – {3}.</value>
+  </data>
+  <data name="ReportHeaderVersion1" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="ADNormalize" xml:space="preserve">
+    <value>Нормализованные данные аллельной дискриминации</value>
+  </data>
+  <data name="MessageHeading" xml:space="preserve">
+    <value>Сообщение: </value>
+  </data>
+  <data name="EPNumRanks" xml:space="preserve">
+    <value>Ранги конечной точки</value>
+  </data>
+  <data name="RunStart" xml:space="preserve">
+    <value>Прогон начат</value>
+  </data>
+  <data name="odm_datasetfilefilters" xml:space="preserve">
+    <value>Файл ODM</value>
+  </data>
+  <data name="ListPostDelimiter_1" xml:space="preserve">
+    <value>{0}, </value>
+  </data>
+  <data name="EPCallMethod" xml:space="preserve">
+    <value>Метод вызова в конечной точке</value>
+  </data>
+  <data name="PCRActiveStepNum" xml:space="preserve">
+    <value>Количественный анализ активного шага</value>
+  </data>
+  <data name="ADHThreshold" xml:space="preserve">
+    <value>Пороговый уровень по горизонтали для аллельной дискриминации</value>
+  </data>
+  <data name="PlateExperimentName" xml:space="preserve">
+    <value>Имя эксперимента</value>
+  </data>
+  <data name="BFFileName" xml:space="preserve">
+    <value>Имя файла активного фонового считывания</value>
+  </data>
+  <data name="ReportHeaderLastCreationGUID1" xml:space="preserve">
+    <value>Последний GUID создания</value>
+  </data>
+  <data name="MCThresholdForNegativePeakAutoFind" xml:space="preserve">
+    <value>Значение порогового уровня для анализа отрицательного пика плавления</value>
+  </data>
+  <data name="PCRAnalysisMode" xml:space="preserve">
+    <value>Вариант анализа</value>
+  </data>
+  <data name="AllDataAnalysisfilefilters" xml:space="preserve">
+    <value>Все файлы с данными</value>
+  </data>
+  <data name="ADHThresholdMode" xml:space="preserve">
+    <value>Allelic Discrim. Horizontal Threshold mode</value>
+  </data>
+  <data name="ADVThresholdMode" xml:space="preserve">
+    <value>Allelic Discrim. Vertical Threshold mode</value>
+  </data>
+  <data name="ClustergramClusterBy" xml:space="preserve">
+    <value>Кластерограмма Кластера по</value>
+  </data>
+  <data name="ControlSample" xml:space="preserve">
+    <value>Контрольный образец</value>
+  </data>
+  <data name="ClustergramSplitOutReplicates" xml:space="preserve">
+    <value>Кластерограмма разделила повторы </value>
+  </data>
+  <data name="CyclesToAnalyze" xml:space="preserve">
+    <value>Циклы для анализа</value>
+  </data>
+  <data name="DriftCorrection" xml:space="preserve">
+    <value>Применен дрейф коррекции </value>
+  </data>
+  <data name="PlateEdit" xml:space="preserve">
+    <value>Редактирование плашки</value>
+  </data>
+  <data name="HeatMapExperimentalSample" xml:space="preserve">
+    <value>Данные теплокарты</value>
+  </data>
+  <data name="HeatMapSelectedFile" xml:space="preserve">
+    <value>Сетка теплокарты</value>
+  </data>
+  <data name="HeatMapSplitOutReplicates" xml:space="preserve">
+    <value>Регуляционный порог теплокарты</value>
+  </data>
+  <data name="AllContentRunSetFileFiltersText" xml:space="preserve">
+    <value>PrimePCR run файлы</value>
+  </data>
+  <data name="PlateReplace" xml:space="preserve">
+    <value>Заменить плашку</value>
+  </data>
+  <data name="GESampleNameGroupingOption" xml:space="preserve">
+    <value>Опция группировки образцов по названию</value>
+  </data>
+  <data name="ScatterPlotControlSample" xml:space="preserve">
+    <value>Контрольный образец графика разброса значений</value>
+  </data>
+  <data name="ScatterPlotExperimentalSample" xml:space="preserve">
+    <value>Экспериментальный образец графика разброса значений</value>
+  </data>
+  <data name="ScatterPlotRegulationThreshold" xml:space="preserve">
+    <value>Регуляционный порог графика разброса значений</value>
+  </data>
+  <data name="VolcanoPlotPValue" xml:space="preserve">
+    <value>Volcano Plot P-Value Threshold</value>
+  </data>
+  <data name="VolcanoPlotRegulationThreshold" xml:space="preserve">
+    <value>Регуляционный порог вулканической гистограммы</value>
+  </data>
+  <data name="VolcanoPlotExperimentalSample" xml:space="preserve">
+    <value>Экспериментальный образец вулканической гистограммы</value>
+  </data>
+  <data name="GEGraphErrorValue" xml:space="preserve">
+    <value>Величина графической ошибки</value>
+  </data>
+  <data name="SecurityEditionDataFiles" xml:space="preserve">
+    <value>Files created in CFX Maestro Security Edition can only be open in CFX Maestro Security Edition.</value>
+  </data>
+  <data name="BarPlotPValue" xml:space="preserve">
+    <value>Bar Chart P-Value Threshold</value>
+  </data>
+  <data name="AnovaPValueThreshold" xml:space="preserve">
+    <value>ANOVA P-Value Threshold</value>
+  </data>
+  <data name="UserGuideNotFound" xml:space="preserve">
+    <value>Не удалось найти документ. Пожалуйста, запустите CFX_Documentation.exe для установки документации программного обеспечения CFX.</value>
+  </data>
+  <data name="UserGuideNotFoundParam" xml:space="preserve">
+    <value>Не удалось найти документ {0}. Пожалуйста, запустите CFX_Documentation.exe для установки документации программного обеспечения</value>
+  </data>
+  <data name="UserGuideNotFound2" xml:space="preserve">
+    <value>Документация пользователя отсутствует или устарела. Пожалуйста, установите последнюю версию пользовательской документации, используя «Проверка обновлений» в меню Справка</value>
+  </data>
+  <data name="Confidence_Interval" xml:space="preserve">
+    <value>доверительный интервал</value>
+  </data>
+  <data name="StandardUnits" xml:space="preserve">
+    <value>Units (RU - TODO)</value>
+  </data>
+  <data name="UserGuideNotFoundWithURL" xml:space="preserve">
+    <value>Пользовательская документация отсутствует или устарела. Установите последнюю версию документации (CFX_Documentation.EXE) с веб-сайта Bio-Rad: {0}. Хотите перейти на страницу загрузки?</value>
+  </data>
+</root>

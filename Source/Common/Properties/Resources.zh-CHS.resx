@@ -1,0 +1,1068 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MCPeakOverride" xml:space="preserve">
+    <value>熔解曲线峰值重叠</value>
+  </data>
+  <data name="ADVThreshold" xml:space="preserve">
+    <value>等位基因分型垂直阈值</value>
+  </data>
+  <data name="ReportHeaderAuditInformation1" xml:space="preserve">
+    <value>审计信息:</value>
+  </data>
+  <data name="PlateWellsEdit" xml:space="preserve">
+    <value>反应板设置孔</value>
+  </data>
+  <data name="ADRepeatNumber" xml:space="preserve">
+    <value>等位基因分型-PCR循环数</value>
+  </data>
+  <data name="Table_ColumnDescriptionsWrongLength1" xml:space="preserve">
+    <value>列描述与列标题不匹配。</value>
+  </data>
+  <data name="ReportHeaderNumberOfChanges" xml:space="preserve">
+    <value>变更次数</value>
+  </data>
+  <data name="RMETypeActive" xml:space="preserve">
+    <value>活动的 RME 类型</value>
+  </data>
+  <data name="ConfigElementNotADevice" xml:space="preserve">
+    <value>为 DeviceManagerService 提供非设备项配置。这一服务要求配置元素属于“设备”类型。</value>
+  </data>
+  <data name="EncryptCompressError_2" xml:space="preserve">
+    <value>加密和压缩文件“{0}”时出错。错误 –“{1}”。</value>
+  </data>
+  <data name="ReportHeaderMachineName1" xml:space="preserve">
+    <value>机器名称</value>
+  </data>
+  <data name="FactorySettingChangeNotAllowed" xml:space="preserve">
+    <value>工厂设置不能更改。</value>
+  </data>
+  <data name="Alldatasetfilefilters" xml:space="preserve">
+    <value>所有 PCR 数据文件 </value>
+  </data>
+  <data name="GEAnalysisMode" xml:space="preserve">
+    <value>基因表达分析模式</value>
+  </data>
+  <data name="ReportHeaderModifiedByUser1" xml:space="preserve">
+    <value>用户修改</value>
+  </data>
+  <data name="Table_SortingNotAllowed" xml:space="preserve">
+    <value>不允许为该表排序。</value>
+  </data>
+  <data name="Milliliter_1" xml:space="preserve">
+    <value>{0}ml</value>
+  </data>
+  <data name="MCDigitalFilter" xml:space="preserve">
+    <value>熔解曲线数字滤波器</value>
+  </data>
+  <data name="ServiceInstantiationFailure_2" xml:space="preserve">
+    <value>无法实例化指令集“{1}”中的服务“{0}”。</value>
+  </data>
+  <data name="ADCall" xml:space="preserve">
+    <value>等位基因分型。调用数据</value>
+  </data>
+  <data name="ReportHeaderLastModifiedDate1" xml:space="preserve">
+    <value>上次修改日期</value>
+  </data>
+  <data name="ServiceLoadFailure_2" xml:space="preserve">
+    <value>无法使用 {1} 加载服务 {0}。</value>
+  </data>
+  <data name="SetPropertiesWithParametersFailed_3" xml:space="preserve">
+    <value>无法在 {2} 上将属性 {0} 设置为 {1}。</value>
+  </data>
+  <data name="NoDetailsString" xml:space="preserve">
+    <value>不存在已变更的可审计项目。</value>
+  </data>
+  <data name="ReportHeaderLastModifiedDate" xml:space="preserve">
+    <value>上次修改日期</value>
+  </data>
+  <data name="ExceptionUnexpected" xml:space="preserve">
+    <value>发生意外错误。</value>
+  </data>
+  <data name="GECondition" xml:space="preserve">
+    <value>样品情况</value>
+  </data>
+  <data name="PCRDataWindow" xml:space="preserve">
+    <value>PCR 数据窗口</value>
+  </data>
+  <data name="AllLogsFilesFilter" xml:space="preserve">
+    <value>所有日志文件 (*.xml)|*.xml</value>
+  </data>
+  <data name="ProductNameOnComputerName" xml:space="preserve">
+    <value>{0} 打开 {1}</value>
+  </data>
+  <data name="ExceptionIgnored_1" xml:space="preserve">
+    <value>忽略的异常: {0}</value>
+  </data>
+  <data name="EPTolValue" xml:space="preserve">
+    <value>终点容差</value>
+  </data>
+  <data name="AllFilesToOpenFilter" xml:space="preserve">
+    <value>.pcrd;.opd;.tad;.odm;.prcl;.pltd</value>
+  </data>
+  <data name="PCRAutoThreshold" xml:space="preserve">
+    <value>PCR 阈值模式</value>
+  </data>
+  <data name="MCActiveStepNum" xml:space="preserve">
+    <value>熔解曲线活动步骤</value>
+  </data>
+  <data name="ReportHeaderComment" xml:space="preserve">
+    <value>注释</value>
+  </data>
+  <data name="Md5Bad" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="InvalidRuleType_1" xml:space="preserve">
+    <value>无法为指定的类型分配请求的业务规则 {0}。</value>
+  </data>
+  <data name="GEGraphExp" xml:space="preserve">
+    <value>图表数据</value>
+  </data>
+  <data name="SettingsFileVersionNotFound_1" xml:space="preserve">
+    <value>从 {0} 中检索版本时出错。</value>
+  </data>
+  <data name="ChangeDetailShortString_2" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+  <data name="ChangeDetailShortString_3" xml:space="preserve">
+    <value>{0} 从“{1}”变为“{2}”。</value>
+  </data>
+  <data name="PlateWellGroupChange" xml:space="preserve">
+    <value>反应板孔编组</value>
+  </data>
+  <data name="Table_RowIndexOutOfRange" xml:space="preserve">
+    <value>无效的数据表行索引。</value>
+  </data>
+  <data name="RunFileFilters" xml:space="preserve">
+    <value>运行文件 </value>
+  </data>
+  <data name="WFTypeActive" xml:space="preserve">
+    <value>活动反应孔因子类型</value>
+  </data>
+  <data name="MCDigitalFilterGlobalEnabled" xml:space="preserve">
+    <value>熔解曲线全局数字滤波器已启用</value>
+  </data>
+  <data name="ReportHeaderCreationDate" xml:space="preserve">
+    <value>创建日期</value>
+  </data>
+  <data name="XmlNodeNotFound_1" xml:space="preserve">
+    <value>找不到节点“{0}”。</value>
+  </data>
+  <data name="XmlSerializationUnknownSerializedVersion" xml:space="preserve">
+    <value>未知序列化版本: {0}</value>
+  </data>
+  <data name="ADAutomaticCall" xml:space="preserve">
+    <value>等位基因分型。调用设置</value>
+  </data>
+  <data name="GEReplicateIsRef" xml:space="preserve">
+    <value>基因名称 - 参考</value>
+  </data>
+  <data name="Table_ColumnHeadingsWrongLength" xml:space="preserve">
+    <value>列标题与数据不匹配。</value>
+  </data>
+  <data name="InvalidSecurityDataItemRead" xml:space="preserve">
+    <value>无法读取安全数据中的项目 {0}</value>
+  </data>
+  <data name="PlateDescription" xml:space="preserve">
+    <value>反应板注释</value>
+  </data>
+  <data name="PCRActiveStageNum" xml:space="preserve">
+    <value>定量活动循环</value>
+  </data>
+  <data name="Table_ColumnHeadingsWrongLength1" xml:space="preserve">
+    <value>列标题与数据不匹配。</value>
+  </data>
+  <data name="NoSetting_1" xml:space="preserve">
+    <value>设置服务不包括请求的应用程序设置 {0}。</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>文件处于隐藏状态。请保存到另一文件名。</value>
+  </data>
+  <data name="Email_RunCompleteSubject" xml:space="preserve">
+    <value>设备或反应模块 {0} 上的扩增程序完成。</value>
+  </data>
+  <data name="ReportHeaderModifiedByUser" xml:space="preserve">
+    <value>用户修改</value>
+  </data>
+  <data name="Table_ColumnIndexOutOfRange" xml:space="preserve">
+    <value>无效的数据表列索引。</value>
+  </data>
+  <data name="MGEDataFiles" xml:space="preserve">
+    <value>数据文件</value>
+  </data>
+  <data name="SourceHeading" xml:space="preserve">
+    <value>源:</value>
+  </data>
+  <data name="ChangeDetailString" xml:space="preserve">
+    <value>{0} 从“{1}”变为“{2}”，描述为“{3}”。</value>
+  </data>
+  <data name="runsetfilefilters" xml:space="preserve">
+    <value>*.rset;*.run</value>
+  </data>
+  <data name="FileNotFoundInAppOrRelativePath_1" xml:space="preserve">
+    <value>在应用程序路径或相对路径中均找不到“{0}”路径。</value>
+  </data>
+  <data name="ReportHeaderUserNameAndID1" xml:space="preserve">
+    <value>用户名和 ID</value>
+  </data>
+  <data name="DevicesNotConfigured" xml:space="preserve">
+    <value>未配置设备。配置文件为空。</value>
+  </data>
+  <data name="ApplicationStateDataSettingsMismatchCount" xml:space="preserve">
+    <value>应用程序设置计算不匹配。</value>
+  </data>
+  <data name="DefaultConfigurationOnly_2" xml:space="preserve">
+    <value>服务“{0}”仅允许默认 {1} 配置。</value>
+  </data>
+  <data name="ConfigurationFailed" xml:space="preserve">
+    <value>远程配置失败。</value>
+  </data>
+  <data name="SignatureString" xml:space="preserve">
+    <value>已签署“{0}”，原因为“{1}”。</value>
+  </data>
+  <data name="RequestUnknownObject_1" xml:space="preserve">
+    <value>请求未知的远程对象: {0}。</value>
+  </data>
+  <data name="EPTolMethod" xml:space="preserve">
+    <value>终点容差计算方式</value>
+  </data>
+  <data name="ServiceInstantiationFailureNullClass_2" xml:space="preserve">
+    <value>无法实例化指令集“{1}”中的服务“{0}”(类型为空)。</value>
+  </data>
+  <data name="PlateFluorsChange" xml:space="preserve">
+    <value>反应板荧光</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>该文件为系统文件。请保存到另一文件名。</value>
+  </data>
+  <data name="Reports_EmptyTag1" xml:space="preserve">
+    <value>无法分析空的报告标签。</value>
+  </data>
+  <data name="Table_ColumnIndexOutOfRange1" xml:space="preserve">
+    <value>无效的数据表列索引。</value>
+  </data>
+  <data name="ReportHeaderOSBuildAndServicePack1" xml:space="preserve">
+    <value>操作系统内部版本和服务包</value>
+  </data>
+  <data name="GESampleData" xml:space="preserve">
+    <value>样品数据</value>
+  </data>
+  <data name="RunTimeProtocol" xml:space="preserve">
+    <value>运行时间扩增程序</value>
+  </data>
+  <data name="DisplayWells" xml:space="preserve">
+    <value>显示反应孔</value>
+  </data>
+  <data name="EnumeratorServiceFailed2Start" xml:space="preserve">
+    <value>枚举服务启动失败。</value>
+  </data>
+  <data name="PlateFluorUnits" xml:space="preserve">
+    <value>荧光基团单位</value>
+  </data>
+  <data name="BFActiveInfo" xml:space="preserve">
+    <value>活动背景读板信息</value>
+  </data>
+  <data name="MCMinPeakWidth" xml:space="preserve">
+    <value>最小显著峰宽度</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="EPNumRepeats" xml:space="preserve">
+    <value>用于计算终点均值的循环数范围</value>
+  </data>
+  <data name="PCRDigitalFilterGlobalEnabled" xml:space="preserve">
+    <value>PCR 全局数字滤波器已启用</value>
+  </data>
+  <data name="SignedSaveHeaderString_9" xml:space="preserve">
+    <value>文件版本 {0}，由 {1} (全名 {2}) 于 {4} 的 {3} 在 {5} 的版本 {6} 中签署和保存，签名注释:“{7}”，保存注释:“{8}”。</value>
+  </data>
+  <data name="gxdfilefilters" xml:space="preserve">
+    <value>基因研究文件 </value>
+  </data>
+  <data name="SetOnceProperty_1" xml:space="preserve">
+    <value>设置属性 {0} 的尝试无效。属性仅可设置一次。</value>
+  </data>
+  <data name="ValidationFailed_1" xml:space="preserve">
+    <value>验证 {0} 失败</value>
+  </data>
+  <data name="Table_ColumnDescriptionsWrongLength" xml:space="preserve">
+    <value>列描述与列标题不匹配。</value>
+  </data>
+  <data name="FactoryNotRegisteredAtRuntime_1" xml:space="preserve">
+    <value>所请求的标识符为“{0}”的工厂在运行期间未注册。</value>
+  </data>
+  <data name="Table_Empty1" xml:space="preserve">
+    <value>表格不能为空。</value>
+  </data>
+  <data name="Email_DoNotReceiveMessage" xml:space="preserve">
+    <value>如果您不希望再收到该邮件，请在 {0} 应用程序中修改用户首选项。</value>
+  </data>
+  <data name="ActiveExpNum" xml:space="preserve">
+    <value>活动实验编号</value>
+  </data>
+  <data name="ReportHeaderYes1" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="ReportHeaderDate" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="ReportHeaderGUID" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="NoPrinter" xml:space="preserve">
+    <value>未安装打印机，无法打印。请先安装打印机。操作取消。</value>
+  </data>
+  <data name="ChangeDetailsWithMissingInfo_1" xml:space="preserve">
+    <value>{0} (*)</value>
+  </data>
+  <data name="DyeCalibrationData" xml:space="preserve">
+    <value>染料校准日期</value>
+  </data>
+  <data name="WFChange" xml:space="preserve">
+    <value>反应孔因子变更</value>
+  </data>
+  <data name="InvalidSettingType_1" xml:space="preserve">
+    <value>无法为指定的类型分配请求的应用程序设置 {0}。</value>
+  </data>
+  <data name="InvalidSettingType_2" xml:space="preserve">
+    <value>无法为指定的类型 {1} 分配请求的应用程序设置 {0}。</value>
+  </data>
+  <data name="PCRBaselineValue" xml:space="preserve">
+    <value>PCR 基线循环</value>
+  </data>
+  <data name="ExceptionHeading" xml:space="preserve">
+    <value>异常: </value>
+  </data>
+  <data name="RMEActiveInfo" xml:space="preserve">
+    <value>活动的 RME 信息</value>
+  </data>
+  <data name="Md5Expected_1" xml:space="preserve">
+    <value>预计: {0}</value>
+  </data>
+  <data name="ReportHeaderSignatureComment1" xml:space="preserve">
+    <value>签名注释</value>
+  </data>
+  <data name="GEReplicateAutoEff" xml:space="preserve">
+    <value>基因复制 - 自动效率</value>
+  </data>
+  <data name="AnalysisParameter" xml:space="preserve">
+    <value>分析参数</value>
+  </data>
+  <data name="ReportHeaderCreatedInSecurityEdition" xml:space="preserve">
+    <value>在安全版本中创建</value>
+  </data>
+  <data name="MCThresholdForPeakAutoFind" xml:space="preserve">
+    <value>正熔解峰分析阈值</value>
+  </data>
+  <data name="MCMaxPeakWidth" xml:space="preserve">
+    <value>最大显著峰宽度</value>
+  </data>
+  <data name="ReportHeaderSignature1" xml:space="preserve">
+    <value>签名</value>
+  </data>
+  <data name="ReportHeaderNo" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="ReportHeaderComputerName" xml:space="preserve">
+    <value>计算机名称</value>
+  </data>
+  <data name="rdmlfilefilters" xml:space="preserve">
+    <value>RDML 文件</value>
+  </data>
+  <data name="CtAlgorithm" xml:space="preserve">
+    <value>Cq值确定模式</value>
+  </data>
+  <data name="PlateAssayName" xml:space="preserve">
+    <value> 探针／引物名称</value>
+  </data>
+  <data name="GEReplicate" xml:space="preserve">
+    <value>基因复制</value>
+  </data>
+  <data name="PCRDisplayMode" xml:space="preserve">
+    <value>PCR 显示模式</value>
+  </data>
+  <data name="GESampleNameGroupingOption" xml:space="preserve">
+    <value>样品名称编组选项</value>
+  </data>
+  <data name="YourAccountName" xml:space="preserve">
+    <value>您的帐户名称</value>
+  </data>
+  <data name="MCIncludeNegativePeaks" xml:space="preserve">
+    <value>包括显著负峰值</value>
+  </data>
+  <data name="ServicesConfigFileNotFound_2" xml:space="preserve">
+    <value>在绝对或相对路径中找不到服务配置文件。绝对路径 </value>
+  </data>
+  <data name="ReportHeaderVersion" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="ReportHeaderLastCreationGUID" xml:space="preserve">
+    <value>上次创建 GUID</value>
+  </data>
+  <data name="ReportHeaderCreationDate1" xml:space="preserve">
+    <value>创建日期</value>
+  </data>
+  <data name="ReportHeaderOSBuildAndServicePack" xml:space="preserve">
+    <value>操作系统内部版本和服务包</value>
+  </data>
+  <data name="GEScaling" xml:space="preserve">
+    <value>缩放选项</value>
+  </data>
+  <data name="Table_Null" xml:space="preserve">
+    <value>表格不能为空。</value>
+  </data>
+  <data name="EnumeratorServiceCanStop" xml:space="preserve">
+    <value>无法停止枚举服务。</value>
+  </data>
+  <data name="XmlSerializationStateDictionaryNotCurrentVersion" xml:space="preserve">
+    <value>状态目录的版本不是最新的。</value>
+  </data>
+  <data name="SeverityLabel" xml:space="preserve">
+    <value>严重性</value>
+  </data>
+  <data name="protocolfilefilters" xml:space="preserve">
+    <value>扩增程序文件 </value>
+  </data>
+  <data name="InvalidTimeStampWarning" xml:space="preserve">
+    <value>警告: 审计跟踪时间戳的顺序不正确，可能无效。</value>
+  </data>
+  <data name="ClassNotAConfigurationProvider_2" xml:space="preserve">
+    <value>指令集“{1}”中的类“{0}”并非 IConfigurationProvider 的实现。</value>
+  </data>
+  <data name="PCRBaseLine" xml:space="preserve">
+    <value>PCR 数据分析方式</value>
+  </data>
+  <data name="ServiceLoadFailure" xml:space="preserve">
+    <value>无法加载服务。</value>
+  </data>
+  <data name="platesetupfilefilters" xml:space="preserve">
+    <value>反应板文件 </value>
+  </data>
+  <data name="GEConditionFullName" xml:space="preserve">
+    <value>样品情况 - 全称</value>
+  </data>
+  <data name="ReportHeaderDate1" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="ReportHeaderGUID1" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="Email_RunCompleteMessage_1" xml:space="preserve">
+    <value>运行于设备或模块“{1}”的 {0} 完成于 {2}，状态为: {3}。 </value>
+  </data>
+  <data name="opd_datasetfilefilters" xml:space="preserve">
+    <value>OPD 文件</value>
+  </data>
+  <data name="ReportHeaderCreatedByUser1" xml:space="preserve">
+    <value>由用户创建</value>
+  </data>
+  <data name="Microliter_1" xml:space="preserve">
+    <value>{0}ul</value>
+  </data>
+  <data name="GETarget" xml:space="preserve">
+    <value>靶标</value>
+  </data>
+  <data name="ADDisplayMode" xml:space="preserve">
+    <value>等位基因分型显示模式</value>
+  </data>
+  <data name="InvalidSecurityDataFoundInvalidVersion" xml:space="preserve">
+    <value>以校准文件编码的安全数据无效。预期版本: {0}。发现的版本: {1}</value>
+  </data>
+  <data name="Reports_InvalidTag_1" xml:space="preserve">
+    <value>无法分析报告标签: {0}。</value>
+  </data>
+  <data name="Reports_NullTag" xml:space="preserve">
+    <value>无法分析空报告标签。</value>
+  </data>
+  <data name="FullyQualifiedName" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="GEDataSet" xml:space="preserve">
+    <value>数据集</value>
+  </data>
+  <data name="RunID" xml:space="preserve">
+    <value>运行 ID</value>
+  </data>
+  <data name="ADFluorIdXAxis" xml:space="preserve">
+    <value>等位基因分型。X 坐标轴荧光</value>
+  </data>
+  <data name="ADFluorIdYAxis" xml:space="preserve">
+    <value>等位基因分型。Y 坐标轴荧光</value>
+  </data>
+  <data name="ReportHeaderSignature" xml:space="preserve">
+    <value>签名</value>
+  </data>
+  <data name="MCIncludePositivePeaks" xml:space="preserve">
+    <value>包括显著正峰值</value>
+  </data>
+  <data name="EventTimeLabel" xml:space="preserve">
+    <value>事件时间</value>
+  </data>
+  <data name="ClassNotAService_2" xml:space="preserve">
+    <value>指令集“{1}”中的类“{0}”并非为 IService 的实现。</value>
+  </data>
+  <data name="EPActiveFluor" xml:space="preserve">
+    <value>终点活动荧光</value>
+  </data>
+  <data name="NestedExceptionHeading" xml:space="preserve">
+    <value>嵌套异常</value>
+  </data>
+  <data name="FileNotFound_2" xml:space="preserve">
+    <value> 找不到文件。“{0}”–“{1}”</value>
+  </data>
+  <data name="SetAccessorSetOnceError" xml:space="preserve">
+    <value>值仅可设置一次。已拒绝设置。</value>
+  </data>
+  <data name="genestudyfilefilters" xml:space="preserve">
+    <value>基因研究文件 </value>
+  </data>
+  <data name="NoRule_1" xml:space="preserve">
+    <value>业务规则服务不包括请求的规则 {0}。</value>
+  </data>
+  <data name="MessageLabel" xml:space="preserve">
+    <value>消息</value>
+  </data>
+  <data name="NoSignatureString" xml:space="preserve">
+    <value>未签署此保存。</value>
+  </data>
+  <data name="BFTypeActive" xml:space="preserve">
+    <value>活动背景读板</value>
+  </data>
+  <data name="InvalidSecurityDataFoundm_versionNotNumeric" xml:space="preserve">
+    <value>发现无效安全数据: m_version 不是数字</value>
+  </data>
+  <data name="allgxdfilefilters" xml:space="preserve">
+    <value>所有基因研究文件 </value>
+  </data>
+  <data name="Simulated" xml:space="preserve">
+    <value>模拟</value>
+  </data>
+  <data name="GEReplicateEff" xml:space="preserve">
+    <value>基因复制 - 效率</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>文件为只读。请保存到另一文件名。</value>
+  </data>
+  <data name="ReportHeaderUserNameAndID" xml:space="preserve">
+    <value>用户名和 ID</value>
+  </data>
+  <data name="ReportHeaderCreatedByApp1" xml:space="preserve">
+    <value>由应用程序创建</value>
+  </data>
+  <data name="ReportHeaderCreatedByUser" xml:space="preserve">
+    <value>由用户创建</value>
+  </data>
+  <data name="ApplicationStateDataSettingsMismatch" xml:space="preserve">
+    <value>不匹配的应用程序设置 {0}。</value>
+  </data>
+  <data name="GeCorrStdDev" xml:space="preserve">
+    <value>使用校正的标准偏差</value>
+  </data>
+  <data name="ListPreDelimiter_1" xml:space="preserve">
+    <value>, {0}</value>
+  </data>
+  <data name="RunTime" xml:space="preserve">
+    <value>运行时间信息</value>
+  </data>
+  <data name="calibrationfilefilters" xml:space="preserve">
+    <value>校准文件 </value>
+  </data>
+  <data name="UnknownComputer" xml:space="preserve">
+    <value>未知计算机</value>
+  </data>
+  <data name="ConfigLoadFailure_1" xml:space="preserve">
+    <value>从 {0} 加载配置元素失败。</value>
+  </data>
+  <data name="DiagsSeverityWarning" xml:space="preserve">
+    <value>等待</value>
+  </data>
+  <data name="NotImplementedMessage" xml:space="preserve">
+    <value>尝试使用尚未执行的编码.</value>
+  </data>
+  <data name="MCActiveStageNum" xml:space="preserve">
+    <value>熔解曲线活动循环</value>
+  </data>
+  <data name="Table_NotRectangular" xml:space="preserve">
+    <value>表格必须为矩形(即各行必须等长)。</value>
+  </data>
+  <data name="ExceptionNotified_2" xml:space="preserve">
+    <value>{0}\r\n{1}</value>
+  </data>
+  <data name="ExceptionNotified_1" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="XmlAttributeNotFound_2" xml:space="preserve">
+    <value>节点 {0} 不包含属性 {1}。</value>
+  </data>
+  <data name="FactoryNotRegistered_1" xml:space="preserve">
+    <value>所请求的标识符为“{0}”的工厂未注册。</value>
+  </data>
+  <data name="PCRBaseLineMethod" xml:space="preserve">
+    <value>PCR 基线方法</value>
+  </data>
+  <data name="tad_datasetfilefilters" xml:space="preserve">
+    <value>TAD 数据文件 </value>
+  </data>
+  <data name="FileCreated" xml:space="preserve">
+    <value>已创建数据文件</value>
+  </data>
+  <data name="Email_DoNotReplyFooter" xml:space="preserve">
+    <value>注意: 本电子邮件由自动通知系统发送。请勿回复。</value>
+  </data>
+  <data name="ReportHeaderCreatedByApp" xml:space="preserve">
+    <value>由应用程序创建</value>
+  </data>
+  <data name="InvalidArgumentException_3" xml:space="preserve">
+    <value>无效的自变量“{0}”。值: {1} 预计值: {2}</value>
+  </data>
+  <data name="PlateSetupImport" xml:space="preserve">
+    <value>反应板设置导入</value>
+  </data>
+  <data name="ReportHeaderAuditInformation" xml:space="preserve">
+    <value>审计信息:</value>
+  </data>
+  <data name="ReportHeaderCreatedInSecurityEdition1" xml:space="preserve">
+    <value>在安全版本中创建</value>
+  </data>
+  <data name="LIMSFileFilter" xml:space="preserve">
+    <value>LIMS  文件</value>
+  </data>
+  <data name="Reports_EmptyTag" xml:space="preserve">
+    <value>无法分析空的报告标签。</value>
+  </data>
+  <data name="SaveHeaderString_8" xml:space="preserve">
+    <value>文件版本 {0}，由 {1} (全名 {2}) 于 {4} 的 {3} 在 {5} 版本 {6} 中保存，保存注释:“{7}”。</value>
+  </data>
+  <data name="ReportHeaderComment1" xml:space="preserve">
+    <value>注释</value>
+  </data>
+  <data name="Table_Empty" xml:space="preserve">
+    <value>表格不能为空。</value>
+  </data>
+  <data name="Table_Null1" xml:space="preserve">
+    <value>表格不能为空。</value>
+  </data>
+  <data name="PlateType" xml:space="preserve">
+    <value>反应板类型</value>
+  </data>
+  <data name="GEGlobalControl" xml:space="preserve">
+    <value>全局控制情况</value>
+  </data>
+  <data name="AuditTrailControl" xml:space="preserve">
+    <value>审计跟踪</value>
+  </data>
+  <data name="FactorySettingChangeNotAllowed_1" xml:space="preserve">
+    <value>工厂设置不能更改。覆盖 {0} 的工厂设置失败。</value>
+  </data>
+  <data name="PCRDigitalFilter" xml:space="preserve">
+    <value>PCR 数字滤波器</value>
+  </data>
+  <data name="Reports_InvalidTag_11" xml:space="preserve">
+    <value>无法分析报告标签: {0}。</value>
+  </data>
+  <data name="FailedToGainAccessToFile" xml:space="preserve">
+    <value>无法获得对文件 {0} 的访问权限</value>
+  </data>
+  <data name="Table_NotRectangular1" xml:space="preserve">
+    <value>表格必须为矩形(即各行必须等长)。</value>
+  </data>
+  <data name="RMEFileName" xml:space="preserve">
+    <value>RME 文件名</value>
+  </data>
+  <data name="GEConditionIsRef" xml:space="preserve">
+    <value>样品情况 – 对照</value>
+  </data>
+  <data name="ReportHeaderNumberOfChanges1" xml:space="preserve">
+    <value>变更次数</value>
+  </data>
+  <data name="ReportHeaderApplication1" xml:space="preserve">
+    <value>应用程序</value>
+  </data>
+  <data name="PCRActiveWellGroup" xml:space="preserve">
+    <value>PCR 活动反应孔编组</value>
+  </data>
+  <data name="EPSortDataByCall" xml:space="preserve">
+    <value>终点数据排序(按调用)</value>
+  </data>
+  <data name="ActiveWells" xml:space="preserve">
+    <value>活动反应孔</value>
+  </data>
+  <data name="EPWells" xml:space="preserve">
+    <value>终点控制定义</value>
+  </data>
+  <data name="Md5Good" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="PCRActiveFluors" xml:space="preserve">
+    <value>定量活动荧光</value>
+  </data>
+  <data name="DiagsSeverityStatus" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="DeviceWithTypeNotFound" xml:space="preserve">
+    <value>在配置中找不到所请求的设备类型的设备。</value>
+  </data>
+  <data name="DiagsSeverityException" xml:space="preserve">
+    <value>异常</value>
+  </data>
+  <data name="Reports_NullTag1" xml:space="preserve">
+    <value>无法分析空报告标签。</value>
+  </data>
+  <data name="Email_ResultsMessage" xml:space="preserve">
+    <value>结果请见附件。</value>
+  </data>
+  <data name="ParseFailure_2" xml:space="preserve">
+    <value>无法从 {1} 分析类型 {0}。</value>
+  </data>
+  <data name="PCRThresholdValue" xml:space="preserve">
+    <value>PCR 阈值</value>
+  </data>
+  <data name="GEDataSetEff" xml:space="preserve">
+    <value>数据集 - 效率</value>
+  </data>
+  <data name="GEGraphError" xml:space="preserve">
+    <value>图表误差类型</value>
+  </data>
+  <data name="RunDefinitionChanged" xml:space="preserve">
+    <value>运行定义已改变</value>
+  </data>
+  <data name="TagLabel" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="ReportHeaderApplication" xml:space="preserve">
+    <value>应用程序</value>
+  </data>
+  <data name="EndPointProtocolStepTemperatureChanged" xml:space="preserve">
+    <value>终点温度</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="Table_SortingNotAllowed1" xml:space="preserve">
+    <value>不允许为该表排序。</value>
+  </data>
+  <data name="InterpolatedPlateReads" xml:space="preserve">
+    <value>插入的读板</value>
+  </data>
+  <data name="ReportHeaderSignatureComment" xml:space="preserve">
+    <value>签名注释</value>
+  </data>
+  <data name="PCRAutoBaseline" xml:space="preserve">
+    <value>PCR 基线模式</value>
+  </data>
+  <data name="DiagsSeverityUnassigned" xml:space="preserve">
+    <value>未指定</value>
+  </data>
+  <data name="Table_RowIndexOutOfRange1" xml:space="preserve">
+    <value>无效的数据表行索引。</value>
+  </data>
+  <data name="TraceLabel" xml:space="preserve">
+    <value>示踪线</value>
+  </data>
+  <data name="ReportHeaderMachineName" xml:space="preserve">
+    <value>机器名称</value>
+  </data>
+  <data name="MCActiveFluor" xml:space="preserve">
+    <value>熔解曲线活动荧光</value>
+  </data>
+  <data name="UnknownApplication" xml:space="preserve">
+    <value>无法确定 BioRad 应用程序。</value>
+  </data>
+  <data name="UserSettingChangeNotAllowed_1" xml:space="preserve">
+    <value>不支持用户设置。覆盖 {0} 的用户设置失败。</value>
+  </data>
+  <data name="ReportHeaderYes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="ReportHeaderNo1" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="ReportHeaderComputerName1" xml:space="preserve">
+    <value>计算机名称</value>
+  </data>
+  <data name="GEActiveFluor" xml:space="preserve">
+    <value>基因表达活动荧光</value>
+  </data>
+  <data name="ProtocolLidTemperatureChanged" xml:space="preserve">
+    <value>扩增程序盖温度</value>
+  </data>
+  <data name="ProtocolVolumeChanged" xml:space="preserve">
+    <value>扩增程序体积</value>
+  </data>
+  <data name="GEReplicateFullName" xml:space="preserve">
+    <value>基因复制 - 全称</value>
+  </data>
+  <data name="datasetfilefilters" xml:space="preserve">
+    <value>PCR 数据文件 </value>
+  </data>
+  <data name="RunComplete" xml:space="preserve">
+    <value>运行完成</value>
+  </data>
+  <data name="AppVersion_2" xml:space="preserve">
+    <value>{0}. ({1}).</value>
+  </data>
+  <data name="WFActiveInfo" xml:space="preserve">
+    <value>活动孔因子信息</value>
+  </data>
+  <data name="WFFileName" xml:space="preserve">
+    <value>活动反应孔因子文件名</value>
+  </data>
+  <data name="InvalidParameterType_2" xml:space="preserve">
+    <value>无效参数类型:{0} 为 {1}。</value>
+  </data>
+  <data name="InvalidParameterType_4" xml:space="preserve">
+    <value>无效参数类型: {0} 为 {1}; {2} 为 {3}。</value>
+  </data>
+  <data name="ReportHeaderVersion1" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="ADNormalize" xml:space="preserve">
+    <value>等位基因分型均一化数据</value>
+  </data>
+  <data name="MessageHeading" xml:space="preserve">
+    <value>消息: </value>
+  </data>
+  <data name="EPNumRanks" xml:space="preserve">
+    <value>终点排名</value>
+  </data>
+  <data name="RunStart" xml:space="preserve">
+    <value>运行已启动</value>
+  </data>
+  <data name="odm_datasetfilefilters" xml:space="preserve">
+    <value>ODM 数据文件</value>
+  </data>
+  <data name="ListPostDelimiter_1" xml:space="preserve">
+    <value>{0}, </value>
+  </data>
+  <data name="EPCallMethod" xml:space="preserve">
+    <value>终点调用方式</value>
+  </data>
+  <data name="PCRActiveStepNum" xml:space="preserve">
+    <value>定量活动步骤</value>
+  </data>
+  <data name="ADHThreshold" xml:space="preserve">
+    <value>等位基因分型水平阈值</value>
+  </data>
+  <data name="PlateExperimentName" xml:space="preserve">
+    <value>实验名称</value>
+  </data>
+  <data name="BFFileName" xml:space="preserve">
+    <value>活动背景读板文件名</value>
+  </data>
+  <data name="ReportHeaderLastCreationGUID1" xml:space="preserve">
+    <value>上次创建 GUID</value>
+  </data>
+  <data name="MCThresholdForNegativePeakAutoFind" xml:space="preserve">
+    <value>负熔解峰分析阈值</value>
+  </data>
+  <data name="ClustergramSplitOutReplicates" xml:space="preserve">
+    <value>Clustergram 复孔分别显示</value>
+  </data>
+  <data name="ClustergramClusterBy" xml:space="preserve">
+    <value>Clustergram 聚类分析根据</value>
+  </data>
+  <data name="AllContentRunSetFileFiltersText" xml:space="preserve">
+    <value>PrimePCR 运行文件</value>
+  </data>
+  <data name="AllDataAnalysisfilefilters" xml:space="preserve">
+    <value>全部数据文件</value>
+  </data>
+  <data name="PCRAnalysisMode" xml:space="preserve">
+    <value>分析模式</value>
+  </data>
+  <data name="ControlSample" xml:space="preserve">
+    <value>对照组样品</value>
+  </data>
+  <data name="DriftCorrection" xml:space="preserve">
+    <value>应用了漂移校正法</value>
+  </data>
+  <data name="HeatMapSplitOutReplicates" xml:space="preserve">
+    <value>热图复孔分别显示</value>
+  </data>
+  <data name="HeatMapExperimentalSample" xml:space="preserve">
+    <value>热图实验样品</value>
+  </data>
+  <data name="HeatMapSelectedFile" xml:space="preserve">
+    <value>热图所选文件</value>
+  </data>
+  <data name="CyclesToAnalyze" xml:space="preserve">
+    <value>用于分析的循环数范围</value>
+  </data>
+  <data name="ADVThresholdMode" xml:space="preserve">
+    <value>等位基因分型-垂直阈值模式</value>
+  </data>
+  <data name="ADHThresholdMode" xml:space="preserve">
+    <value>等位基因分型-水平阈值模式</value>
+  </data>
+  <data name="PlateEdit" xml:space="preserve">
+    <value>编辑反应板</value>
+  </data>
+  <data name="PlateReplace" xml:space="preserve">
+    <value>替换反应板</value>
+  </data>
+  <data name="ScatterPlotControlSample" xml:space="preserve">
+    <value>散点图对照样品</value>
+  </data>
+  <data name="ScatterPlotExperimentalSample" xml:space="preserve">
+    <value>散点图实验样品</value>
+  </data>
+  <data name="ScatterPlotRegulationThreshold" xml:space="preserve">
+    <value>散点图调节阈值</value>
+  </data>
+  <data name="VolcanoPlotPValue" xml:space="preserve">
+    <value>火山图P值</value>
+  </data>
+  <data name="VolcanoPlotRegulationThreshold" xml:space="preserve">
+    <value>火山图调节阈值</value>
+  </data>
+  <data name="VolcanoPlotExperimentalSample" xml:space="preserve">
+    <value>火山图实验样品</value>
+  </data>
+  <data name="GEGraphErrorValue" xml:space="preserve">
+    <value>图形错误值</value>
+  </data>
+  <data name="SecurityEditionDataFiles" xml:space="preserve">
+    <value>Files created in CFX Maestro Security Edition can only be open in CFX Maestro Security Edition.</value>
+  </data>
+  <data name="BarPlotPValue" xml:space="preserve">
+    <value>Bar Chart P-Value Threshold</value>
+  </data>
+  <data name="AnovaPValueThreshold" xml:space="preserve">
+    <value>ANOVA P-Value Threshold</value>
+  </data>
+  <data name="UserGuideNotFound" xml:space="preserve">
+    <value>无法找到文档。 请运行CFX_Documentation.exe以安装CFX软件文档。</value>
+  </data>
+  <data name="UserGuideNotFoundParam" xml:space="preserve">
+    <value>无法找到{0}文档。 请运行CFX_Documentation.exe以安装CFX软件文档。</value>
+  </data>
+  <data name="UserGuideNotFound2" xml:space="preserve">
+    <value>用户文档丢失或过期。 请使用“帮助”菜单中的“检查更新”安装最新的用户文档</value>
+  </data>
+  <data name="Confidence_Interval" xml:space="preserve">
+    <value>置信区间</value>
+  </data>
+  <data name="StandardUnits" xml:space="preserve">
+    <value>Units (CH - TODO)</value>
+  </data>
+  <data name="UserGuideNotFoundWithURL" xml:space="preserve">
+    <value>用户文档丢失或过期。 请从 Bio-Rad 网站安装最新的文档 (CFX_Documentation.EXE)：{0}。 您想现在访问下载页面吗？</value>
+  </data>
+</root>

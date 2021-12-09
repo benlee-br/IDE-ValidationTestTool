@@ -1,0 +1,738 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D225DB40-E42B-470C-88A2-F1C55DF7D3A9}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>BioRad.Common</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\BioRadiQ5StrongNameKeyFile.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BioRad.Common</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>false</SignAssembly>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>Perforce Source Control Provider:{8D316614-311A-48F4-85F7-DF7020F62357}</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\BioRad.Common.XML</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\BioRad.Common.XML</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dznets">
+      <Name>dznets</Name>
+      <HintPath>..\..\ThirdParty\dznets.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Xceed.Compression, Version=3.7.8577.11540, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\Xceed.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.FileSystem, Version=3.7.8577.11540, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\Xceed.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Ftp, Version=3.7.8577.11540, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\Xceed.Ftp.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Zip, Version=3.7.8577.11540, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\Xceed.Zip.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationExceptions\AboutApplicationExceptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\CancelOperationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\ExceptionFormatter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\IValidatable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\LoggableApplicationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\LoggableArgumentException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\LoggableFileException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\LoggableIgnoredException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\LoggableInvalidOperationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\LoggableNotifiedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationExceptions\RangeErrorException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationOptions\EmailOptions.cs" />
+    <Compile Include="ApplicationOptions\LIMSOptions.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AuditTracking\AuditableItems.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AuditTracking\AuditChangeDetail.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AuditTracking\AuditSaveHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AuditTracking\AuditTrackingUtilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessRules\AbstractBusinessRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessRules\BusinessRulesConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessRules\BusinessRulesService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessRules\IBusinessRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessRules\IBusinessRulesService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessRules\XmlBusinessRulesConfigProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessRules\XmlBusinessRulesConfigTypeMapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ChartMarkerShape\ChartMarkerShape.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\ManyUnorderedKeys2SingleObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\PersistableKeyValueCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\PriorityQueue.cs" />
+    <Compile Include="Collections\Set.cs" />
+    <Compile Include="Collections\Tree.cs" />
+    <Compile Include="Collections\WorkItem.cs" />
+    <Compile Include="Common\ApplicationFilesInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationOptions\ApplicationOptions.cs" />
+    <Compile Include="Common\ApplicationPath.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\ApplicationStateData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\CameraSettings.cs" />
+    <Compile Include="Common\ColorPickerClass.cs" />
+    <Compile Include="Common\ErrorTestingInfoSingleton.cs" />
+    <Compile Include="Common\ExceptionDump.cs" />
+    <Compile Include="Common\FileExtensionDescription.cs" />
+    <Compile Include="Common\getunixhome.cs" />
+    <Compile Include="Common\ImageUtils.cs" />
+    <Compile Include="Common\MessageBoxHook.cs" />
+    <Compile Include="Common\Ftp.cs" />
+    <Compile Include="Common\IZipEngine.cs" />
+    <Compile Include="Common\KeyValueIO.cs" />
+    <Compile Include="Common\MyColor.cs" />
+    <Compile Include="Common\NameDesc.cs" />
+    <Compile Include="Common\SavableDocument.cs" />
+    <Compile Include="Common\SyncFileAccess.cs" />
+    <Compile Include="Common\SystemHardwareSoftwareInformation.cs" />
+    <Compile Include="Common\Tuples.cs" />
+    <Compile Include="Common\TimeoutableBlockingMethodCall.cs" />
+    <Compile Include="Common\CollectionUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compressor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DirectoryUtils.cs" />
+    <Compile Include="Common\FileUtilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\FloatingPoint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\ForcedBeginEndUpdate.cs" />
+    <Compile Include="Common\GlobalMethods.cs" />
+    <Compile Include="Common\IDirty.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\IUnitTest.cs" />
+    <Compile Include="Common\IWaitProgressMeter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\LogFiles.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\MathExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\NumericRangeTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\PerfTimer.cs" />
+    <Compile Include="Common\PowerManagement.cs" />
+    <Compile Include="Common\PlateUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\ProcessWatcher.cs" />
+    <Compile Include="Common\PrintUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\ProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\ProgressMeterData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Results.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\StringUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\TemperatureControlModeType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\TemperatureType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\TimeType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\TraceEx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\UndoRedoManager.cs" />
+    <Compile Include="Common\VectorAnyType.cs" />
+    <Compile Include="Common\VolumeType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\W3CDateTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\WaitCursor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\WaitProgressMeter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\XceedZip.cs" />
+    <Compile Include="Devices\Algorithms.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\BaseUnitConfigInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\BiasLevel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\Calibration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\CameraConfigInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\Device.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\DeviceCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\DeviceManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\DeviceManagerService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\DeviceTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\ExposureSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\GainLevel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\IDevice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\LoggableDeviceConnectFailedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Devices\XmlDeviceConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\AboutDiagnosticLogger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\ConfiguredLogs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\ConsoleAppender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\ConsoleFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\DiagnosticLevel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\DiagnosticSeverity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\DiagnosticsLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\DiagnosticsLogItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\DiagnosticsLogService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\DiagnosticsXMLReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\DiagnosticTag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\EncryptedAppender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\IDiagnosticsEventLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\IFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\ILogAppender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\IProvidesLogName.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\ISO8601DateFormatter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\LogEnumerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\LoggerXmlTags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\RemoteDiagnosticLogEventWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\TraceAppender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\WellKnownLogName.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\XMLAppender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiagnosticsLogger\XmlLoggerConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enumeration\Enumeration.cs" />
+    <Compile Include="Enumeration\EnumerationIO.cs" />
+    <Compile Include="Enumeration\EnumeratorServiceController.cs" />
+    <Compile Include="Enumeration\EnumeratorWatcher.cs" />
+    <Compile Include="Enumeration\UsbLibrary.cs" />
+    <Compile Include="Events\GenericEvents.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExecutableQueue\Action.cs" />
+    <Compile Include="ExecutableQueue\CommonAbortFlags.cs" />
+    <Compile Include="ExecutableQueue\DataChangedEventArgs.cs" />
+    <Compile Include="ExecutableQueue\DataStatusListener.cs" />
+    <Compile Include="ExecutableQueue\DataStatusListeners.cs" />
+    <Compile Include="ExecutableQueue\ErrorReportingEventArgs.cs" />
+    <Compile Include="ExecutableQueue\ExecutableObject.cs" />
+    <Compile Include="ExecutableQueue\ExecutablePriorityQueue.cs" />
+    <Compile Include="ExecutableQueue\ExecutionStatusEventArgs.cs" />
+    <Compile Include="ExecutableQueue\Execution_Constants.cs" />
+    <Compile Include="ExecutableQueue\MemoryResourceUtil.cs" />
+    <Compile Include="ExecutableQueue\ProgressStatusEventArgs.cs" />
+    <Compile Include="ExecutableQueue\ResourceManagedPriorityQueue.cs" />
+    <Compile Include="ExecutableQueue\SystemResourcesManager.cs" />
+    <Compile Include="ExecutableQueue\ThreadUtils.cs" />
+    <Compile Include="HardwareSoftwareInfo\ApplicationInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HardwareSoftwareInfo\ComputerHardwareInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HardwareSoftwareInfo\ComputerOSInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhysicalQuanities\GramType.cs" />
+    <Compile Include="PhysicalQuanities\MetricBaseUnit.cs" />
+    <Compile Include="PhysicalQuanities\MoleType.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reflection\ReflectionException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\ReflectionUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Remoting\IRemoteEventsWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Remoting\LoggableRemotingException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Remoting\RemoteEventsWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Remoting\RemotingHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\IReportable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\IReporter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\NoReportData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportedCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportTag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\SortableTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\AboutServices.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\AbstractService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\AbstractXmlConfigurationProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Config\ConfigurationProviderConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Config\ServiceConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Config\ServiceConfigParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Config\ServiceFactoryConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Config\ServiceProviderConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Config\ServiceProviderXmlToTypeMappingInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\DefaultServiceFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IApplicationServiceFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IConfigurationProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\ServiceLoadException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\ServiceNotRegisteredException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\ServiceProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Settings\AbstractSettingsService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Settings\AssemblyXmlSettingsConfigProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Settings\ISettingsConfigurationProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Settings\ISettingsService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Settings\IUsesSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Settings\SettingsConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Settings\XmlSettingsConfigProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Settings\XmlSettingsConfigTypeMapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UIUtils\FreezePainting.cs" />
+    <Compile Include="UIUtils\HelpProviderUtility.cs" />
+    <Compile Include="USB\IUsbDetect.cs" />
+    <Compile Include="USB\UsbChangeEventArgs.cs" />
+    <Compile Include="USB\UsbDetect.cs" />
+    <Compile Include="USB\UsbDeviceID.cs" />
+    <Compile Include="USB\UsbLibrary.cs" />
+    <Compile Include="USB\UsbProductId.cs" />
+    <Compile Include="USB\UsbVendorId.cs" />
+    <Compile Include="Utilities\CalibrationQCUtility.cs" />
+    <Compile Include="Utilities\CommandArguments.cs" />
+    <Compile Include="Utilities\FileCryptor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\MJUtilities.cs" />
+    <Compile Include="Utilities\MultipleKeyValuesConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Notifications.cs" />
+    <Compile Include="Utilities\Util.cs" />
+    <Compile Include="Utilities\WinConsole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Win32\AdvancedWindowsBase\ACE.cs" />
+    <Compile Include="Win32\AdvancedWindowsBase\ACL.cs" />
+    <Compile Include="Win32\AdvancedWindowsBase\SecurityDescriptor.cs" />
+    <Compile Include="Win32\AdvancedWindowsBase\SecurityIdentifier.cs" />
+    <Compile Include="Win32\AdvancedWindowsBase\User.cs" />
+    <Compile Include="Win32\GDI\Bitmap.cs" />
+    <Compile Include="Win32\Kernel\APIBuffer.cs" />
+    <Compile Include="Win32\Kernel\File.cs" />
+    <Compile Include="Win32\Kernel\PowerManagement.cs" />
+    <Compile Include="Win32\Kernel\Process.cs" />
+    <Compile Include="Win32\NetworkManagement\APIBuffer.cs" />
+    <Compile Include="Win32\NetworkManagement\LocalGroup.cs" />
+    <Compile Include="Win32\NetworkManagement\LocalGroups.cs" />
+    <Compile Include="Win32\NetworkManagement\NetworkGroup.cs" />
+    <Compile Include="Win32\NetworkManagement\NetworkGroups.cs" />
+    <Compile Include="Win32\NetworkManagement\Server.cs" />
+    <Compile Include="Win32\NetworkManagement\User.cs" />
+    <Compile Include="Win32\NetworkManagement\Users.cs" />
+    <Compile Include="Win32\NetworkManagement\Workstation.cs" />
+    <Compile Include="Win32\Security\SystemInformation.cs" />
+    <Compile Include="Win32\Shell\File.cs" />
+    <Compile Include="Win32\User\ConsoleWindow.cs" />
+    <Compile Include="Win32\User\Window.cs" />
+    <Compile Include="Xml\XmlSerialization\IBioRadXmlSerializable.cs" />
+    <Compile Include="Xml\AboutXml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\FieldMappings\AbstractXmlToFieldMapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\FieldMappings\AttributeFieldMapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\FieldMappings\CollectionFieldMapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\FieldMappings\ElementFieldMapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\FieldMappings\IgnoreFieldMapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\IXmlToFieldMapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\XmlSerialization\PersistableData.cs" />
+    <Compile Include="Xml\XmlSerialization\SerializationState.cs" />
+    <Compile Include="Xml\XmlToFieldMappingEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\XmlToTypeMapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\XmlToTypeSerializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\XMLUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Common\ProgressForm.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CHS.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

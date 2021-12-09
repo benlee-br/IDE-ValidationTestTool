@@ -1,0 +1,183 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4EA0531F-AD2F-47F6-81D3-0497F31F24E8}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>BioRad.Win32</AssemblyName>
+    <AssemblyOriginatorKeyFile>BioRadiQ5StrongNameKeyFile.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BioRad.Win32</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\BioRad.Win32.XML</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\BioRad.Win32.XML</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnitTestDebug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UnitTestDebug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UnitTest</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>bin\UnitTestDebug\BioRad.Win32.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleAssemblies>C:\Program Files\Microsoft Visual Studio 8\Team Tools\Static Analysis Tools\FxCop\\rules</CodeAnalysisRuleAssemblies>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ThirdParty\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdvancedWindowsBase\ACE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvancedWindowsBase\ACL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvancedWindowsBase\SecurityDescriptor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AdvancedWindowsBase\SecurityIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GDI\Bitmap.cs" />
+    <Compile Include="GDI\UnitTest\Bitmap.UnitTest.cs" />
+    <Compile Include="Kernel\APIBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Kernel\File.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Kernel\PowerManagement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Kernel\Process.cs" />
+    <Compile Include="Kernel\UnitTest\Process.UnitTest.cs" />
+    <Compile Include="NetworkManagement\APIBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NetworkManagement\LocalGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NetworkManagement\LocalGroups.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NetworkManagement\NetworkGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NetworkManagement\NetworkGroups.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NetworkManagement\Server.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NetworkManagement\User.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NetworkManagement\Users.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NetworkManagement\Workstation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\SystemInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shell\File.cs" />
+    <Compile Include="Shell\UnitTest\File.UnitTest.cs" />
+    <Compile Include="User\Window.cs" />
+    <Compile Include="User\UnitTest\Window.UnitTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BioRadiQ5StrongNameKeyFile.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
