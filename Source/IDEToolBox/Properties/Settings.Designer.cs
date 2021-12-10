@@ -46,5 +46,29 @@ namespace IDEToolBox.Properties {
                 this["DefaultSourceFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4000")]
+        public string DoubleSigmoidCt {
+            get {
+                return ((string)(this["DoubleSigmoidCt"]));
+            }
+            set {
+                this["DoubleSigmoidCt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ApplyDoubleSigmoid {
+            get {
+                return ((bool)(this["ApplyDoubleSigmoid"]));
+            }
+            set {
+                this["ApplyDoubleSigmoid"] = value;
+            }
+        }
     }
 }

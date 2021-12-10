@@ -40,9 +40,10 @@ namespace IDEToolBox.APFInject
         private string m_SourcePath;
         private bool _applyDoubleSigmoidRule = true;
         private bool _applySlopeRule = true;
-        private string _doubleSigmoidCtCutOff = "4003";
+        private string _doubleSigmoidCtCutOff = "4000";
         private string _colorString = "#E7E44D";
         private API m_API;
+        private int _version = 1;
         /// <summary>
         /// 
         /// </summary>
@@ -51,13 +52,16 @@ namespace IDEToolBox.APFInject
             LoadSettings();
         }
 
+        public string Version => $"version: {_version}";        
         /// <summary>
         /// Apply Double Sigmoid Rule
-        /// </summary>
+         /// </summary>
         public bool ApplyDoubleSigmoidRule
         {
             get { return _applyDoubleSigmoidRule; }
-            set { _applyDoubleSigmoidRule = value; RaisePropertyChangedEvent("ApplyDoubleSigmoidRule"); }
+            set { _applyDoubleSigmoidRule = value;
+                Properties.Settings.Default.ApplyDoubleSigmoid = _applyDoubleSigmoidRule;
+                RaisePropertyChangedEvent("ApplyDoubleSigmoidRule"); }
         }
 
         /// <summary>
@@ -67,15 +71,25 @@ namespace IDEToolBox.APFInject
             get { return _applySlopeRule; }
             set { _applySlopeRule = value; RaisePropertyChangedEvent("ApplySlopeRule"); }
         }
-
-
+        bool _automaticClearLog = true;
+        /// <summary>
+        /// Apply Double Sigmoid Rule
+        /// </summary>
+        public bool AutomaticClearLog
+        {
+            get { return _automaticClearLog; }
+            set { _automaticClearLog = value; RaisePropertyChangedEvent("AutomaticClearLog"); }
+        }
+        
         /// <summary>
         /// Apply Double Sigmoid Ct cut off
         /// </summary>
         public string DoubleSigmoidCtCutOff {
 
             get { return _doubleSigmoidCtCutOff; }
-            set { _doubleSigmoidCtCutOff = value; RaisePropertyChangedEvent("DoubleSigmoidCtCutOff"); }
+            set { _doubleSigmoidCtCutOff = value;
+                Properties.Settings.Default.DoubleSigmoidCt = _doubleSigmoidCtCutOff;
+                RaisePropertyChangedEvent("DoubleSigmoidCtCutOff"); }
         }
         public string ColorString
         {
@@ -99,7 +113,7 @@ namespace IDEToolBox.APFInject
                 {
                     m_ResultPath = value;
                     Properties.Settings.Default.DefaultResultPath = value;
-                    RaisePropertyChangedEvent("ResultPath");
+                    RaisePropertyChangedEvent("ResultOutputPath");
                 }
             }
         }
@@ -125,6 +139,10 @@ namespace IDEToolBox.APFInject
         public ICommand InjectParametersCommand
         {
             get { return new DelegateCommand(InjectParameters); }
+        }
+        public ICommand ClearLogsCommand
+        {
+            get { return new DelegateCommand(ClearLogs); }
         }
 
         //private RelayCommand _addPhoneCommand;
@@ -159,14 +177,24 @@ namespace IDEToolBox.APFInject
                 SourcePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             else
                 SourcePath = Properties.Settings.Default.DefaultSourceFolder;
+
+            DoubleSigmoidCtCutOff = Properties.Settings.Default.DoubleSigmoidCt;
+            ApplyDoubleSigmoidRule = Properties.Settings.Default.ApplyDoubleSigmoid;
         }
         private void PopBrowseDialog()
         {
             throw new NotImplementedException();
         }
+        private void ClearLogs()
+        {
+            if (Logs != null)
+                Logs.Clear();
+        }
         string currentWorkingFile = string.Empty;
         private void InjectParameters()
         {
+            if (AutomaticClearLog)
+                Logs.Clear();
 
             currentWorkingFile = string.Empty;
             try
@@ -184,6 +212,11 @@ namespace IDEToolBox.APFInject
                 {
                     currentWorkingFile = sourceFile;
                     string decompressedFileName = Path.Combine(ResultOutputPath, Path.GetFileName(sourceFile));
+                    if (File.Exists(decompressedFileName))
+                    {
+                        Logs.Add($"({Path.GetFileName(decompressedFileName)}) exists in Output folder.");
+                        continue;
+                    }
                     if (FileUtilities.IsCompressedFile(sourceFile))
                     {
                         (bool, string[]) returnZip = FileUtilities.ExtractFileListFromZipFile(sourceFile, ResultOutputPath);
