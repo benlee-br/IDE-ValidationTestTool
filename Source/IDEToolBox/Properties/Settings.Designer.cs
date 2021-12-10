@@ -70,5 +70,41 @@ namespace IDEToolBox.Properties {
                 this["ApplyDoubleSigmoid"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool RemoveUnzipFolder {
+            get {
+                return ((bool)(this["RemoveUnzipFolder"]));
+            }
+            set {
+                this["RemoveUnzipFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutomaticClearLog {
+            get {
+                return ((bool)(this["AutomaticClearLog"]));
+            }
+            set {
+                this["AutomaticClearLog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool OverwriteOutputFolder {
+            get {
+                return ((bool)(this["OverwriteOutputFolder"]));
+            }
+            set {
+                this["OverwriteOutputFolder"] = value;
+            }
+        }
     }
 }

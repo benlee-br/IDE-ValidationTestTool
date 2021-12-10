@@ -43,7 +43,7 @@ namespace IDEToolBox.APFInject
         private string _doubleSigmoidCtCutOff = "4000";
         private string _colorString = "#E7E44D";
         private API m_API;
-        private int _version = 1;
+        private int _version = 2;
         /// <summary>
         /// 
         /// </summary>
@@ -51,7 +51,17 @@ namespace IDEToolBox.APFInject
         {
             LoadSettings();
         }
-
+        private bool _removeUnzipFolder = false;
+        public bool RemoveUnzipFolder
+        {
+            get { return _removeUnzipFolder; }
+            set
+            {
+                _removeUnzipFolder = value;
+                Properties.Settings.Default.RemoveUnzipFolder = _removeUnzipFolder;
+                RaisePropertyChangedEvent("RemoveUnzipFolder");
+            }
+        }
         public string Version => $"version: {_version}";        
         /// <summary>
         /// Apply Double Sigmoid Rule
@@ -73,12 +83,21 @@ namespace IDEToolBox.APFInject
         }
         bool _automaticClearLog = true;
         /// <summary>
-        /// Apply Double Sigmoid Rule
+        /// Automatic Clear Logs
         /// </summary>
         public bool AutomaticClearLog
         {
             get { return _automaticClearLog; }
             set { _automaticClearLog = value; RaisePropertyChangedEvent("AutomaticClearLog"); }
+        }
+        bool _overwriteOutputFolder = false;
+        /// <summary>
+        /// Overwrite Output Folder
+        /// </summary>
+        public bool OverwriteOutputFolder
+        {
+            get { return _overwriteOutputFolder; }
+            set { _overwriteOutputFolder = value; RaisePropertyChangedEvent("OverwriteOutputFolder"); }
         }
         
         /// <summary>
@@ -180,6 +199,9 @@ namespace IDEToolBox.APFInject
 
             DoubleSigmoidCtCutOff = Properties.Settings.Default.DoubleSigmoidCt;
             ApplyDoubleSigmoidRule = Properties.Settings.Default.ApplyDoubleSigmoid;
+            RemoveUnzipFolder = Properties.Settings.Default.RemoveUnzipFolder ;
+            AutomaticClearLog = Properties.Settings.Default.AutomaticClearLog;
+            OverwriteOutputFolder = Properties.Settings.Default.OverwriteOutputFolder;
         }
         private void PopBrowseDialog()
         {
@@ -190,6 +212,19 @@ namespace IDEToolBox.APFInject
             if (Logs != null)
                 Logs.Clear();
         }
+        private void PrepareDataFolder(string folderName, bool overwrite)
+        {
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+            else if (overwrite)
+            {
+                // delete all files 
+                Array.ForEach(Directory.GetFiles(folderName), File.Delete);
+            }
+        }
+
         string currentWorkingFile = string.Empty;
         private void InjectParameters()
         {
@@ -199,38 +234,44 @@ namespace IDEToolBox.APFInject
             currentWorkingFile = string.Empty;
             try
             {
-                if (!Directory.Exists(ResultOutputPath))
-                {
-                    Directory.CreateDirectory(ResultOutputPath);
-                }
+                PrepareDataFolder(ResultOutputPath, OverwriteOutputFolder);
+
+
                 string targetDir = ResultOutputPath;
                 //bool overwrite = true;
                 int compressedCount = 0;
                 int injectedCount = 0;
 
+                // temp folder for unzip
+                string unZipFolder = Path.Combine(SourcePath, "Unzip");
+                PrepareDataFolder(unZipFolder, true); 
+
                 foreach (var sourceFile in Directory.GetFiles(SourcePath))
                 {
                     currentWorkingFile = sourceFile;
-                    string decompressedFileName = Path.Combine(ResultOutputPath, Path.GetFileName(sourceFile));
+                    string decompressedFileName = Path.Combine(unZipFolder, Path.GetFileName(sourceFile));
                     if (File.Exists(decompressedFileName))
                     {
-                        Logs.Add($"({Path.GetFileName(decompressedFileName)}) exists in Output folder.");
+                        Logs.Add($"({Path.GetFileName(decompressedFileName)}) exists in Unzip folder.");
                         continue;
                     }
                     if (FileUtilities.IsCompressedFile(sourceFile))
                     {
-                        (bool, string[]) returnZip = FileUtilities.ExtractFileListFromZipFile(sourceFile, ResultOutputPath);
+                        (bool, string[]) returnZip = FileUtilities.ExtractFileListFromZipFile(sourceFile, unZipFolder);
                         if (returnZip.Item1)
                         {
                             if (!string.IsNullOrEmpty(returnZip.Item2[0])) // 
                             {
                                 char[] charsToTrim = { '\\' };
                                 string dataFileName = returnZip.Item2[0].Trim(charsToTrim);
-                                if (dataFileName == "datafile.pcrd" && File.Exists(Path.Combine(ResultOutputPath, dataFileName)))
-                                {
-                                    File.Move(Path.Combine(ResultOutputPath, dataFileName), decompressedFileName);
 
-                                    Logs.Add($"({Path.GetFileName(sourceFile)}) renamed from output (datafile.pcrd).");
+
+                                if (Path.GetFileName(sourceFile) != dataFileName && File.Exists(Path.Combine(unZipFolder, dataFileName)))
+                                //    if (dataFileName == "datafile.pcrd" && File.Exists(Path.Combine(unZipFolder, dataFileName)))
+                                {
+                                    File.Move(Path.Combine(unZipFolder, dataFileName), decompressedFileName);
+
+                                    Logs.Add($"({Path.GetFileName(sourceFile)}) renamed from output ({dataFileName}).");
                                 }
                             }
                             Logs.Add($"({Path.GetFileName(sourceFile)}) decompressed.");
@@ -251,6 +292,12 @@ namespace IDEToolBox.APFInject
                     }
                 }
                 Logs.Add($"Total: {compressedCount} files decompressed. {injectedCount} files APF modified");
+
+
+                if (RemoveUnzipFolder)
+                {
+                    Directory.Delete(unZipFolder, true);
+                }
             }
             //catch (UnauthorizedAccessException ex)
             //{
@@ -346,6 +393,70 @@ namespace IDEToolBox.APFInject
 
             return content;
         }
+
+        //private void RexPatternMatching(string content, string pattern)
+        //{
+        //    string[] sentences =
+        //            {
+        //                "Put the water over there.",
+        //                "They're quite thirsty.",
+        //                "Their water bottles broke."
+        //            };
+
+        //    string sPattern = "the(ir)?\\s";
+
+        //    foreach (string s in sentences)
+        //    {
+        //        Console.Write($"{s,24}");
+
+        //        if (System.Text.RegularExpressions.Regex.IsMatch(s, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+        //        {
+        //            Console.WriteLine($"  (match for '{sPattern}' found)");
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine();
+        //        }
+        //    }
+
+
+
+
+
+
+        //    string[] numbers =
+        //            {
+        //                "123-555-0190",
+        //                "444-234-22450",
+        //                "690-555-0178",
+        //                "146-893-232",
+        //                "146-555-0122",
+        //                "4007-555-0111",
+        //                "407-555-0111",
+        //                "407-2-5555",
+        //                "407-555-8974",
+        //                "407-2ab-5555",
+        //                "690-555-8148",
+        //                "146-893-232-"
+        //            };
+
+        //    sPattern = "^\\d{3}-\\d{3}-\\d{4}$";
+
+        //    foreach (string s in numbers)
+        //    {
+        //        Console.Write($"{s,14}");
+
+        //        if (System.Text.RegularExpressions.Regex.IsMatch(s, sPattern))
+        //        {
+        //            Console.WriteLine(" - valid");
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine(" - invalid");
+        //        }
+        //    }
+        //}
+
         private void InjectElements(string fileName)
         {
             try
@@ -358,7 +469,7 @@ namespace IDEToolBox.APFInject
                         if (content.IndexOf(searchElement) != -1)
                         {
                             content = BreakElements(content, searchElement, ApplyDoubleSigmoidRule, DoubleSigmoidCtCutOff);
-                            string newfilename = Path.Combine(ResultOutputPath, $"{Path.GetFileNameWithoutExtension(fileName)}_modified.pcrd");
+                            string newfilename = Path.Combine(ResultOutputPath, $"{Path.GetFileName(fileName)}");
                             using (System.IO.TextWriter writeFile = new StreamWriter(newfilename))
                             {
                                 writeFile.Write(content);

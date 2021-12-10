@@ -9,12 +9,15 @@
 
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
+            
+           
             <RowDefinition Height ="60" />
             <RowDefinition Height ="40" />
             <RowDefinition Height ="50" />
             <RowDefinition Height ="*" />
             <RowDefinition Height ="40" />
         </Grid.RowDefinitions>
+ 
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120" />
@@ -27,6 +30,49 @@
             </Grid>
             <TextBox Name="FileFolder1" Grid.Column="1" Margin="0,14"  Height="24" Text="{Binding SourcePath, FallbackValue=desktop}" TextAlignment="Left" />
             <Button HorizontalAlignment="Left" Grid.Column="2"  Width="32" Margin="10,14,0,14" Click="BrowseButtonClicked">...</Button>
+        </Grid>       
+        <Grid Width="40" Height="40" Margin="12" HorizontalAlignment="Right">
+            <Button Name="MenuDropDownButton"  Width="36" Height="36"  Margin="0,0,10,0" 
+                        Background="Transparent" BorderThickness="0" Click="ShowMenuDrop">
+                <Button.ToolTip>Options Menu</Button.ToolTip>
+                <Button.Content>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+                        <Ellipse   Margin="2" 
+                                                         Height="3"
+                                                         Width="3"
+                                                         Fill="Black"
+                                                         VerticalAlignment="Center"></Ellipse>
+                        <Ellipse  Margin="2" 
+                                                        Height="3"
+                                                         Width="3"
+                                                        Fill="Black"
+                                                        VerticalAlignment="Center"></Ellipse>
+                        <Ellipse  Margin="2" 
+                                                        Height="3"
+                                                         Width="3"
+                                                        Fill="Black"
+                                                        VerticalAlignment="Center"></Ellipse>
+                    </StackPanel>
+                </Button.Content>
+
+
+                <Button.ContextMenu>
+                    <ContextMenu Name="MainWindowContextMenu">
+                        <ContextMenu.Resources>
+                            <Style x:Key="submenuStyle" TargetType="{x:Type MenuItem}">
+                                <Setter Property="FontWeight" Value="Normal" />
+                                <Setter Property="Background" Value="Black" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                        </ContextMenu.Resources>
+
+                        <MenuItem Name="RemoveUnzipFolderItem"  Header="Remove Unzip Folder" IsCheckable="True"  IsChecked="{Binding RemoveUnzipFolder}"></MenuItem>
+                        <MenuItem Name="AutomaticClearLogItem"  Header="Automatic Clear Log" IsCheckable="True"  IsChecked="{Binding AutomaticClearLog}"></MenuItem>
+                        <MenuItem Name="OverwriteOutputFolderItem"  Header="Overwrite Output Folder" IsCheckable="True"  IsChecked="{Binding OverwriteOutputFolder}"></MenuItem>
+                        <MenuItem Name="GotoOutputFolder"  Header="Open Output Folder" Click="MenuItem_Click" ></MenuItem>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -54,9 +100,9 @@
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="120" />
                 </Grid.ColumnDefinitions>
-                <Grid >
+                <!--<Grid >
                     <CheckBox VerticalAlignment="Center" Name="AutomaticClearLog" IsChecked="{Binding AutomaticClearLog}" Margin="0,5" Content="Automatic Clear Log"></CheckBox>
-                </Grid>
+                </Grid>-->
                 <Button Width="100" Height="28" Content="Inject Hack" HorizontalAlignment="Right" Margin="0,5" Grid.Column="1" 
                         Command="{Binding InjectParametersCommand}"></Button>
 
