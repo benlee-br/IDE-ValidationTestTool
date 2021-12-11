@@ -41,7 +41,7 @@ namespace IDEToolBox.APFInject
         private bool _applyDoubleSigmoidRule = true;
         private bool _applySlopeRule = true;
         private string _doubleSigmoidCtCutOff = "4000";
-        private string _colorString = "#E7E44D";
+        private string _colorString = "-7354887";
         private API m_API;
         private int _version = 2;
         /// <summary>
@@ -365,6 +365,7 @@ namespace IDEToolBox.APFInject
             content = InjectElement(content1, applyDoubleSigmoid, doubleSigmoidCtRFU)
                 + BreakElements(content2, searchElement, applyDoubleSigmoid, doubleSigmoidCtRFU);
 
+
             return content;
         }
         private string InjectElement(string content, bool applyDoubleSigmoid, string doubleSigmoidCtRFU, string colorString = "-5004587")
@@ -407,6 +408,43 @@ namespace IDEToolBox.APFInject
             return content;
         }
 
+        private string UpdateColorSection(string section, string colorNumberString)
+        {
+            string head = "<Color>";
+            string tail = "</Color>";
+            if (section.IndexOf(head) == -1)
+                return section;
+
+            int openPos = section.IndexOf(head);
+            int closePos = section.IndexOf(tail); 
+
+            section = $"{section.Substring(0, openPos+head.Length)}{colorNumberString}{section.Substring(closePos, section.Length - closePos)}";
+            return section;
+        }
+
+
+        private string ReplaceAPFSection(string content, string colorNumberString)
+        {
+            string APF_Head = "<APFData";
+            string APF_Tail = "</APFData>";
+            //string colorElement = "<Color>-5004587</Color>";
+            if (content.IndexOf(APF_Head) == -1)
+                return content;
+
+            int openPos = content.IndexOf(APF_Head);
+            int closePos = content.IndexOf(APF_Tail) + APF_Tail.Length;
+
+            string apfSection = content.Substring(openPos, closePos- openPos);
+
+            string updatedApfSection = UpdateColorSection(apfSection, colorNumberString);
+
+
+            string content1 = content.Substring(0, openPos);
+            string content2 = content.Substring(closePos, content.Length - closePos);
+            content = content1 + updatedApfSection + ReplaceAPFSection(content2, colorNumberString);
+            return content;
+
+        }
         //private void RexPatternMatching(string content, string pattern)
         //{
         //    string[] sentences =
@@ -482,6 +520,11 @@ namespace IDEToolBox.APFInject
                         if (content.IndexOf(searchElement) != -1)
                         {
                             content = BreakElements(content, searchElement, ApplyDoubleSigmoidRule, DoubleSigmoidCtCutOff);
+
+                            #region color replacement
+                            content = ReplaceAPFSection(content, ColorString);
+                            #endregion
+
                             string newfilename = Path.Combine(ResultOutputPath, $"{Path.GetFileName(fileName)}");
                             using (System.IO.TextWriter writeFile = new StreamWriter(newfilename))
                             {
