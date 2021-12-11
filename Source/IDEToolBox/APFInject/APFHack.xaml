@@ -69,6 +69,8 @@
                         <MenuItem Name="RemoveUnzipFolderItem"  Header="Remove Unzip Folder" IsCheckable="True"  IsChecked="{Binding RemoveUnzipFolder}"></MenuItem>
                         <MenuItem Name="AutomaticClearLogItem"  Header="Automatic Clear Log" IsCheckable="True"  IsChecked="{Binding AutomaticClearLog}"></MenuItem>
                         <MenuItem Name="OverwriteOutputFolderItem"  Header="Overwrite Output Folder" IsCheckable="True"  IsChecked="{Binding OverwriteOutputFolder}"></MenuItem>
+                        <MenuItem Name="ChangeAssayColor"  Header="Enable Assay Color" IsCheckable="True" IsChecked="{Binding EnableAssayColor}"></MenuItem>
+
                         <MenuItem Name="GotoOutputFolder"  Header="Open Output Folder" Click="MenuItem_Click" ></MenuItem>
                     </ContextMenu>
                 </Button.ContextMenu>
@@ -86,8 +88,8 @@
             <StackPanel Orientation="Horizontal">
                 <Label Height="40" Margin="5,5">Double Sigmoid Threshold</Label>
                 <TextBox Width="45" Height="24" Margin="5,5" Text="{Binding DoubleSigmoidCtCutOff, FallbackValue=4005}" VerticalAlignment="Center" />
-                <Label Height="40" Margin="5,5" Visibility="Collapsed">APF Color</Label>
-                <TextBox Width="80" Height="32" Visibility="Collapsed" Margin="5,5" Text="{Binding ColorString}" />
+                <Label Height="40" Margin="5,5" Visibility="Visible">APF Color</Label>
+                <TextBox Width="80" Height="32" Visibility="Visible" Margin="5,5" Text="{Binding ColorString}" />
                 <Grid VerticalAlignment="Center" Margin="5">
                     <CheckBox Name="ApplyDoubleSigmoid" Content="Apply Double Sigmoid" IsChecked="{Binding ApplyDoubleSigmoidRule}" ></CheckBox>
                 </Grid>

@@ -73,7 +73,20 @@ namespace IDEToolBox.APFInject
                 Properties.Settings.Default.ApplyDoubleSigmoid = _applyDoubleSigmoidRule;
                 RaisePropertyChangedEvent("ApplyDoubleSigmoidRule"); }
         }
-
+        private bool _enableAssayColor = false;
+        /// <summary>
+        /// _enableAssayColor
+        /// </summary>
+        public bool EnableAssayColor
+        {
+            get { return _applyDoubleSigmoidRule; }
+            set
+            {
+                _enableAssayColor = value;
+                Properties.Settings.Default.EnableAssayColor = _enableAssayColor;
+                RaisePropertyChangedEvent("EnableAssayColor");
+            }
+        }
         /// <summary>
         /// Apply Double Sigmoid Rule
         /// </summary>
@@ -354,7 +367,7 @@ namespace IDEToolBox.APFInject
 
             return content;
         }
-        private string InjectElement(string content, bool applyDoubleSigmoid, string doubleSigmoidCtRFU)
+        private string InjectElement(string content, bool applyDoubleSigmoid, string doubleSigmoidCtRFU, string colorString = "-5004587")
         {
             string GetBooleanString(bool flag) { return flag ? "True" : "False"; }
 
@@ -370,7 +383,7 @@ namespace IDEToolBox.APFInject
 
             string applySigmoidCutOffAppend = $"<DoubleSigmoidCtCutOff>{doubleSigmoidCtRFU}</DoubleSigmoidCtCutOff>";
             string applyNewSigmoidAppend = $"<ApplyDoubleSigmoidRule>{GetBooleanString(applyDoubleSigmoid)}</ApplyDoubleSigmoidRule><DoubleSigmoidCtCutOff>{doubleSigmoidCtRFU}</DoubleSigmoidCtCutOff>";
-
+            string applyAPFColor = $"<Color>{colorString}</Color>";
             if (content.Contains(version3Element)) // upgrade to v4
             {
                 content = content.Replace(version3Element, version4Element);

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IDEToolBox"
-        xmlns:controls="clr-namespace:IDEToolBox.CombineCSVs"
+        xmlns:controls="clr-namespace:IDEToolBox.ColorConverString"
         mc:Ignorable="d"
         Title="IDE Test Tools" Height="600" Width="900" MinWidth="900"   Closing="Window_Closing">
     <TabControl>
@@ -30,6 +30,18 @@
 
             <Grid>
                 <local:APFHackControl />
+            </Grid>
+        </TabItem>
+        <TabItem Name="ColorConvertNumber" >
+            <TabItem.Header>
+                <Grid Background="WhiteSmoke">
+                    <TextBlock Text="Convert Color to Number" ></TextBlock>
+                </Grid>
+            </TabItem.Header>
+
+
+            <Grid>
+                <controls:ColorConvertNumber />
             </Grid>
         </TabItem>
     </TabControl>
