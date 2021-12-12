@@ -10,6 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height ="40" />
             <RowDefinition Height ="50" />
+            <RowDefinition Height ="120" />
             <RowDefinition Height ="*" />
             <RowDefinition Height ="40" />
         </Grid.RowDefinitions>
@@ -48,7 +49,98 @@
             <Grid Grid.Column="1" Margin="0,4">
             <TextBlock Name="ColorNumberTextBox" VerticalAlignment="Center" Grid.Column="1" Height="24" Text="{Binding ColorNumberString, FallbackValue= 00000}" TextAlignment="Left" />
         </Grid></Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2" Name="RecentColors" Margin="10,0" >
+
+            <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5,0">
+                <ListView x:Name="PanelBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" 
+                                          ItemsSource="{Binding RecentColors}" >
+                    <!--<ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                            <Setter Property="ToolTip">
+                                <Setter.Value>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding PanelName}" MaxWidth="450" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Setter.Value>
+                            </Setter>
+                            <EventSetter Event="MouseDoubleClick" Handler="SaveTemplateItemDoubleClickHandler" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>-->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1" HorizontalAlignment="Left"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid  Margin="10,0" Width="80" Height="100">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid   Height="40" Width="40">
+                                    <Rectangle Name="ColorBox" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Height="32" Width="32" Fill="{Binding }" >
+                                    </Rectangle>
+                                </Grid>
+                                <Grid Grid.Row="1" Name="HtmlColorGrid" Height="30" >
+                                    <TextBlock Text="{Binding}" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Grid Grid.Row="2" Name="ColorNumberGrid" Height="30">
+                                    <TextBlock Text="-12345" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+
+
+
+
+            <!--<DockPanel MinHeight="120" >
+                <ScrollViewer Name="ScrollViewer" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
+                    <ItemsControl Name="RecentColorListControl"  Background="Transparent" ItemsSource="{Binding RecentColors}" 
+                        Width="{Binding RelativeSource={RelativeSource Self}, Path=Parent.ActualWidth}" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Rows="1" HorizontalAlignment="Left"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid  Margin="10,0" Width="200" Height="120">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="40">
+                                        <Rectangle Name="ColorBox" 
+                                                       Height="32" Width="32" Fill="{Binding }" >
+                                        </Rectangle>                                        
+                                    </Grid>
+
+
+                                    --><!--<Grid Grid.Row="1" Name="HtmlColorGrid" Height="32">
+                                        <TextBlock Text="{Binding}"></TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Row="2" Name="ColorNumberGrid" Height="32">
+                                        <TextBlock Text="-12345"></TextBlock>
+                                    </Grid>--><!--
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>-->
+        </Grid>
+        <Grid Grid.Row="4">
             <TextBlock VerticalAlignment="Center" Margin="10,0" Text="{Binding CopyText, FallbackValue=ttt}" Width="Auto"/>
         </Grid>
     </Grid>

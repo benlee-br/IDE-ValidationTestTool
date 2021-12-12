@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,17 @@ namespace IDEToolBox.ColorConverString
                 RaisePropertyChangedEvent("ColorString");
             }
         }
+        private ObservableCollection<String> _recentColors = new ObservableCollection<string>();
+        public ObservableCollection<string> RecentColors
+        {
+            get { return _recentColors; }
+            set
+            {
+                _recentColors = value;
+                RaisePropertyChangedEvent("RecentColors");
+            }
+        }
+        
         public string ColorNumberString
         {
 
@@ -52,7 +64,7 @@ namespace IDEToolBox.ColorConverString
                 RaisePropertyChangedEvent("CopyText");
             }
         }
-
+        string[] colors = new string[] { "#b3a2d5", "#8fc5f9", "#2974c0", "#df3936", "#fecc29", "#f96681", "#f65224", "#7a2628", "#7a2628" };
         /// <summary>
         /// 
         /// </summary>
@@ -60,6 +72,8 @@ namespace IDEToolBox.ColorConverString
         {
             RaisePropertyChangedEvent("ColorNumberString");
             ColorString = ConvetyColorSystem(_colorNumberString);
+            foreach (var htmlColor in colors)
+                _recentColors.Add(htmlColor);
         }
         #region Commands
 
