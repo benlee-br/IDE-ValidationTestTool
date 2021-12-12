@@ -20,6 +20,8 @@ namespace IDEToolBox
     /// </summary>
     public partial class MainWindow : Window
     {
+        //const string Title = "Combine Files From Two Folders";
+
         public MainWindow()
         {
             InitializeComponent();

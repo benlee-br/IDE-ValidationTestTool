@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CombineCSVFilesFromTwoFolders
+namespace IDEToolBox.CombineCSVs
 {
-    public class FileInfo
+    public class CombineFileInfo
     {
         public string FileFullName1 { set; get; }
         public string FileFullName2 { set; get; }
@@ -21,7 +21,7 @@ namespace CombineCSVFilesFromTwoFolders
         public string SheetName { set; get; }
       
         public bool ErrorFlag { set; get; }
-        public FileInfo(string s, string f1, string f2)
+        public CombineFileInfo(string s, string f1, string f2)
         {
             FileName = s;
             FileFullName1 = f1;

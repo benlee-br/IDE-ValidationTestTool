@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsSheetInfo.cs" />
-    <Compile Include="FileInfo.cs" />
+    <Compile Include="CombineFileInfo.cs" />
     <Compile Include="frmCombineResult.cs">
       <SubType>Form</SubType>
     </Compile>

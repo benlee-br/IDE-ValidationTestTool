@@ -5,21 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IDEToolBox"
         xmlns:controls="clr-namespace:IDEToolBox.ColorConverString"
+        xmlns:combineCSVs="clr-namespace:IDEToolBox.CombineCSVs"
+        
         mc:Ignorable="d"
         Title="IDE Test Tools" Height="600" Width="900" MinWidth="900"   Closing="Window_Closing">
     <TabControl>
-        <!--<TabItem Name="CombineCSVFilesFromTwoFolders" Visibility="Hidden" >
-            <TabItem.Header>
-                <Grid Background="WhiteSmoke">
-                    <TextBlock Text="Combine CSV Files From Two Folders" ></TextBlock>
-                </Grid>
-            </TabItem.Header>
 
-
-            <Grid>
-                <controls:CombineCSVsFrom2Folders />
-            </Grid>
-        </TabItem>-->
         <TabItem Name="DoubleSigmoidInsert" >
             <TabItem.Header>
                 <Grid Background="WhiteSmoke">
@@ -39,9 +30,18 @@
                 </Grid>
             </TabItem.Header>
 
-
             <Grid>
                 <controls:ColorConvertNumber />
+            </Grid>
+        </TabItem>
+        <TabItem Name="CombineCSVFilesFromTwoFolders">
+            <TabItem.Header>
+                <Grid Background="WhiteSmoke">
+                    <TextBlock Text="Combine CSV From Two Folders" ></TextBlock>
+                </Grid>
+            </TabItem.Header>
+            <Grid>
+                <combineCSVs:CombineCSVsFrom2Folders />
             </Grid>
         </TabItem>
     </TabControl>

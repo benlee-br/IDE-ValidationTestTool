@@ -43,7 +43,6 @@ namespace IDEToolBox
             (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             (sender as Button).ContextMenu.IsOpen = true;
         }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             var injectViewModel = DataContext as APFInjectViewModel;
@@ -59,6 +58,24 @@ namespace IDEToolBox
                     break;
 
             }
+        }
+
+        private void CombineButtonClick(object sender, RoutedEventArgs e)
+        {
+            var injectViewModel = DataContext as APFInjectViewModel;
+
+            Task.Run(async () =>
+            {
+                try
+                {
+                    injectViewModel.InjectParameters();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            });
+
         }
     }
 }

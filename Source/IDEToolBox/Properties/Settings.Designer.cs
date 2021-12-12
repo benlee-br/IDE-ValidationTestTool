@@ -118,5 +118,29 @@ namespace IDEToolBox.Properties {
                 this["EnableAssayColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultCompareFolder {
+            get {
+                return ((string)(this["DefaultCompareFolder"]));
+            }
+            set {
+                this["DefaultCompareFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultCombineResultPath {
+            get {
+                return ((string)(this["DefaultCombineResultPath"]));
+            }
+            set {
+                this["DefaultCombineResultPath"] = value;
+            }
+        }
     }
 }

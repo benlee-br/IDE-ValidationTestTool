@@ -3,17 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:IDEToolBox.CombineCSVs"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="WhiteSmoke">
-    
             <Grid.RowDefinitions>
                 <RowDefinition Height ="60" />
                 <RowDefinition Height ="60" />
                 <RowDefinition Height ="50" />
                 <RowDefinition Height ="*" />
-            </Grid.RowDefinitions>
+            <RowDefinition Height ="40" />
+        </Grid.RowDefinitions>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80" />
@@ -21,25 +20,79 @@
                     <ColumnDefinition Width="120" />
 
                 </Grid.ColumnDefinitions>
-                <Label HorizontalAlignment="Right" Height="40" Margin="5,0">Folder 1</Label>
-            <TextBox Name="FileFolder1" Grid.Column="1" Height="32" >abc</TextBox>
-                <Button HorizontalAlignment="Left" Grid.Column="2"  Width="32" Height="32" Margin="10">...</Button>
+                <Label HorizontalAlignment="Right" Height="24" Margin="5,0">Folder 1</Label>
+            <TextBox Name="FileFolder1" Grid.Column="1" Height="24" Text="{Binding Folder1Path}"/>
+            <Button HorizontalAlignment="Left" Grid.Column="2"  Width="32" Height="32" Margin="10" Click ="Folder1BrowseClick">...</Button>
+            <Grid Grid.Column="2" Width="40" Height="40" Margin="12" HorizontalAlignment="Right">
+                <Button Name="MenuDropDownButton"  Width="36" Height="36"  Margin="0,0,10,0" 
+                        Background="Transparent" BorderThickness="0" Click="ShowMenuDrop">
+                    <Button.ToolTip>Options Menu</Button.ToolTip>
+                    <Button.Content>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+                            <Ellipse   Margin="2" 
+                                                         Height="3"
+                                                         Width="3"
+                                                         Fill="Black"
+                                                         VerticalAlignment="Center"></Ellipse>
+                            <Ellipse  Margin="2" 
+                                                        Height="3"
+                                                         Width="3"
+                                                        Fill="Black"
+                                                        VerticalAlignment="Center"></Ellipse>
+                            <Ellipse  Margin="2" 
+                                                        Height="3"
+                                                         Width="3"
+                                                        Fill="Black"
+                                                        VerticalAlignment="Center"></Ellipse>
+                        </StackPanel>
+                    </Button.Content>
+
+
+                    <Button.ContextMenu>
+                        <ContextMenu Name="MainWindowContextMenu">
+                            <ContextMenu.Resources>
+                                <Style x:Key="submenuStyle" TargetType="{x:Type MenuItem}">
+                                    <Setter Property="FontWeight" Value="Normal" />
+                                    <Setter Property="Background" Value="Black" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Style>
+                            </ContextMenu.Resources>
+
+                            <MenuItem Name="ResultFolderItem"  Header="Result Output Folder" Click="MenuItem_Click"></MenuItem>
+                            <MenuItem Name="CompareDataFolderItem"  Header="Compare Data Folder" Click="MenuItem_Click"></MenuItem>
+                            <MenuItem Name="GotoOutputFolder"  Header="Open Result Output Folder" Click="MenuItem_Click" ></MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
             </Grid>
+        </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="120" />
                 </Grid.ColumnDefinitions>
-            <Label HorizontalAlignment="Right" Height="40" Margin="5,0">Folder 2</Label>
-                <TextBox Name="FileFolder2" Grid.Column="1" Height="32">abc</TextBox>
-                <Button Grid.Column="2" HorizontalAlignment="Left" Width="32" Height="32" Margin="10">...</Button>
+            <Label HorizontalAlignment="Right" Height="24" Margin="5,0">Folder 2</Label>
+            <TextBox Name="FileFolder2" Grid.Column="1" Height="24" Text="{Binding Folder2Path}"/>
+            <Button Grid.Column="2" HorizontalAlignment="Left" Width="32" Height="32" Margin="10" Click="Folder2BrowseClick">...</Button>
             </Grid>
             <Grid Grid.Row="2">
-                <TextBlock Text="File Contains Error(s)" VerticalAlignment="Center" Margin="20,0,0,0"></TextBlock>
-                <Button Width="120" Height="32" Content="Combine" HorizontalAlignment="Right" Margin="0,0,20,0"></Button>
-            </Grid>
-            <TextBox Grid.Row="3" Margin="10"></TextBox>
-       
+                <TextBlock Text="File Contains Error(s)" VerticalAlignment="Bottom" Margin="20,0,0,5"></TextBlock>
+            <Button Width="120" Height="32" Content="Combine" HorizontalAlignment="Right" Click="CombineButtonClick" Margin="0,0,20,0" />
+        </Grid>
+        <TextBox Name="txtErrorFileFound" Grid.Row="3" Margin="10,0"></TextBox>
+        <Grid Grid.Row="4" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="250" />
+
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="5,0" VerticalAlignment="Center" Text="{Binding Version, FallbackValue='Version: 1'}"/>
+            <ProgressBar Name ="tsProgress" Grid.Column="1" Height="20" Margin="4,0" Foreground="LightGreen" Value="{Binding ProgressValue, FallbackValue=10}"></ProgressBar>
+            <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding ProgressFileCount, FallbackValue='Done'}"/>
+            <TextBlock Grid.Column="2" Margin="5,0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding ProgressFileName, FallbackValue='Progress File Name'}"/>
+        </Grid>
     </Grid>
 </UserControl>

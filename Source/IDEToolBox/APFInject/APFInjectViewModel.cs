@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Threading;
 using WpfTestApp.ViewModelBase;
 
 namespace IDEToolBox.APFInject
@@ -44,14 +45,19 @@ namespace IDEToolBox.APFInject
         private string _colorString = "-7354887";
         private API m_API;
         private int _version = 2;
+        readonly Dispatcher _dispatcher;        
         /// <summary>
         /// 
         /// </summary>
         public APFInjectViewModel()
         {
+            _dispatcher = Dispatcher.CurrentDispatcher;
+
             LoadSettings();
         }
         private bool _removeUnzipFolder = false;
+
+        #region Properties
         public bool RemoveUnzipFolder
         {
             get { return _removeUnzipFolder; }
@@ -162,6 +168,7 @@ namespace IDEToolBox.APFInject
                 }
             }
         }
+        #endregion
 
         #region Commands
         public ICommand BrowseCommand
@@ -200,15 +207,17 @@ namespace IDEToolBox.APFInject
 
         private void LoadSettings()
         {
-            if (string.IsNullOrEmpty(Properties.Settings.Default.DefaultResultPath))
-                ResultOutputPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            else
-                ResultOutputPath = Properties.Settings.Default.DefaultResultPath;
+            //if (string.IsNullOrEmpty(Properties.Settings.Default.DefaultResultPath))
+            //    ResultOutputPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //else
+            //    ResultOutputPath = Properties.Settings.Default.DefaultResultPath;
 
             if (string.IsNullOrEmpty(Properties.Settings.Default.DefaultSourceFolder))
                 SourcePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             else
                 SourcePath = Properties.Settings.Default.DefaultSourceFolder;
+
+            ResultOutputPath = Path.Combine(SourcePath, "Output");
 
             DoubleSigmoidCtCutOff = Properties.Settings.Default.DoubleSigmoidCt;
             ApplyDoubleSigmoidRule = Properties.Settings.Default.ApplyDoubleSigmoid;
@@ -239,16 +248,38 @@ namespace IDEToolBox.APFInject
         }
 
         string currentWorkingFile = string.Empty;
-        private void InjectParameters()
+
+
+
+        async Task UpdateLogAsync(string entry)
+        {
+            await _dispatcher.BeginInvoke(new System.Action(() =>
+            {
+                if (!string.IsNullOrEmpty(entry))
+                {
+                    Logs.Add(entry);
+                }
+
+            }));
+            
+        }
+        async Task ClearLog()
+        {
+            await _dispatcher.BeginInvoke(new System.Action(() =>
+            {
+                Logs.Clear();
+            }));
+
+        }
+        public async void InjectParameters()
         {
             if (AutomaticClearLog)
-                Logs.Clear();
+                await ClearLog();
 
             currentWorkingFile = string.Empty;
             try
             {
                 PrepareDataFolder(ResultOutputPath, OverwriteOutputFolder);
-
 
                 string targetDir = ResultOutputPath;
                 //bool overwrite = true;
@@ -265,7 +296,7 @@ namespace IDEToolBox.APFInject
                     string decompressedFileName = Path.Combine(unZipFolder, Path.GetFileName(sourceFile));
                     if (File.Exists(decompressedFileName))
                     {
-                        Logs.Add($"({Path.GetFileName(decompressedFileName)}) exists in Unzip folder.");
+                        await UpdateLogAsync($"({Path.GetFileName(decompressedFileName)}) exists in Unzip folder.");
                         continue;
                     }
                     if (FileUtilities.IsCompressedFile(sourceFile))
@@ -283,17 +314,16 @@ namespace IDEToolBox.APFInject
                                 //    if (dataFileName == "datafile.pcrd" && File.Exists(Path.Combine(unZipFolder, dataFileName)))
                                 {
                                     File.Move(Path.Combine(unZipFolder, dataFileName), decompressedFileName);
-
-                                    Logs.Add($"({Path.GetFileName(sourceFile)}) renamed from output ({dataFileName}).");
+                                    await UpdateLogAsync($"({Path.GetFileName(sourceFile)}) renamed from output ({dataFileName}).");
                                 }
                             }
-                            Logs.Add($"({Path.GetFileName(sourceFile)}) decompressed.");
+                            await UpdateLogAsync($"({Path.GetFileName(sourceFile)}) decompressed.");
                             compressedCount++;
                         }
                     }
                     else
                     {
-                        Logs.Add($"({Path.GetFileName(sourceFile)}) is not decompressed.");
+                        await UpdateLogAsync($"({Path.GetFileName(sourceFile)}) is not decompressed.");
                         System.IO.File.Copy(sourceFile, decompressedFileName);
                     }
                     if (File.Exists(decompressedFileName))
@@ -304,7 +334,7 @@ namespace IDEToolBox.APFInject
                         injectedCount++;
                     }
                 }
-                Logs.Add($"Total: {compressedCount} files decompressed. {injectedCount} files APF modified");
+                await UpdateLogAsync($"Total: {compressedCount} files decompressed. {injectedCount} files APF modified");
 
 
                 if (RemoveUnzipFolder)
@@ -341,7 +371,7 @@ namespace IDEToolBox.APFInject
             //}
             catch (Exception ex)
             {
-                Logs.Add($"InjectParameters->Exception:{currentWorkingFile}-{ex.Message}");
+                await UpdateLogAsync($"InjectParameters->Exception:{currentWorkingFile}-{ex.Message}");
             }
 
             //return result;
@@ -388,7 +418,7 @@ namespace IDEToolBox.APFInject
             if (content.Contains(version3Element)) // upgrade to v4
             {
                 content = content.Replace(version3Element, version4Element);
-                Logs.Add($"({Path.GetFileName(currentWorkingFile)}) version 3 updated to 4.");
+                UpdateLogAsync($"({Path.GetFileName(currentWorkingFile)}) version 3 updated to 4.");
             }
 
             int first = content.IndexOf(applyNewBaseLiningKey) + applyNewBaseLiningKey.Length;
@@ -531,11 +561,11 @@ namespace IDEToolBox.APFInject
                                 writeFile.Write(content);
                                 writeFile.Close();
                             }
-                            Logs.Add($"({Path.GetFileName(fileName)}) updated.");
+                            var task = UpdateLogAsync($"({Path.GetFileName(fileName)}) updated.");
                         }
                         else
                         {
-                            Logs.Add($"({Path.GetFileName(fileName)}) Ignored, becuased it is already updated to Version 4.");
+                            var task = UpdateLogAsync($"({Path.GetFileName(fileName)}) Ignored, becuased it is already updated to Version 4.");
                         }
 
                     }
@@ -544,7 +574,7 @@ namespace IDEToolBox.APFInject
             }
             catch (Exception ex)
             {
-                Logs.Add($"Injectelements-> exception:{fileName}-{ex.Message}");
+                var task = UpdateLogAsync($"Injectelements-> exception:{fileName}-{ex.Message}");
             }
         }
 

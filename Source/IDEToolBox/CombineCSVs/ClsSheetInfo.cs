@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace CombineCSVFilesFromTwoFolders
+namespace IDEToolBox.CombineCSVs
 {
-    class clsSheetInfo
+    internal class ClsSheetInfo
     {
         public string SampleName { set; get; }
         public string SheetName { set; get; }
@@ -16,7 +12,7 @@ namespace CombineCSVFilesFromTwoFolders
 
         public int colGroup1;
         public int colGroup2;
-        public clsSheetInfo(string sample, string sheet, int r)
+        public ClsSheetInfo(string sample, string sheet, int r)
         {
             lstFile = new List<CombineFileInfo>();
             SampleName = sample;
@@ -26,6 +22,6 @@ namespace CombineCSVFilesFromTwoFolders
             colGroup1 = 1;
             colGroup2 = 12;
         }
-        
+
     }
 }

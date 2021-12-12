@@ -17,28 +17,12 @@ namespace CombineCSVFilesFromTwoFolders
 {
     public partial class frmCombineResult : Form, IDisposable
     {
+        #region Members
         const int Version = 9;
         const string Form_Title = "Combine Files From Two Folders";
         string[] Header = new string[] { "", "Well","","", "FAM Cq", "Cy5 Cq", "Cq", "I.C. Cq","", "Result" };
         enum ColumnName {None , Well, Content, Sample, cq1, cq2, cq3, ICCq, SQ, Result }
-        public frmCombineResult()
-        {
-            InitializeComponent();
-            LoadSettings();
-        }
 
-        private void LoadSettings()
-        {
-            if (string.IsNullOrEmpty(Properties.Settings.Default.DefaultResultPath))
-                ResultPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            else
-                ResultPath = Properties.Settings.Default.DefaultResultPath;
-
-            if (string.IsNullOrEmpty(Properties.Settings.Default.DefaultCompareFolder))
-                DataPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            else
-                DataPath = Properties.Settings.Default.DefaultCompareFolder;
-        }
         object lockme = new object();
         List<clsSheetInfo> lstSheet = null;
         Microsoft.Office.Interop.Excel.Application xlApp = null;
@@ -47,23 +31,17 @@ namespace CombineCSVFilesFromTwoFolders
         private string m_ResultPath;
         private string m_DataPath;
         bool m_NoDiffAllFiles = true;
+        #endregion
 
-        private void frmCombineResult_Load(object sender, EventArgs e)
-        { 
-            txtFolder1.Text = "C:\\Users\\yong_qin\\Downloads\\IDE Results_ON";
-            txtFolder2.Text = "C:\\Users\\yong_qin\\Downloads\\IDE Results_OFF";
-            txtFolder1.Text = @"C:\Users\yong_qin\Downloads\Debugging\Macros Excel\Copy data below each other\IDE Results_ON";
-            txtFolder2.Text = @"C:\Users\yong_qin\Downloads\Debugging\Macros Excel\Copy data below each other\IDE Results_OFF";
-            txtFolder1.Text = @"C:\Users\yong_qin\Downloads\Before";
-            txtFolder2.Text = @"C:\Users\yong_qin\Downloads\After";
-            txtFolder1.Text = @"C:\Temp\CrossTwice\IDE Result";
-            txtFolder2.Text = @"C:\Users\yong_qin\Downloads\Debugging\Examples pcrd\6_Curves Crossign threshold twice\IDE Result";
-            txtFolder1.Text = @"C:\Work\Data\2021_09_20\IDE Result_After Subset";
-            txtFolder2.Text = @"C:\Work\Data\2021_09_20\IDE Result_Before Subset";
-
-            //Form title
-            Text = $"{Form_Title} - Version {Version}";
+        #region Constructor
+        public frmCombineResult()
+        {
+            InitializeComponent();
+            LoadSettings();
         }
+        #endregion
+
+        #region Properties
         public string ResultPath
         {
             get { return m_ResultPath; }
@@ -88,237 +66,22 @@ namespace CombineCSVFilesFromTwoFolders
                 }
             }
         }
-        private void btnBrowse1_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Methods
+        private void LoadSettings()
         {
-            FolderBrowserDialog dgl = new FolderBrowserDialog();
-            dgl.SelectedPath = DataPath;
-            if (dgl.ShowDialog() == DialogResult.OK)
-            {
-                if(Directory.Exists(Path.Combine(dgl.SelectedPath, "Before")) &&
-                    Directory.Exists(Path.Combine(dgl.SelectedPath, "After")))
-                {
-                    txtFolder1.Text = Path.Combine(dgl.SelectedPath, "Before");
+            if (string.IsNullOrEmpty(Properties.Settings.Default.DefaultResultPath))
+                ResultPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            else
+                ResultPath = Properties.Settings.Default.DefaultResultPath;
 
-                    txtFolder2.Text = Path.Combine(dgl.SelectedPath, "After");
-                }
-                else
-                    txtFolder1.Text = dgl.SelectedPath;
-
-            }
+            if (string.IsNullOrEmpty(Properties.Settings.Default.DefaultCompareFolder))
+                DataPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            else
+                DataPath = Properties.Settings.Default.DefaultCompareFolder;
         }
-
-        private void btnBrowse2_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dgl = new FolderBrowserDialog();
-            if (dgl.ShowDialog() == DialogResult.OK)
-            {
-                txtFolder2.Text = dgl.SelectedPath;
-            }
-        }
-
-        private async void btnCombine_Click(object sender, EventArgs e)
-        {
-            Debug.WriteLine("start:" + DateTime.Now.ToString());
-            Cursor.Current = Cursors.WaitCursor;
-            xlApp = new Microsoft.Office.Interop.Excel.Application();
-            xlWorkbook = xlApp.Workbooks.Add();  //.Open(FileName);
-            
-            //xlWorkbook.Worksheets.Add();
-            //write excel header
-            lstSheet = new List<clsSheetInfo>();
-
-            string sFile1;
-            string sFile2;
-            int count = 0;
-            int FileCounts = System.IO.Directory.GetFiles(txtFolder1.Text).Length;
-            tsProgress.Minimum = 0;
-            tsProgress.Maximum = FileCounts;
-            tsProgress.Value = 0;
-            m_NoDiffAllFiles = true;
-            await Task.Run(() =>
-            {
-                //Parallel.ForEach(System.IO.Directory.GetFiles(txtFolder1.Text), sFile =>
-                foreach(string sFile in System.IO.Directory.GetFiles(txtFolder1.Text))
-                {
-                   System.IO.FileInfo fi = new System.IO.FileInfo(sFile);
-
-                   sFile1 = sFile;
-                   sFile2 = txtFolder2.Text + "\\" + fi.Name;
-
-                   if (System.IO.File.Exists(sFile2) == true)
-                   {
-                       count++;
-
-                       Invoke((Action)(() =>
-                       {
-                           tsCount.Text = count.ToString() + " / " + FileCounts.ToString();
-                           tsFileName.Text = fi.Name;
-                           tsProgress.Value = count;
-                       }));
-
-                       try
-                       {
-                            FileInfo oFileInfo = new FileInfo(fi.Name, sFile1, sFile2);
-                            AddToSheet("Total", oFileInfo, lstSheet, xlWorkbook);
-                            FileInfo oFileInfoSample = new FileInfo(fi.Name, sFile1, sFile2);
-                            AddToSheet(oFileInfoSample.SampleName, oFileInfoSample, lstSheet, xlWorkbook);
-                            //Add the one that has diffenece to new sheet
-                            {
-                                FileInfo oFileDiff = new FileInfo(fi.Name, sFile1, sFile2);
-                                m_NoDiffAllFiles &= (oFileInfoSample.NumberOfDifferent == 0);
-                                AddToSheet("Difference", oFileDiff, lstSheet, xlWorkbook, oFileInfoSample.NumberOfDifferent == 0);
-                            }
-
-                            if(oFileInfo.ErrorFlag || oFileInfoSample.ErrorFlag)
-                            {
-                                Invoke((Action)(() =>
-                                {
-                                    txtErrorFileFound.AppendText(fi.Name);
-                                    txtErrorFileFound.AppendText(Environment.NewLine); ;
-                                }));
-                            }
-                       }
-                       catch (Exception ex)
-                       {
-                           Invoke((Action)(() =>
-                           {
-                               txtErrorFileFound.AppendText(fi.Name);
-                               txtErrorFileFound.AppendText(Environment.NewLine);
-                           }));
-                       }
-                   }
-                   else
-                   {
-                       Invoke((Action)(() =>
-                       {
-                           txtErrorFileFound.Text = fi.Name;
-                       }));
-                   }
-                  
-               }
-               //);
-            });
-
-            tsCount.Text = "Combine:Done";
-            tsFileName.Text = "";
-
-            tsProgress.Minimum = 0;
-            tsProgress.Maximum = lstSheet.Count;
-            tsProgress.Value = 0;
-            int count2 = 0;
-            await Task.Run(() =>
-            {
-                foreach (clsSheetInfo oSheet in lstSheet)
-                {
-                    count2++;
-                    Invoke((Action)(() =>
-                    {
-                        tsCount.Text = count2.ToString() + " / " + lstSheet.Count.ToString();
-                        tsFileName.Text = oSheet.SheetName;
-                        tsProgress.Value = count2;
-                    }));
-                    xlWorksheet = xlWorkbook.Sheets[oSheet.SheetName];
-                    if (oSheet.SampleName.Length < 30)
-                    {
-                        xlWorksheet.Name = oSheet.SampleName;
-                    }
-
-                    if (m_NoDiffAllFiles && xlWorksheet.Name == "Difference")
-                    {
-                        xlWorksheet.Cells[2, 1].Value = "No difference";
-                        continue;
-                    }
-                    //PopulateDataForSheetSummary(xlWorksheet, oSheet, oSheet.lstFile , xlWorksheet.Name == "Difference");
-                    PopulateDataForSheetSummary(xlWorksheet, oSheet, oSheet.lstFile, xlWorksheet.Name == "Difference");
-                }
-                xlWorkbook.Sheets["Total"].Move(xlWorkbook.Sheets[1]);
-                xlWorkbook.Sheets["Difference"].Move(xlWorkbook.Sheets[1]);
-            });
-            tsCount.Text = "Sheet:Done";
-            tsFileName.Text = "";
-           
-
-            xlApp.Visible = false;
-            xlApp.UserControl = false;
-
-            string errorMessage = "";
-            string tempPath = System.IO.Path.GetTempPath();
-            string resultFileName = $"{DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss", CultureInfo.InvariantCulture)}.xlsx";
-            string tempFullFileName = Path.Combine(tempPath, resultFileName);
-            bool isSuccess = false;
-            try
-            {
-                xlWorkbook.SaveAs(tempFullFileName);
-
-                bool fileExist = File.Exists(tempFullFileName);
-                int tryCount = 20;
-                int i = 0;
-                do
-                {
-                    if (!fileExist)
-                    {
-                        Thread.Sleep(100);
-                        i++;
-                    }
-                    else
-                        File.Copy(tempFullFileName, Path.Combine(ResultPath, resultFileName));
-                } while (!fileExist && i < tryCount);
-
-                if (File.Exists(Path.Combine(ResultPath, resultFileName)))
-                {
-                    isSuccess = true;
-                    tsFileName.Text = $"{Path.Combine(ResultPath, resultFileName)}) saved.";
-                }
-                else
-                    errorMessage = "Result file not complete for unknown reason.";
-            }
-            catch (Exception exception)
-            {
-                errorMessage = exception.Message;
-            }
-
-            if (!String.IsNullOrEmpty(errorMessage))
-            {
-                tsCount.Text = "Error";
-                tsFileName.Text = errorMessage;
-                ProgressBarColor.SetState(tsProgress.ProgressBar, 2);
-            }
-
-            //cleanup
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-
-            //release com objects to fully kill excel process from running in the background
-
-            //close and release
-            xlWorkbook.Close();
-            //quit and release
-            xlApp.Quit();
-
-            try
-            {
-                File.Delete(tempFullFileName);
-            }
-            catch(Exception exception)
-            {
-                errorMessage = exception.Message;
-            }
-
-            // Set cursor as default arrow
-            Cursor.Current = Cursors.Default;
-            Debug.WriteLine("End:" + DateTime.Now.ToString());
-            if (isSuccess)
-            {
-                string resultFile = Path.Combine(ResultPath, resultFileName);
-                if (MessageBox.Show($"Combine complete, Open result Excel file({resultFile})? ", "Success", MessageBoxButtons.OKCancel) 
-                    == DialogResult.OK)
-                {
-                    Process.Start(resultFile);
-                }
-            }
-        }
-
-        private void AddToSheet(string SheetSampleName, FileInfo oFile, List<clsSheetInfo> lstSheet, Microsoft.Office.Interop.Excel.Workbook xlWorkbook, bool NoDiff = false)
+        private void AddToSheet(string SheetSampleName, CombineFileInfo oFile, List<clsSheetInfo> lstSheet, Microsoft.Office.Interop.Excel.Workbook xlWorkbook, bool NoDiff = false)
         {
             lock (lockme)
             {
@@ -366,7 +129,7 @@ namespace CombineCSVFilesFromTwoFolders
             xlWorksheet.Cells[1, 3].EntireRow.Font.Bold = true;
 
         }
-        private void PopulateDataForSheet(Microsoft.Office.Interop.Excel._Worksheet xlWorksheet, clsSheetInfo oSheetInfo, FileInfo oFileInfo, bool NoDiff = false)
+        private void PopulateDataForSheet(Microsoft.Office.Interop.Excel._Worksheet xlWorksheet, clsSheetInfo oSheetInfo, CombineFileInfo oFileInfo, bool NoDiff = false)
         {
             if (NoDiff) return;
             int row = oSheetInfo.Row;
@@ -440,7 +203,7 @@ namespace CombineCSVFilesFromTwoFolders
 
             oSheetInfo.Row = row;
         }
-        private void PopulateDataForSheetSummary(Microsoft.Office.Interop.Excel._Worksheet xlWorksheet, clsSheetInfo oSheet, List<FileInfo> lstFile, bool isDiffSheet = false)
+        private void PopulateDataForSheetSummary(Microsoft.Office.Interop.Excel._Worksheet xlWorksheet, clsSheetInfo oSheet, List<CombineFileInfo> lstFile, bool isDiffSheet = false)
         {
 
             //Write Total number
@@ -451,7 +214,7 @@ namespace CombineCSVFilesFromTwoFolders
             int col = colGroup2 + 12;
             xlWorksheet.Cells[1, col].Value = "Number of Samples";
             xlWorksheet.Cells[1, col + 1].Value = "Number of Difference";
-            foreach (FileInfo oFileInfo in lstFile)
+            foreach (CombineFileInfo oFileInfo in lstFile)
             {
                 xlWorksheet.Cells[oFileInfo.FileNameRow, col].Value = oFileInfo.NumberOfSample;
                 xlWorksheet.Cells[oFileInfo.FileNameRow, col + 1].Value = oFileInfo.NumberOfDifferent;
@@ -465,7 +228,7 @@ namespace CombineCSVFilesFromTwoFolders
             xlWorksheet.Cells[row, col].Value = "Number of Samples";
             xlWorksheet.Cells[row, col + 1].Value = "Number of Difference";
             int countDiff = 0;
-            foreach (FileInfo oFileInfo in lstFile)
+            foreach (CombineFileInfo oFileInfo in lstFile)
             {
                 if (oFileInfo.NumberOfDifferent == 0 && isDiffSheet) continue;
                 countDiff++;
@@ -490,7 +253,7 @@ namespace CombineCSVFilesFromTwoFolders
             xlWorksheet.Cells[row, col + 1].Value = GetTotalNumberOfDifference(lstFile);
 
         }
-        private int PopulateData(Microsoft.Office.Interop.Excel._Worksheet xlWorksheet, int row, int col, string sFile, FileInfo oFileInfo)
+        private int PopulateData(Microsoft.Office.Interop.Excel._Worksheet xlWorksheet, int row, int col, string sFile, CombineFileInfo oFileInfo)
         {
             string sline;
             string[] sLineData;
@@ -619,26 +382,274 @@ namespace CombineCSVFilesFromTwoFolders
             sr.Close();
             return bValid;
          }
-         public int GetTotalNumberOfSamples(List<FileInfo> lstFile)
+         public int GetTotalNumberOfSamples(List<CombineFileInfo> lstFile)
         {
             int iTotal = 0;
-            foreach(FileInfo oFileInfo in lstFile)
+            foreach(CombineFileInfo oFileInfo in lstFile)
             {
                 iTotal = iTotal + oFileInfo.NumberOfSample;
             }
             return iTotal;
         }
 
-        public int GetTotalNumberOfDifference(List<FileInfo> lstFile)
+        public int GetTotalNumberOfDifference(List<CombineFileInfo> lstFile)
         {
             int iTotal = 0;
-            foreach (FileInfo oFileInfo in lstFile)
+            foreach (CombineFileInfo oFileInfo in lstFile)
             {
                 iTotal = iTotal + oFileInfo.NumberOfDifferent;
             }
             return iTotal;
         }
+        #endregion
 
+        #region Event
+        private void frmCombineResult_Load(object sender, EventArgs e)
+        {
+            txtFolder1.Text = "C:\\Users\\yong_qin\\Downloads\\IDE Results_ON";
+            txtFolder2.Text = "C:\\Users\\yong_qin\\Downloads\\IDE Results_OFF";
+            txtFolder1.Text = @"C:\Users\yong_qin\Downloads\Debugging\Macros Excel\Copy data below each other\IDE Results_ON";
+            txtFolder2.Text = @"C:\Users\yong_qin\Downloads\Debugging\Macros Excel\Copy data below each other\IDE Results_OFF";
+            txtFolder1.Text = @"C:\Users\yong_qin\Downloads\Before";
+            txtFolder2.Text = @"C:\Users\yong_qin\Downloads\After";
+            txtFolder1.Text = @"C:\Temp\CrossTwice\IDE Result";
+            txtFolder2.Text = @"C:\Users\yong_qin\Downloads\Debugging\Examples pcrd\6_Curves Crossign threshold twice\IDE Result";
+            txtFolder1.Text = @"C:\Work\Data\2021_09_20\IDE Result_After Subset";
+            txtFolder2.Text = @"C:\Work\Data\2021_09_20\IDE Result_Before Subset";
+
+            //Form title
+            Text = $"{Form_Title} - Version {Version}";
+        }
+
+        private void btnBrowse1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dgl = new FolderBrowserDialog();
+            dgl.SelectedPath = DataPath;
+            if (dgl.ShowDialog() == DialogResult.OK)
+            {
+                if (Directory.Exists(Path.Combine(dgl.SelectedPath, "Before")) &&
+                    Directory.Exists(Path.Combine(dgl.SelectedPath, "After")))
+                {
+                    txtFolder1.Text = Path.Combine(dgl.SelectedPath, "Before");
+
+                    txtFolder2.Text = Path.Combine(dgl.SelectedPath, "After");
+                }
+                else
+                    txtFolder1.Text = dgl.SelectedPath;
+
+            }
+        }
+
+        private void btnBrowse2_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dgl = new FolderBrowserDialog();
+            if (dgl.ShowDialog() == DialogResult.OK)
+            {
+                txtFolder2.Text = dgl.SelectedPath;
+            }
+        }
+
+        private async void btnCombine_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("start:" + DateTime.Now.ToString());
+            Cursor.Current = Cursors.WaitCursor;
+            xlApp = new Microsoft.Office.Interop.Excel.Application();
+            xlWorkbook = xlApp.Workbooks.Add();  //.Open(FileName);
+
+            //xlWorkbook.Worksheets.Add();
+            //write excel header
+            lstSheet = new List<clsSheetInfo>();
+
+            string sFile1;
+            string sFile2;
+            int count = 0;
+            int FileCounts = System.IO.Directory.GetFiles(txtFolder1.Text).Length;
+            tsProgress.Minimum = 0;
+            tsProgress.Maximum = FileCounts;
+            tsProgress.Value = 0;
+            m_NoDiffAllFiles = true;
+            await Task.Run(() =>
+            {
+                //Parallel.ForEach(System.IO.Directory.GetFiles(txtFolder1.Text), sFile =>
+                foreach (string sFile in System.IO.Directory.GetFiles(txtFolder1.Text))
+                {
+                    System.IO.FileInfo fi = new System.IO.FileInfo(sFile);
+
+                    sFile1 = sFile;
+                    sFile2 = txtFolder2.Text + "\\" + fi.Name;
+
+                    if (System.IO.File.Exists(sFile2) == true)
+                    {
+                        count++;
+
+                        Invoke((Action)(() =>
+                        {
+                            tsCount.Text = count.ToString() + " / " + FileCounts.ToString();
+                            tsFileName.Text = fi.Name;
+                            tsProgress.Value = count;
+                        }));
+
+                        try
+                        {
+                            CombineFileInfo oFileInfo = new CombineFileInfo(fi.Name, sFile1, sFile2);
+                            AddToSheet("Total", oFileInfo, lstSheet, xlWorkbook);
+                            CombineFileInfo oFileInfoSample = new CombineFileInfo(fi.Name, sFile1, sFile2);
+                            AddToSheet(oFileInfoSample.SampleName, oFileInfoSample, lstSheet, xlWorkbook);
+                            //Add the one that has diffenece to new sheet
+                            {
+                                CombineFileInfo oFileDiff = new CombineFileInfo(fi.Name, sFile1, sFile2);
+                                m_NoDiffAllFiles &= (oFileInfoSample.NumberOfDifferent == 0);
+                                AddToSheet("Difference", oFileDiff, lstSheet, xlWorkbook, oFileInfoSample.NumberOfDifferent == 0);
+                            }
+
+                            if (oFileInfo.ErrorFlag || oFileInfoSample.ErrorFlag)
+                            {
+                                Invoke((Action)(() =>
+                                {
+                                    txtErrorFileFound.AppendText(fi.Name);
+                                    txtErrorFileFound.AppendText(Environment.NewLine); ;
+                                }));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Invoke((Action)(() =>
+                            {
+                                txtErrorFileFound.AppendText(fi.Name);
+                                txtErrorFileFound.AppendText(Environment.NewLine);
+                            }));
+                        }
+                    }
+                    else
+                    {
+                        Invoke((Action)(() =>
+                        {
+                            txtErrorFileFound.Text = fi.Name;
+                        }));
+                    }
+
+                }
+                //);
+            });
+
+            tsCount.Text = "Combine:Done";
+            tsFileName.Text = "";
+
+            tsProgress.Minimum = 0;
+            tsProgress.Maximum = lstSheet.Count;
+            tsProgress.Value = 0;
+            int count2 = 0;
+            await Task.Run(() =>
+            {
+                foreach (clsSheetInfo oSheet in lstSheet)
+                {
+                    count2++;
+                    Invoke((Action)(() =>
+                    {
+                        tsCount.Text = count2.ToString() + " / " + lstSheet.Count.ToString();
+                        tsFileName.Text = oSheet.SheetName;
+                        tsProgress.Value = count2;
+                    }));
+                    xlWorksheet = xlWorkbook.Sheets[oSheet.SheetName];
+                    if (oSheet.SampleName.Length < 30)
+                    {
+                        xlWorksheet.Name = oSheet.SampleName;
+                    }
+
+                    if (m_NoDiffAllFiles && xlWorksheet.Name == "Difference")
+                    {
+                        xlWorksheet.Cells[2, 1].Value = "No difference";
+                        continue;
+                    }
+                    //PopulateDataForSheetSummary(xlWorksheet, oSheet, oSheet.lstFile , xlWorksheet.Name == "Difference");
+                    PopulateDataForSheetSummary(xlWorksheet, oSheet, oSheet.lstFile, xlWorksheet.Name == "Difference");
+                }
+                xlWorkbook.Sheets["Total"].Move(xlWorkbook.Sheets[1]);
+                xlWorkbook.Sheets["Difference"].Move(xlWorkbook.Sheets[1]);
+            });
+            tsCount.Text = "Sheet:Done";
+            tsFileName.Text = "";
+
+
+            xlApp.Visible = false;
+            xlApp.UserControl = false;
+
+            string errorMessage = "";
+            string tempPath = System.IO.Path.GetTempPath();
+            string resultFileName = $"{DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss", CultureInfo.InvariantCulture)}.xlsx";
+            string tempFullFileName = Path.Combine(tempPath, resultFileName);
+            bool isSuccess = false;
+            try
+            {
+                xlWorkbook.SaveAs(tempFullFileName);
+
+                bool fileExist = File.Exists(tempFullFileName);
+                int tryCount = 20;
+                int i = 0;
+                do
+                {
+                    if (!fileExist)
+                    {
+                        Thread.Sleep(100);
+                        i++;
+                    }
+                    else
+                        File.Copy(tempFullFileName, Path.Combine(ResultPath, resultFileName));
+                } while (!fileExist && i < tryCount);
+
+                if (File.Exists(Path.Combine(ResultPath, resultFileName)))
+                {
+                    isSuccess = true;
+                    tsFileName.Text = $"{Path.Combine(ResultPath, resultFileName)}) saved.";
+                }
+                else
+                    errorMessage = "Result file not complete for unknown reason.";
+            }
+            catch (Exception exception)
+            {
+                errorMessage = exception.Message;
+            }
+
+            if (!String.IsNullOrEmpty(errorMessage))
+            {
+                tsCount.Text = "Error";
+                tsFileName.Text = errorMessage;
+                ProgressBarColor.SetState(tsProgress.ProgressBar, 2);
+            }
+
+            //cleanup
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
+            //release com objects to fully kill excel process from running in the background
+
+            //close and release
+            xlWorkbook.Close();
+            //quit and release
+            xlApp.Quit();
+
+            try
+            {
+                File.Delete(tempFullFileName);
+            }
+            catch (Exception exception)
+            {
+                errorMessage = exception.Message;
+            }
+
+            // Set cursor as default arrow
+            Cursor.Current = Cursors.Default;
+            Debug.WriteLine("End:" + DateTime.Now.ToString());
+            if (isSuccess)
+            {
+                string resultFile = Path.Combine(ResultPath, resultFileName);
+                if (MessageBox.Show($"Combine complete, Open result Excel file({resultFile})? ", "Success", MessageBoxButtons.OKCancel)
+                    == DialogResult.OK)
+                {
+                    Process.Start(resultFile);
+                }
+            }
+        }
         private void defaultResultFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dgl = new FolderBrowserDialog();
@@ -664,9 +675,10 @@ namespace CombineCSVFilesFromTwoFolders
             var path = Properties.Settings.Default.DefaultResultPath;
             Properties.Settings.Default.Save();
         }
-
+        #endregion
 
     }
+
     public static class ProgressBarColor
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]

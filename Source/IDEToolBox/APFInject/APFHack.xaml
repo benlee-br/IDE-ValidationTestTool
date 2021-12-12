@@ -10,7 +10,6 @@
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             
-           
             <RowDefinition Height ="60" />
             <RowDefinition Height ="40" />
             <RowDefinition Height ="50" />
